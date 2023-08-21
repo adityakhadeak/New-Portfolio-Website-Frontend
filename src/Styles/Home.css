@@ -1,0 +1,132 @@
+
+@keyframes animation1img{
+    0% {
+        transform: translate(0) rotate(0deg);
+    }
+    20% {
+        transform: translate(73px,-1px) rotate(36deg);
+    }
+    40% {
+        transform: translate(141px,72px) rotate(72deg);
+    }
+    60% {
+        transform: translate(83px,122px) rotate(108deg);
+    }
+    80% {
+        transform: translate(-40px,72px) rotate(144deg);
+    }
+    100% {
+        transform: translate(0) rotate(0deg);
+    }
+}
+
+@keyframes animation2img {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(1turn);
+    }   
+}
+@keyframes animationdiv{
+    0% {
+        transform: translateY(-20px);
+    }
+    
+    100% {
+        transform: translateY(0);
+    }
+}
+
+@keyframes animation4div {
+    0%, 100% {
+        transform: scale(1.2) rotate(7deg);
+    }
+    50% {
+        transform: scale(.8) rotate(-7deg);
+    }
+}
+
+.pattern-1 img{
+    z-index: 1;
+    transition: all .3s ease 0s;
+    animation: animation1img 20s linear infinite alternate;
+}
+
+.pattern-2 {
+    
+    animation: animationdiv 2s linear infinite alternate;
+}
+.pattern-2 img{
+    
+    z-index: 1;
+    transition: all .3s ease 0s;
+    animation: animation2img 10s linear infinite alternate;
+}
+.pattern-3 img{
+    transition: all .3s ease 0s
+}
+.pattern-3 {
+    
+    animation: animationdiv 2s linear infinite alternate;
+}
+
+.pattern-4 img{
+    transition: all .3s ease 0s
+}
+.pattern-4{
+    animation: animation4div 2s linear infinite alternate;
+}
+.homeback::after{
+    content: '';
+    background: url('../images/shadow.svg')no-repeat;
+    position: absolute;
+    height:500px;
+    width:450px;
+    left: -80px;
+z-index: 1;
+  
+    background-size: contain;
+}
+
+.myImg::before{
+    content: '';
+    background: url('../images/photobackblur.svg') no-repeat 50%;
+    position: absolute;
+    right: 125px;
+    top: 100px;
+    height: 500px;
+    width: 500px;
+    background-size: contain;
+    z-index: 1;
+}
+@media screen and (max-width: 768px) {
+    
+
+    .homeback::after{
+        content: '';
+        background: url('../images/shadow.svg')no-repeat;
+        position: absolute;
+        height: 480px;
+    width: 260px;
+    left: -80px;
+    z-index: 1;
+      
+        background-size: contain;
+    }
+    
+    .myImg::before{
+        content: '';
+        background: url('../images/photobackblur.svg') no-repeat 50%;
+        position: absolute;
+       left: 90px;
+        top: 2px;
+        height: 473px;
+        width: 271px;
+        background-size: contain;
+        z-index: 1;
+    }
+
+}
+
+

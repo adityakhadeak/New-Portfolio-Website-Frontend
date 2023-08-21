@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import logo from '../images/logo.png'
-import { RiCloseLine, RiMenu2Line } from "react-icons/ri";
+import {  RiMenu2Line } from "react-icons/ri";
 import { SlArrowUp } from "react-icons/sl";
 import { CiLight } from "react-icons/ci";
 import { Link } from 'react-router-dom';
@@ -21,6 +21,7 @@ const Navbar = () => {
         return () => {
             window.removeEventListener('resize', handleResize);
         };
+        // eslint-disable-next-line
     }, [menu]);
 
     const container = {
@@ -54,7 +55,7 @@ const Navbar = () => {
     { "key": "IV.", "name": "Contact", "link": "/contact" }]
     return (
         <div >
-            <div className='z-12 px-5 flex relative h-[85px] w-screen bg-[#0f172a] items-center justify-between'>
+            <div className='z-[4] px-5 flex fixed top-0 h-[85px] w-screen bg-[#0f172a] items-center justify-between'>
                 <div className=' m-3'>
                     <img className="w-14" src={logo} alt="logo" />
                 </div>
@@ -77,7 +78,7 @@ const Navbar = () => {
                     </div>
                 </div>
             </div>
-            <div className={`flex text-[#94a9c9] -z-10 overflow-hidden top-0 fixed font-mono justify-center items-center transition-all duration-700 ${menu === "on" ? "top-[5rem]" : "-top-[29rem]"} flex-col space-y-6 w-screen h-96 bg-[#1b294b] md:-right-48 md:hidden`}>
+            <div className={`flex text-[#94a9c9] z-[3] overflow-hidden fixed font-mono justify-center items-center transition-all duration-700 ${menu === "on" ? "top-[85px]" : "-top-[384px]"} flex-col space-y-6 w-screen h-96 bg-[#1b294b] md:-right-48 md:hidden`}>
                 {links.map((link) => {
                     return <Link key={link.key} className='relative w-20 text-center  hover:text-[#1cc2e7] text-lg transition-colors duration-300' to={link.link}><span className='text-[#1cc2e7] mx-1 block  '>{link.key}</span>{link.name}</Link>
                 })}
