@@ -1,0 +1,32 @@
+.leftLinks ul::after{
+    content: '';
+    height: 100px;
+    width: 2px;
+    background-color: rgb(168, 178, 209);
+    margin: 0;
+    display: inline-block;
+    margin-top: 15px;
+}
+
+.rightLinks{
+    writing-mode: vertical-rl;
+}
+.rightLinksCon::after{
+    content: '';
+    height: 100px;
+    width: 2px;
+    background-color: rgb(168, 178, 209);
+    margin: 0;
+    display: inline-block;
+    margin-top: 5px;
+   
+}
+@media screen and (max-width:768px) {
+    .leftLinks{
+        display: none;
+    }
+    .rightLinks{
+        display: none;
+    }
+    
+}

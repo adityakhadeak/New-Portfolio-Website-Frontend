@@ -7,11 +7,13 @@ import pattern4 from '../images/pattern-4.svg'
 
 import '../Styles/Home.css'
 import mypic from '../images/myphoto1.png'
+import SideLinks from './SideLinks'
 const Home = () => {
 
   return (
+    <>
     <div className='   bg-[#0f172a]'>
-      <div className='  pt-[6.5rem]  mx-8 md:mx-20'>
+      <div className='  pt-[7rem] md:mt-5 mx-8 md:mx-20'>
         <div className='relative  justify-evenly md:justify-around flex flex-col md:flex-row'>
           <div className='homeback w-fit md:w-[459px] flex flex-col'>
             <h4 className='text-[#94a9c9] text-base md:text-lg w-fit font-mono my-2 font-bold'>{"<> Hello World !</>"}</h4>
@@ -50,6 +52,8 @@ const Home = () => {
         </div>
       </div>
     </div>
+    <SideLinks/>
+    </>
   )
 }
 

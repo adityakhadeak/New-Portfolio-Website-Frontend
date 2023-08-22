@@ -119,10 +119,10 @@ z-index: 1;
         content: '';
         background: url('../images/photobackblur.svg') no-repeat 50%;
         position: absolute;
-       left: 90px;
+       left: -14px;
         top: 2px;
         height: 473px;
-        width: 271px;
+        width: 195px;
         background-size: contain;
         z-index: 1;
     }

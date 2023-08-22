@@ -1,0 +1,9 @@
+.abtSec::after{
+content: "";
+height: 1px;
+width: 300px;
+background-color: #5f6679;
+    margin: 0;
+    display: inline-block;
+    margin-left: 15px;
+}

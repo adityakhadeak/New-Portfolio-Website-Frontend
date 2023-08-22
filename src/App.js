@@ -3,7 +3,7 @@ import './App.css';
 import Navbar from './Components/Navbar';
 import { BrowserRouter as Router } from 'react-router-dom';
 import Preloader from './Components/Preloader';
-import Home from './Components/Home';
+import Home from './Pages/Home';
 function App() {
   const [loader, setLoader] = useState(true)
   useEffect(() => {
