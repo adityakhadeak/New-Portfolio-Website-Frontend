@@ -7,3 +7,14 @@ background-color: #5f6679;
     display: inline-block;
     margin-left: 15px;
 }
+
+.abt-image {
+    position: relative;
+    background-color: rgba(0, 255, 255, 0.37); /* Apply blue hue */
+    transition: filter 0.3s; /* Add a transition for a smooth effect */
+  }
+  
+  .abt-image:hover {
+    background-color: none;
+    filter: none; /* Remove the filter on hover to show the actual image */
+  }
