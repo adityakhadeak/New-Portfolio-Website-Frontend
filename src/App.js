@@ -5,7 +5,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import Preloader from './Components/Preloader';
 import Home from './Pages/Home';
 function App() {
-  const [loader, setLoader] = useState(true)
+  const [loader, setLoader] = useState(false)
   useEffect(() => {
     setTimeout(() => {
       setLoader(false)
