@@ -45,7 +45,8 @@
 }
 .timeLine::before{
   content: "";
-  height: 450px;
+  /* height: 450px; */
+  height: calc(80% + 10px);
   width: 3px;
   position: absolute;
   left: -20px;

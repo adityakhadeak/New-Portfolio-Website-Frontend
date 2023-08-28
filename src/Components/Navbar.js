@@ -10,6 +10,8 @@ import { fadeIn } from '../Variants'
 const Navbar = () => {
     const [menu, setMenu] = useState("off")
     useEffect(() => {
+        
+        window.scrollTo(0,0);
         const handleResize = () => {
             const width = window.innerWidth;
 
@@ -50,7 +52,8 @@ const Navbar = () => {
                     whileInView={'show'}
                     viewport={{ once: false, amount: 0.7 }}
                     className=' m-3'>
-                    <img className="w-14" src={logo} alt="logo" />
+                        <Link to={'/'}>
+                    <img className="w-14" src={logo} alt="logo" /></Link>
                 </motion.div>
                 <div className='flex  items-center space-x-2 mr-2'>
                     <div className='text-[#94a9c9] navigation hidden md:flex space-x-6 mx-6 font-mono font-bold'>
