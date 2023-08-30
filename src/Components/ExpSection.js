@@ -1,9 +1,8 @@
-import React, { useState } from 'react'
+import React, {  } from 'react'
 import { fadeIn } from '../Variants'
 import { motion } from 'framer-motion'
-import image1 from '../images/fsd.pdf'
 const ExpSection = () => {
-    const myExp = [{ "duration": "Feb 2023 to May 2023", "title": "Full Stack Web Development", "company": "Innomatics Research Labs", "techStack": "HTML5, CSS, Javascript, ReactJs, MongoDb, NodeJs, Express etc..", "link": "https://www.innomatics.in/" }
+    const myExp = [{ "duration": "Feb 2023 to May 2023", "title": "Full Stack Web Development", "company": "Innomatics Research Labs", "techStack": "HTML5, CSS, Javascript, ReactJs, MongoDb, NodeJs, Express etc..", "link": "https://www.innomatics.in/","doc":"https://drive.google.com/file/d/13iEc0lBA2MDqyjVxDK45X4NfO3gc6xdz/view?usp=drive_link" }
     ]
     return (
         <div>
@@ -32,7 +31,7 @@ const ExpSection = () => {
                                         <h2 className='text-[#b9e0f2] text-xl font-bold'>{exp.title}</h2>
                                         <a href={exp.link} rel="noreferrer" target='_blank' className=' font-mono text-[#b9e0f2] text-[17px] hover:text-[#0ea0e4] transition-all duration-75'>{exp.company}</a>
                                         <h3 className='font-mono text-[15px]'>{exp.techStack}</h3>
-                                      
+                                        <a href={exp.doc} target='_blank' rel="noreferrer" className='text-[#0ea0e4] font-mono'>Certificate</a>
                                     </motion.div>
 
                                 ))

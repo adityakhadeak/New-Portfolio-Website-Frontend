@@ -4,6 +4,7 @@ import AboutSection from '../Components/AboutSection'
 import EduSection from '../Components/EduSection'
 import ExpSection from '../Components/ExpSection'
 import ScrollToTopOnReload from '../CustomHooks/ScrollToTopOnReload'
+import Skill from '../Components/Skill'
 const Home = () => {
  ScrollToTopOnReload()  
   return (
@@ -11,7 +12,8 @@ const Home = () => {
       <HeroSection/>
       <AboutSection/>
       <EduSection/>
-      <ExpSection/>
+      <ExpSection/>\
+      <Skill/>
     </div>
   )
 }
