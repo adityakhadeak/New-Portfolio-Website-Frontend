@@ -80,6 +80,14 @@
     transition: all 0.25s
 }
 
+.pro-img::after{
+  position: absolute;
+  content: '';
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: #1b9dee;
+}
 @media screen and (max-width:768px) {
   .lineImg::after{
     width: 100%;
