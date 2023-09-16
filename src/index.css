@@ -80,18 +80,25 @@
     transition: all 0.25s
 }
 
-.pro-img::after{
-  position: absolute;
-  content: '';
-  left: 0;
-  height: 100%;
-  width: 100%;
-  background-color: #1b9dee;
-}
+
 @media screen and (max-width:768px) {
   .lineImg::after{
     width: 100%;
-   
-}
+  }
+  .lineImg::before{
+    width: 100%;
+  }
+
   
+}
+
+::-webkit-scrollbar{
+  width: 10px;
+}
+::-webkit-scrollbar-thumb{
+  background: linear-gradient(to right, #0daae7, #0bccd3);
+    border-radius: 5px;
+}
+::-webkit-scrollbar-track{
+  background-color: #0f172a;
 }

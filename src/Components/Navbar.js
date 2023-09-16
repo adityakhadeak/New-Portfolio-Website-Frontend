@@ -10,9 +10,7 @@ import { fadeIn } from '../Variants'
 const Navbar = () => {
     const [menu, setMenu] = useState("off")
     useEffect(() => {
-        
-        window.scrollTo(0,0);
-        const handleResize = () => {
+            const handleResize = () => {
             const width = window.innerWidth;
 
             if (width > 768) {
