@@ -6,14 +6,14 @@ const ExSection = () => {
   { "year": "2019-2021", "clg": "Pace IIT & Medical Institute", "edu": "Senior Secondary Education","sts":"Completed in 2021 with 92% in 12th","link":"https://oldwebsite.iitianspace.com/"},
   { "year": "2010-2019", "clg": "Holy Writ High School", "edu": "Seconday Education","sts":"Completed in 2019 with 92% in 10th (CBSE)","link":"https://holywritschool.in/" }]
   return (
-    <div className=''>
-      <div className='pt-[7.5rem] md:mx-[205px] mx-8'>
+    <section className='edusection '>
+      <div className='pt-[7.5rem] md:mx-[205px] mx-8 font-1'>
         <motion.div
         variants={fadeIn('left', 0.2,10)}
         initial='hidden'
         whileInView={'show'}
         viewport={{ once: true, amount: 0.7 }}
-        className='lineImg   flex items-center md:justify-end justify-center text-[25px] md:text-[30px] font-[Ubuntu]'>
+        className='lineImg   flex items-center md:justify-end justify-center text-[25px] md:text-[30px] '>
           <span className='text-[#1cc2e7] text-[20px] md:text-[28px]' >II.</span>
           <h2 className='text-[#94a9c9] w-[-webkit-fill-available] md:w-fit mx-2'>Education</h2>
         </motion.div>
@@ -39,7 +39,7 @@ const ExSection = () => {
           </div>
         </div>
       </div>
-    </div>
+    </section>
   )
 }
 

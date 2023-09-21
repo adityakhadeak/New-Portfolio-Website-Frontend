@@ -12,47 +12,49 @@ const AboutSection = () => {
     ]
     return (
         <>
-            <div className='bg-[#0f172a]'>
-                <div className='pt-[7.5rem] md:ml-[205px] md:mr-[145px] mx-8'>
-                    <motion.div
-                        variants={fadeIn('left', 0.4)}
-                        initial='hidden'
-                        whileInView={'show'}
-                        viewport={{ once: true, amount: 0.7 }}
-                        className='lineImg flex items-center text-[25px] md:text-[30px] font-[Ubuntu] '>
-                        <span className='text-[#1cc2e7] text-[20px] md:text-[28px]' >I.</span>
-                        <h2 className='text-[#94a9c9] w-[-webkit-fill-available] md:w-fit mx-2'>About Me</h2>
-                    </motion.div>
-                    <div className='  flex flex-wrap-reverse flex-col-reverse md:flex-row justify-between  items-center'>
-                        <div className='text-[#94a9c9] my-5 w-[fit] leading-7  font-mono'>
-                            {abtMe.map((para) => {
-                                return <motion.p variants={fadeIn('up', para.animIn)}
-                                    initial='hidden'
-                                    whileInView={'show'}
-                                    viewport={{ once: true, amount: 0.7 }} className='m-0 w-fit md:w-[500px] text-justify mb-3'>{para.para} </motion.p>
-                            })
-                            }
-
-                        </div>
+            <section className='aboutsection'>
+                <div className='bg-[#0f172a] font-1'>
+                    <div className='pt-[7.5rem] md:ml-[205px] md:mr-[145px] mx-8'>
                         <motion.div
-                            variants={fadeIn('down', 0.6)}
+                            variants={fadeIn('left', 0.4)}
                             initial='hidden'
                             whileInView={'show'}
                             viewport={{ once: true, amount: 0.7 }}
-                            className='abtImgCon flex justify-center  relative'>
-                            <img  src={abtImg} className='abt-image max-w-[18rem] md:max-w-[28rem]' alt="" />
+                            className='lineImg flex items-center text-[25px] md:text-[30px]  '>
+                            <span className='text-[#1cc2e7] text-[20px] md:text-[28px]' >I.</span>
+                            <h2 className='text-[#94a9c9] w-[-webkit-fill-available] md:w-fit mx-2'>About Me</h2>
+                        </motion.div>
+                        <div className='  flex flex-wrap-reverse flex-col-reverse md:flex-row justify-between  items-center'>
+                            <div className='text-[#94a9c9] my-5 w-[fit] leading-7  font-mono'>
+                                {abtMe.map((para) => {
+                                    return <motion.p variants={fadeIn('up', para.animIn)}
+                                        initial='hidden'
+                                        whileInView={'show'}
+                                        viewport={{ once: true, amount: 0.7 }} className='m-0 w-fit md:w-[500px] text-justify mb-3'>{para.para} </motion.p>
+                                })
+                                }
+
+                            </div>
+                            <motion.div
+                                variants={fadeIn('down', 0.6)}
+                                initial='hidden'
+                                whileInView={'show'}
+                                viewport={{ once: true, amount: 0.7 }}
+                                className='abtImgCon flex justify-center  relative'>
+                                <img src={abtImg} className='abt-image max-w-[18rem] md:max-w-[28rem]' alt="" />
+                            </motion.div>
+                        </div>
+                        <motion.div
+                            variants={fadeIn('up', 0.7)}
+                            initial='hidden'
+                            whileInView={'show'}
+                            viewport={{ once: true, amount: 0.7 }}
+                            className='my-1'>
+                            <button className='btn btn-hover' >Know More</button>
                         </motion.div>
                     </div>
-                    <motion.div
-                    variants={fadeIn('up', 0.7)}
-                    initial='hidden'
-                    whileInView={'show'}
-                    viewport={{ once: true, amount: 0.7 }}
-                    className='my-1'>
-                        <button className='btn btn-hover' >Know More</button>
-                    </motion.div>
                 </div>
-            </div>
+            </section>
         </>
     )
 }

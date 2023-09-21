@@ -40,14 +40,14 @@ const Skills = () => {
     const myFirst8Skills = mySkills.slice(0, 8)
     return (
 
-        <section className='skills'>
+        <section className='skills font-1'>
             <div className='pt-[7.5rem] md:mx-[205px] mx-8'>
                 <motion.div
                     variants={fadeIn('right', 0.3, 10)}
                     initial='hidden'
                     whileInView={'show'}
                     viewport={{ once: true, amount: 0.7 }}
-                    className='lineImg flex items-center justify-center text-[25px] md:text-[30px] font-[Ubuntu]'>
+                    className='lineImg flex items-center justify-center text-[25px] md:text-[30px] '>
                     <span className='text-[#1cc2e7] text-[20px] md:text-[28px]' >IV.</span>
                     <h2 className='text-[#94a9c9]  w-fit md:w-fit mx-2'>Skills & Expertise</h2>
                 </motion.div>

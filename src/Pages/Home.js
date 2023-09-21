@@ -6,6 +6,7 @@ import ExpSection from '../Components/ExpSection'
 import ScrollToTopOnReload from '../CustomHooks/ScrollToTopOnReload'
 import Skill from '../Components/Skill'
 import Projects from '../Components/Projects'
+import ContactSection from '../Components/ContactSection'
 const Home = () => {
  ScrollToTopOnReload()  
   return (
@@ -16,6 +17,7 @@ const Home = () => {
       <ExpSection/>
       <Skill/>
       <Projects/>
+      <ContactSection/>
     </div>
   )
 }

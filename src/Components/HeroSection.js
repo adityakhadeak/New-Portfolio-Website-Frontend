@@ -13,7 +13,7 @@ const Home = () => {
 
   return (
     <>
-      <div className='   bg-[#0f172a]'>
+      <div className='   bg-[#0f172a] font-1'>
         <div className='  pt-[7rem] md:mt-5 mx-8 md:mx-20'>
           <div className='relative  justify-evenly md:justify-around flex flex-col md:flex-row'>
             <div className='homeback w-fit md:w-[459px] flex flex-col'>
@@ -28,12 +28,12 @@ const Home = () => {
                 whileInView={'show'}
                 viewport={{ once: true, amount: 0.7 }} className=' w-fit flex flex-col my-2 '> 
                 <div>                 
-                <h1 className=' text-white font-[Ubuntu] text-2xl md:text-3xl' >My name is</h1>
-                <h1 className=' my-2 @apply gradient-text font-[Ubuntu] text-4xl md:text-6xl' >Aditya Khade</h1>
+                <h1 className=' text-white   text-2xl md:text-3xl' >My name is</h1>
+                <h1 className=' my-2 @apply gradient-text   text-4xl md:text-6xl' >Aditya Khade</h1>
                 </div>
                 <div className='my-3'>
-                <h1 className=' text-white font-[Ubuntu] text-2xl md:text-3xl' >I’m a</h1>
-                <h1 className=' my-3 h-[80px] md:h-fit @apply gradient-text w-fit font-[Ubuntu] text-4xl md:text-6xl text-[#94a9c9] '><Typewriter
+                <h1 className=' text-white   text-2xl md:text-3xl' >I’m a</h1>
+                <h1 className=' my-3 h-[80px] md:h-fit @apply gradient-text w-fit   text-4xl md:text-6xl text-[#94a9c9] '><Typewriter
 
                   words={["Web Developer","Coder", "Learner"]}
                   loop={''}

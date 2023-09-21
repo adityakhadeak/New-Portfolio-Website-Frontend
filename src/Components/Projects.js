@@ -21,14 +21,14 @@ const Projects = () => {
     { title: "NoteIT Web App", desc: "This a website which allows user to save the short notes. It also uses the local storage to store the notes. Its is build with React-Reducx", tool: { "1st": "React", "2nd": "Redux", "3rd": "Bootstrap" }, links: { github: "https://github.com/adityakhadeak/NoteIT_Web_App", live: "https://noteit-react-redux-byak.netlify.app/" } }
     ]
     return (
-        <section className='projects'>
+        <section className='projects font-1'>
             <div className='pt-[7.5rem] md:mx-[205px] mx-8'>
                 <motion.div
                     variants={fadeIn('right', 0.3, 10)}
                     initial='hidden'
                     whileInView={'show'}
                     viewport={{ once: true, amount: 0.7 }}
-                    className='lineImg flex items-center justify-center text-[25px] md:text-[30px] font-[Ubuntu]'>
+                    className='lineImg flex items-center justify-center text-[25px] md:text-[30px] '>
                     <span className='text-[#1cc2e7] text-[20px] md:text-[28px]' >V.</span>
                     <h2 className='text-[#94a9c9] w-fit md:w-fit mx-2'>Projects</h2>
                 </motion.div>
@@ -55,8 +55,8 @@ const Projects = () => {
 
                                 </div>
                                 <div className=' flex relative right-[10px] ' >
-                                    <a target='_blank' className='mr-2 text-xl  text-[25px] p-[10px] relative  hover:text-[#0dace4] transition-all duration-[0.25s] cursor-pointer ' href={project.links.github}><BsGithub /></a>
-                                    <a target='_blank' className='mr-2 text-xl  text-[25px] p-[10px] relative  hover:text-[#0dace4] transition-all duration-[0.25s] cursor-pointer ' href={project.links.live}><BiLinkExternal /></a>
+                                    <a target='_blank' rel='noreferrer' className='mr-2 text-xl  text-[25px] p-[10px] relative  hover:text-[#0dace4] transition-all duration-[0.25s] cursor-pointer ' href={project.links.github}><BsGithub /></a>
+                                    <a target='_blank' rel='noreferrer' className='mr-2 text-xl  text-[25px] p-[10px] relative  hover:text-[#0dace4] transition-all duration-[0.25s] cursor-pointer ' href={project.links.live}><BiLinkExternal /></a>
                                 </div>
                             </div>
 

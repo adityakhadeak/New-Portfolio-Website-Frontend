@@ -80,7 +80,20 @@
     transition: all 0.25s
 }
 
-
+.active-input:focus{
+  background: linear-gradient(rgb(19, 28, 49), rgb(19, 28, 49)) padding-box padding-box, linear-gradient(90deg, rgb(14, 165, 234), rgb(11, 209, 209)) border-box border-box;
+    border-radius: 5px;
+    border: 1px solid transparent;
+    box-shadow: rgba(11, 209, 209, 0.2) 0px 3px 20px;
+    transition: all 0.25s
+}
+.font-1{
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+}
+.font-2{
+font-family: 'Ubuntu', sans-serif;
+}
 @media screen and (max-width:768px) {
   .lineImg::after{
     width: 100%;
