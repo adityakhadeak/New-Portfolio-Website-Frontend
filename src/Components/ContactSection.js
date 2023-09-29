@@ -19,7 +19,7 @@ const ContactSection = () => {
                     initial='hidden'
                     whileInView={'show'}
                     viewport={{ once: true, amount: 0.7 }}
-                    className='lineImg flex items-center justify-center text-[25px] md:text-[30px] font-[Montserrat] font-semibold'>
+                    className='lineImg mx-8 flex items-center justify-center text-[25px] md:text-[30px] font-[Montserrat] font-semibold'>
                     <span className='text-[#1cc2e7] text-[20px] md:text-[28px]' >V.</span>
                     <h2 className='text-[#94a9c9] w-[-webkit-fill-available] md:w-fit mx-2'>Contact</h2>
                 </motion.div>

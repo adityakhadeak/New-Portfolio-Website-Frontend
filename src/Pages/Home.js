@@ -7,6 +7,7 @@ import ScrollToTopOnReload from '../CustomHooks/ScrollToTopOnReload'
 import Skill from '../Components/Skill'
 import Projects from '../Components/Projects'
 import ContactSection from '../Components/ContactSection'
+import Footer from '../Components/Footer'
 const Home = () => {
  ScrollToTopOnReload()  
   return (
@@ -18,6 +19,7 @@ const Home = () => {
       <Skill/>
       <Projects/>
       <ContactSection/>
+      <Footer/>
     </div>
   )
 }
