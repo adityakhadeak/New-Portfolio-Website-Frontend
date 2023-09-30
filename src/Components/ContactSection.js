@@ -54,16 +54,16 @@ const ContactSection = () => {
                         <div className='flex my-2 justify-center text-base md:text-xl text-[#94a9c9]'>
                             <h1 className='font-light '>Contact Form</h1>
                         </div>                        <form >
-                            <div className='relative p-2 px-4 rounded my-2 md:w-[350px] flex justify-start items-center bg-[#222f43]'>
+                            <div className='relative h-[60px] p-2 px-4 rounded my-2 md:w-[350px] flex justify-start items-center bg-[#222f43]'>
                                 <span className='text-xl w-[45px] '>< RiAccountCircleLine /></span>
                                 <input type="text" className='active-input bg-transparent p-3  md:w-[330px]' placeholder='Enter your name' />
                             </div>
-                            <div className='relative p-2 px-4 rounded my-2 md:w-[350px] flex justify-start items-center bg-[#222f43]'>
+                            <div className='relative h-[60px] p-2 px-4 rounded my-2 md:w-[350px] flex justify-start items-center bg-[#222f43]'>
                                 <span className='text-xl w-[45px] '>< GoMail /></span>
 
                                 <input type="text" className='active-input bg-transparent p-3  md:w-[330px]' placeholder='Enter your email' />
                             </div>
-                            <div className='relative p-2 px-4 rounded my-2 md:w-[350px] flex justify-start items-center bg-[#222f43]'>
+                            <div className='relative h-[60px] p-2 px-4 rounded my-2 md:w-[350px] flex justify-start items-center bg-[#222f43]'>
                                 <span className='text-xl w-[45px] '>< BiMessageDetail /></span>
 
                                 <textarea type="text" rows={1} className='active-input bg-transparent p-3  md:w-[330px]' placeholder='Enter your message' />

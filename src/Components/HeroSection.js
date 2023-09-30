@@ -26,24 +26,24 @@ const Home = () => {
                 variants={fadeIn('up', 0.9)}
                 initial='hidden'
                 whileInView={'show'}
-                viewport={{ once: true, amount: 0.7 }} className=' w-fit flex flex-col my-2 '> 
-                <div>                 
-                <h1 className=' text-white   text-2xl md:text-3xl' >My name is</h1>
-                <h1 className=' my-2 @apply gradient-text   text-4xl md:text-6xl' >Aditya Khade</h1>
+                viewport={{ once: true, amount: 0.7 }} className=' w-fit flex flex-col my-2 '>
+                <div>
+                  <h1 className=' text-white   text-2xl md:text-3xl' >My name is</h1>
+                  <h1 className=' my-2 @apply gradient-text font-bold text-4xl md:text-[3.75rem] leading-[1.5]' >Aditya Khade</h1>
                 </div>
                 <div className='my-3'>
-                <h1 className=' text-white   text-2xl md:text-3xl' >I’m a</h1>
-                <h1 className=' my-3 h-[80px] md:h-fit @apply gradient-text w-fit   text-4xl md:text-6xl text-[#94a9c9] '><Typewriter
+                  <h1 className=' text-white   text-2xl md:text-3xl' >I’m a</h1>
+                  <h1 className=' my-3 h-[80px] md:h-fit @apply gradient-text w-fit md:w-[550px] font-bold text-4xl md:text-6xl leading-[1.5] text-[#94a9c9] '><Typewriter
 
-                  words={["Web Developer","Coder", "Learner"]}
-                  loop={''}
-                  cursor
-                  cursorStyle='|'
-                  cursorColor='white'
-                  typeSpeed={50}
-                  deleteSpeed={50}
-                />
-                </h1>
+                    words={["Web Developer", "Coder", "Learner"]}
+                    loop={''}
+                    cursor
+                    cursorStyle='|'
+                    cursorColor='white'
+                    typeSpeed={50}
+                    deleteSpeed={50}
+                  />
+                  </h1>
                 </div>
               </motion.div>
               <motion.p
@@ -69,27 +69,27 @@ const Home = () => {
                   <img className='relative' src={pattern1} alt="" />
                 </motion.div>
                 <motion.div
-                variants={fadeIn('inplace', 1.5)}
-                initial='hidden'
-                whileInView={'show'}
-                viewport={{ once: true, amount: 0.7 }}
-                className="pattern-2 absolute top-[70px] right-[40px] md:right-[73]">
+                  variants={fadeIn('inplace', 1.5)}
+                  initial='hidden'
+                  whileInView={'show'}
+                  viewport={{ once: true, amount: 0.7 }}
+                  className="pattern-2 absolute top-[70px] right-[40px] md:right-[73]">
                   <img className='relative' src={pattern2} alt="" />
                 </motion.div>
                 <motion.div
-                variants={fadeIn('inplace', 1.5)}
-                initial='hidden'
-                whileInView={'show'}
-                viewport={{ once: true, amount: 0.7 }}
-                className="pattern-3 absolute -left-[15px] bottom-[70px]">
+                  variants={fadeIn('inplace', 1.5)}
+                  initial='hidden'
+                  whileInView={'show'}
+                  viewport={{ once: true, amount: 0.7 }}
+                  className="pattern-3 absolute -left-[15px] bottom-[70px]">
                   <img className='relative' src={pattern3} alt="" />
                 </motion.div>
-                <motion.div 
-                variants={fadeIn('inplace', 1.5)}
-                initial='hidden'
-                whileInView={'show'}
-                viewport={{ once: true, amount: 0.7 }}
-                className="pattern-4 absolute -right-[23px] bottom-[95px] md:-right-[48px]">
+                <motion.div
+                  variants={fadeIn('inplace', 1.5)}
+                  initial='hidden'
+                  whileInView={'show'}
+                  viewport={{ once: true, amount: 0.7 }}
+                  className="pattern-4 absolute -right-[23px] bottom-[95px] md:-right-[48px]">
                   <img className='relative' src={pattern4} alt="" />
                 </motion.div>
               </div>

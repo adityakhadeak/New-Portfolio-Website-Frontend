@@ -52,7 +52,7 @@ const Skills = () => {
                     <h2 className='text-[#94a9c9]  w-fit md:w-fit mx-2'>Skills & Expertise</h2>
                 </motion.div>
                 <div className=' flex items-center flex-col justify-center pt-5 my-3' >
-                    <h1 className='text-[#b9e0f2] my-8 text-2xl font-bold font-mono text-justify'>Skilled in the Use of These Technologies</h1>
+                    <h1 className='text-[#b9e0f2] my-8 text-2xl font-bold  text-justify'>Skilled in the Use of These Technologies</h1>
                     <div className=' relative w-fit grid  md:grid-cols-4 grid-cols-2 gap-3 ' >
                         {
                             myFirst8Skills.map((skill) => (
