@@ -18,7 +18,7 @@ const ExpSection = () => {
                         <h2 className='text-[#94a9c9] w-[-webkit-fill-available] md:w-fit mx-2'>Experience</h2>
                     </motion.div>
                     <div className='edu-TimeLine-Con flex items-center md:justify-start justify-center pt-5 my-3' >
-                        <div className='timeLine relative w-fit  items-center justify-center flex flex-col ml-4' >
+                        <div className='timeLine  relative w-fit  items-center justify-center flex flex-col ml-4' >
                             {
                                 myExp.map((exp) => (
                                     <motion.div

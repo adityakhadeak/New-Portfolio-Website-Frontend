@@ -2,5 +2,30 @@
 .abt-image {
     position: relative;
   }
+.abtImgCon::before{
+  content: '';
+  background: url('../images/photobackblur.svg') no-repeat 50%;
+  position: absolute;
+  right: 125px;
+  top: -80px;
+  height: 500px;
+  width: 500px;
+  background-size: contain;
+  z-index: 1;
+}
 
+@media screen and (max-width: 768px) { 
+  .abtImgCon::before{
+      content: '';
+      background: url('../images/photobackblur.svg') no-repeat 50%;
+      position: absolute;
+     left: -14px;
+      top: -80px;
+      height: 473px;
+      width: 195px;
+      background-size: contain;
+      z-index: 1;
+  }
+
+}
 

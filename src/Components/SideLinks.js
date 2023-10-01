@@ -4,14 +4,18 @@ import { motion } from 'framer-motion';
 import { fadeIn } from '../Variants';
 import { BsGithub, BsLinkedin, BsInstagram, BsTwitter } from "react-icons/bs";
 import { SiLeetcode } from "react-icons/si";
-
+import github from '../images/Social/github.svg'
+import linkedin from '../images/Social/linkedin.svg'
+import leetcode from '../images/Social/leetcode.svg'
+import insta from '../images/Social/insta.svg'
+import twitter from '../images/Social/twitter.svg'
 const SideLinks = () => {
   const socialAcc = [
-    { "acc": "Github", "link": "https://www.linkedin.com/in/aditya-khade-a14bb0219/", "icon": <BsGithub /> },
-    { "acc": "Linkedin", "link": "https://www.linkedin.com/in/aditya-khade-a14bb0219/", "icon": <BsLinkedin /> },
-    { "acc": "Leetcode", "link": "https://www.linkedin.com/in/aditya-khade-a14bb0219/", "icon": <SiLeetcode /> },
-    { "acc": "Insta", "link": "https://www.linkedin.com/in/aditya-khade-a14bb0219/", "icon": <BsInstagram /> },
-    {"acc": "Twitter", "link": "https://www.linkedin.com/in/aditya-khade-a14bb0219/", "icon": <BsTwitter /> }
+    { "acc": "Github", "link": "https://www.linkedin.com/in/aditya-khade-a14bb0219/", "icon": github },
+    { "acc": "Linkedin", "link": "https://www.linkedin.com/in/aditya-khade-a14bb0219/", "icon": linkedin },
+    { "acc": "Leetcode", "link": "https://www.linkedin.com/in/aditya-khade-a14bb0219/", "icon": leetcode},
+    { "acc": "Insta", "link": "https://www.linkedin.com/in/aditya-khade-a14bb0219/", "icon": insta },
+    {"acc": "Twitter", "link": "https://www.linkedin.com/in/aditya-khade-a14bb0219/", "icon": twitter }
   ];
 
   return (
@@ -24,7 +28,7 @@ const SideLinks = () => {
           {
             socialAcc.map((link, index) => (
               <a key={index}  href={link.link} title={link.acc} target="_blank" rel="noopener noreferrer" className='  text-[25px] p-[10px] relative deco hover:-translate-y-[3px] transition-all duration-[0.25s] cursor-pointer text-[#0dace4]'>
-                {link.icon}
+                <img className='w-[25px]' src={link.icon} alt="" />
               </a>
             ))
           }

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 // import { BsGithub, BsLinkedin, BsInstagram, BsTwitter } from "react-icons/bs";
 import github from '../images/Social/github.svg'
@@ -18,18 +18,19 @@ const Footer = () => {
         { "acc": "Insta", "link": "https://www.linkedin.com/in/aditya-khade-a14bb0219/", "icon": insta, "icon1": insta1  },
         { "acc": "Twitter", "link": "https://www.linkedin.com/in/aditya-khade-a14bb0219/", "icon": twitter , "icon1": twitter1 }
     ];
-    const [colorIcon, setcolorIcon] = useState(true)
-    const changeIcons=()=>{
-        if(colorIcon===false)
-        setcolorIcon(true)
-        else
-        setcolorIcon(false)
+    const [onHover, setHover] = useState(null)
+   
+    const changeIcons=(index)=>{
+        
+        setHover(index)
+        console.log('hiii')
     }
+    
     return (
-        <section className='footer pt-[7.5rem] text-[#94a9c9] px-4 font-1'>
-            <footer className=' py-[3rem] bg-[#131c31] px-[2rem] md:mx-[205px]  mx-auto flex flex-col   justify-center items-center border border-[#222f43] rounded-[50px]'>
+        <section className='footer pt-[7.5rem] sec-bg-color pb-4 text-[#94a9c9] px-4 font-1'>
+            <footer className=' py-[3rem] bg-[#131c31]  px-[2rem] md:mx-[205px]  mx-auto flex flex-col   justify-center items-center border border-[#222f43] rounded-[50px]'>
                 <div className='flex flex-wrap footer-copyright-div relative  md:items-start flex-col justify-center items-center  md:flex-row'>
-                    <div className=' flex flex-col justify-center items-center mx-1 px-1 w-[350px]'>
+                    <div className=' flex flex-col justify-center items-center mx-1 px-1 md:w-[350px] w-[256px]'>
                         <div className='my-2 flex justify-between items-center'>
                             <img className="w-14 mx-1 " src={logo} alt="logo" />
                             <h3 className='text-2xl mx-1 font-extrabold text-[#d8e6fb]'>Aditya Khade</h3>
@@ -60,9 +61,9 @@ const Footer = () => {
                         <h3 className='text-lg my-2 text-[#aae0f2]'>Follow Me On</h3>
                         <div className='flex my-5 flex-col items-center justify-center'>
                             {socialAcc.map((link, index) => (
-                                <a onMouseEnter={changeIcons} onMouseLeave={changeIcons} key={index} href={link.link}  title={link.acc} target="_blank" rel="noopener noreferrer" className='flex footer-social-links my-1 items-center justify-around' >
+                                <a  onMouseEnter={()=>changeIcons(index)} onMouseLeave={()=>changeIcons(null)} key={index} href={link.link}  title={link.acc} target="_blank" rel="noopener noreferrer" className='flex footer-social-links my-1 items-center justify-around' >
                                     {link.acc} 
-                                    <span className='mx-2'><img className='w-[10px]' src={changeIcons?link.icon:link.icon1} alt="" /></span>
+                                    <span className='mx-2'><img className='w-[20px]' src={onHover===index?link.icon:link.icon1} alt="" /></span>
                                 </a>
                             ))}
 

@@ -51,6 +51,7 @@
 
   .item:nth-child(even){
     flex-direction: column;
+    
     }
   .item:nth-child(even) .left {
     margin-left: 0;

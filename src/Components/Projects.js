@@ -6,6 +6,7 @@ import '../Styles/Projects.css'
 import { fadeIn } from '../Variants'
 import { motion } from 'framer-motion'
 import GitHubCalendar from 'react-github-calendar';
+import { Link } from 'react-router-dom';
 
 const Projects = () => {
 
@@ -35,7 +36,7 @@ const Projects = () => {
                 <div className=' items-con my-3 pt-7 flex justify-items-center items-center flex-col text-white' >
 
                     {Projects.map((project) => (
-                        <div className=' item flex  flex-col justify-center items-center md:flex-row max-w-[800px] my-auto mb-[4rem]' >
+                        <div className=' item flex  flex-col justify-center items-center md:flex-row max-w-[800px] w-[115%] px-[20px] my-auto mb-[4rem] min-w-[100px]' >
 
                             <div className='left z-[1]    flex-1'>
                                 <div className='pro-img overflow-hidden    rounded-xl  relative' >
@@ -43,14 +44,14 @@ const Projects = () => {
                                 </div>
                             </div>
 
-                            <div className=' right pro-info rounded-lg bg-[#131c31] z-[2] w-[300px] md:w-fit md:-ml-[125px] px-[3rem] py-3 right flex flex-col justify-items-center justify-center flex-1' >
+                            <div className=' right pro-info rounded-lg bg-[#131c31] z-[2] w-[300px] md:w-fit md:-ml-[125px] px-[3rem] py-3 right flex flex-col justify-items-center justify-center items-center flex-1' >
                                 <h1 className=' mb-3 text-xl text-[#94a9c9]  font-bold'>{project.title}</h1>
                                 <p className='text-[#a3afbf] mb-3 text-sm'>{project.desc}</p>
                                 <div className='font-mono mb-3 text-[#0dace4] flex'>
                                     <p className='mr-3 text-sm'>{project.tool['1st']}</p>
                                     <p className='mr-3 text-sm'>{project.tool['2nd']}</p>
                                     <p className='mr-3 text-sm'>{project.tool['3rd']}</p>
-                                    <p className='mr-3 text-sm'>{project.tool['4th']}</p>
+                                    <p className='text-sm'>{project.tool['4th']}</p>
 
 
                                 </div>
@@ -71,7 +72,7 @@ const Projects = () => {
                 </div>
                 <div className='p-5 m-3 flex justify-center '>
 
-                    <button className='btn btn-hover  w-[200px]' >See More</button>
+                    <Link to={'/projects'} className='btn btn-hover  w-[200px]' >See More</Link>
                 </div>
             </div>
             <h2 className='text-[#94a9c9] text-center text-[15px] md:text-[20px] font-mono py-4 my-7 mx-2'>GitHub Contribution Graph</h2>

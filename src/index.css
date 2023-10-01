@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+body{
+  background-color: #0f172a;
+
+}
 .sec-bg-color{
   background-color: #0f172a;
 }
@@ -94,6 +98,7 @@
 .font-2{
 font-family: 'Ubuntu', sans-serif;
 }
+
 @media screen and (max-width:768px) {
   .lineImg::after{
     width: 100%;
@@ -102,7 +107,7 @@ font-family: 'Ubuntu', sans-serif;
     width: 100%;
   }
 
-  
+
 }
 
 ::-webkit-scrollbar{

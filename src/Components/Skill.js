@@ -17,6 +17,7 @@ import tailwind from '../images/Skills/tailwind.png'
 
 import { fadeIn } from '../Variants'
 import { motion } from 'framer-motion'
+import { Link } from 'react-router-dom'
 const Skills = () => {
     const mySkills = [{ "skill": "C", "img": c },
     { "skill": "C++", "img": cplus },
@@ -68,7 +69,7 @@ const Skills = () => {
                     </div>
                     <div className='p-5 m-3'>
 
-                        <button className='btn btn-hover w-[200px]' >See More</button>
+                        <Link to={'/skills'} className='btn btn-hover w-[200px] block' >See More</Link>
                     </div>
 
                 </div>

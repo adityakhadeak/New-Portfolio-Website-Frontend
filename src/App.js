@@ -8,6 +8,7 @@ import Contact from './Pages/Contact';
 import Skills from './Pages/Skills';
 import About from './Pages/About';
 import Projects from './Pages/Projects';
+import Footer from './Components/Footer';
 function App() {
   const [loader, setLoader] = useState(false)
   useEffect(() => {
@@ -29,6 +30,8 @@ function App() {
             <Route  element={<Contact />} path='/contact' />
             <Route  element={<Projects />} path='/projects' />
           </Routes>
+          <Footer/>
+
         </>
 
       }

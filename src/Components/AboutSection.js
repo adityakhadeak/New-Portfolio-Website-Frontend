@@ -24,7 +24,7 @@ const AboutSection = () => {
                             <span className='text-[#1cc2e7] text-[20px] md:text-[28px]' >I.</span>
                             <h2 className='text-[#94a9c9] w-[-webkit-fill-available] md:w-fit mx-2'>About Me</h2>
                         </motion.div>
-                        <div className='  flex flex-wrap-reverse flex-col-reverse md:flex-row justify-between  items-center'>
+                        <div className='  flex md:flex-wrap-reverse flex-col-reverse md:flex-row justify-between  items-center'>
                             <div className='text-[#94a9c9] my-5 w-[fit] leading-7  font-mono'>
                                 {abtMe.map((para) => {
                                     return <motion.p variants={fadeIn('up', para.animIn)}
@@ -41,7 +41,7 @@ const AboutSection = () => {
                                 whileInView={'show'}
                                 viewport={{ once: true, amount: 0.7 }}
                                 className='abtImgCon flex justify-center  relative'>
-                                <img src={abtImg} className='abt-image max-w-[18rem] md:max-w-[28rem]' alt="" />
+                                <img src={abtImg} className='abt-image max-w-[18rem] md:max-w-[28rem] w-[100%]' alt="" />
                             </motion.div>
                         </div>
                         <motion.div
