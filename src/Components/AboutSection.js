@@ -1,5 +1,7 @@
 import React from 'react'
 import '../Styles/AboutSection.css'
+import '../Styles/Common.css'
+
 import abtImg from "../images/about.png"
 import { motion } from 'framer-motion'
 import { fadeIn } from '../Variants'
@@ -13,8 +15,8 @@ const AboutSection = () => {
     return (
         <>
             <section className='aboutsection'>
-                <div className='bg-[#0f172a] font-1'>
-                    <div className='pt-[7.5rem] md:ml-[205px] md:mr-[145px] mx-8'>
+                <div className='bg-[#0f172a] relative font-1'>
+                    <div className='pt-[7.5rem] md:ml-[205px] leftShadow after:top-[300px] md:mr-[145px] mx-8'>
                         <motion.div
                             variants={fadeIn('left', 0.4)}
                             initial='hidden'

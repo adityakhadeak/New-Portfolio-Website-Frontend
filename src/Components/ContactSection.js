@@ -2,6 +2,7 @@ import React from 'react'
 import { motion } from 'framer-motion'
 import { fadeIn } from '../Variants'
 import '../Styles/ContactSection.css'
+import '../Styles/Common.css'
 import { BiMessageDetail } from "react-icons/bi";
 
 import { BsTelephone } from "react-icons/bs";
@@ -9,11 +10,13 @@ import { SlLocationPin } from "react-icons/sl";
 import { RiAccountCircleLine } from "react-icons/ri";
 
 import { GoMail } from "react-icons/go";
+import ScrollToTopOnReload from '../CustomHooks/ScrollToTopOnReload'
 
 const ContactSection = () => {
+    ScrollToTopOnReload()
     return (
-        <section className='contacts font-1 '>
-            <div className='pt-[7.5rem] md:mx-[205px] mx-auto'>
+        <section className='contacts relative font-1 '>
+            <div className='pt-[7.5rem] rightShadow after:top-0 md:mx-[205px] mx-auto'>
                 <motion.div
                     variants={fadeIn('left', 0.2, 10)}
                     initial='hidden'
@@ -27,20 +30,20 @@ const ContactSection = () => {
                     <h1>Get in Touch</h1>
                 </div>
                 <div className='   flex  my-10 px-2 py-3  md:flex-row flex-col md:justify-evenly items-center text-[#94a9c9] font-mono'>
-                    <div className='contacts-left flex flex-col justify-center items-center w-[100%]'>
+                    <div className='contacts-left  flex flex-col justify-center items-center w-[100%]'>
                         <div className='flex my-2 justify-center text-base md:text-xl text-[#94a9c9]'>
                             <h1 className='font-light'>Contact Details</h1>
                         </div>
-                        <div className='relative p-5 rounded my-2  md:max-w-[350px] md:w-[350px] w-[85%] flex justify-start items-center bg-[#222f43]'>
+                        <div className='relative cursor-pointer p-5 rounded my-2  md:max-w-[350px] md:w-[350px] w-[85%] flex justify-start items-center bg-[#222f43]'>
                             <span className='text-xl w-[45px]  '><BsTelephone /></span>
                             <a href="tel:+919422006299" className=''> +91 9422006299</a>
                         </div>
-                        <div className='relative p-5 rounded my-2 md:max-w-[350px] md:w-[350px] w-[85%] flex justify-start items-center bg-[#222f43]'>
+                        <div className='relative cursor-pointer p-5 rounded my-2 md:max-w-[350px] md:w-[350px] w-[85%] flex justify-start items-center bg-[#222f43]'>
                             <span className='text-xl w-[45px] '><GoMail /></span>
 
                             <a href="mailto:khadeaditya1@gmail.com" className='ml-1'>khadeaditya1@gmail.com</a>
                         </div>
-                        <div className='relative p-5 rounded my-2 md:max-w-[350px] md:w-[350px] w-[85%] flex justify-start items-center bg-[#222f43]'>
+                        <div className='relative cursor-pointer p-5 rounded my-2 md:max-w-[350px] md:w-[350px] w-[85%] flex justify-start items-center bg-[#222f43]'>
                             <span className='text-xl w-[45px] '>< SlLocationPin /></span>
 
                             <a href="mailto:khadeaditya1@gmail.com" className='ml-1'>Badlapur, Thane </a>
@@ -50,7 +53,7 @@ const ContactSection = () => {
                     <div className='contact-middle md:inline-block hidden mx-5'>
                         <div className='w-[3px] h-[300px] bg-[#94a9c9]' ></div>
                     </div>
-                    <div className='contacts-right flex flex-col justify-center items-center w-[100%]'>
+                    <div className='contacts-right z-[1] flex flex-col justify-center items-center w-[100%]'>
                         <div className='flex mt-[33px] my-2 justify-center text-base md:text-xl text-[#94a9c9]'>
                             <h1 className='font-light '>Contact Form</h1>
                         </div>

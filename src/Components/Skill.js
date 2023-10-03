@@ -18,6 +18,8 @@ import tailwind from '../images/Skills/tailwind.png'
 import { fadeIn } from '../Variants'
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
+import '../Styles/Common.css'
+
 const Skills = () => {
     const mySkills = [{ "skill": "C", "img": c },
     { "skill": "C++", "img": cplus },
@@ -41,8 +43,8 @@ const Skills = () => {
     const myFirst8Skills = mySkills.slice(0, 8)
     return (
 
-        <section className='skills font-1'>
-            <div className='pt-[7.5rem] md:mx-[205px] mx-8'>
+        <section className='skills relative font-1'>
+            <div className='pt-[7.5rem] leftShadow rightShadow before:top-[300px] after:top-10 md:mx-[205px] mx-8'>
                 <motion.div
                     variants={fadeIn('right', 0.3, 10)}
                     initial='hidden'
@@ -52,7 +54,7 @@ const Skills = () => {
                     <span className='text-[#1cc2e7] text-[20px] md:text-[28px]' >IV.</span>
                     <h2 className='text-[#94a9c9]  w-fit md:w-fit mx-2'>Skills & Expertise</h2>
                 </motion.div>
-                <div className=' flex items-center flex-col justify-center pt-5 my-3' >
+                <div className=' flex relative z-[1] items-center flex-col justify-center pt-5 my-3' >
                     <h1 className='text-[#b9e0f2] my-8 text-2xl font-bold  text-justify'>Skilled in the Use of These Technologies</h1>
                     <div className=' relative w-fit grid  md:grid-cols-4 grid-cols-2 gap-3 ' >
                         {

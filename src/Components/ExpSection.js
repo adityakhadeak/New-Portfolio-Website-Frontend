@@ -2,14 +2,14 @@ import React, { } from 'react'
 import { fadeIn } from '../Variants'
 import { motion } from 'framer-motion'
 import expImg from '../images/exp.png'
-
+import '../Styles/Common.css'
 const ExpSection = () => {
     const myExp = [{ "duration": "Feb 2023 to May 2023", "title": "Full Stack Web Development", "company": "Innomatics Research Labs", "techStack": "HTML5, CSS, Javascript, ReactJs, MongoDb, NodeJs, Express etc..", "link": "https://www.innomatics.in/", "doc": "https://drive.google.com/file/d/13iEc0lBA2MDqyjVxDK45X4NfO3gc6xdz/view?usp=drive_link" }
     ]
     return (
         <div>
-            <div className='font-1'>
-                <div className='pt-[7.5rem] md:mx-[205px] mx-8'>
+            <div className='font-1 relative'>
+                <div className='pt-[7.5rem] leftShadow after:top-6 md:mx-[205px] mx-8'>
                     <motion.div
                         variants={fadeIn('right', 0.3, 10)}
                         initial='hidden'

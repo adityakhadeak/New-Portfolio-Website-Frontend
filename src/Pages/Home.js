@@ -5,7 +5,7 @@ import EduSection from '../Components/EduSection'
 import ExpSection from '../Components/ExpSection'
 import ScrollToTopOnReload from '../CustomHooks/ScrollToTopOnReload'
 import Skill from '../Components/Skill'
-import Projects from '../Components/Projects'
+import Projects from '../Components/ProjectsSection'
 import ContactSection from '../Components/ContactSection'
 const Home = () => {
  ScrollToTopOnReload()  
