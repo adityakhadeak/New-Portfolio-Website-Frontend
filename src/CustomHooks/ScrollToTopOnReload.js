@@ -1,11 +1,20 @@
 import { useEffect } from 'react';
 
-const ScrollToTopOnReload = () => {
+const ScrollToTopOnReloadAndRouteChange = () => {
+
   useEffect(() => {
+    const handleScrollToTop = () => {
+      window.scrollTo(0, 0);
+    };
+
+    // Scroll to top when the component is mounted (route change)
+    window.scrollTo(0, 0);
+
+
+
+    // Scroll to top when the page is about to be reloaded
     const handleBeforeUnload = () => {
-       
-            window.scrollTo(0, 0);
-        
+      handleScrollToTop();
     };
     window.addEventListener('beforeunload', handleBeforeUnload);
 
@@ -13,6 +22,8 @@ const ScrollToTopOnReload = () => {
       window.removeEventListener('beforeunload', handleBeforeUnload);
     };
   }, []);
+
+  return null;
 };
 
-export default ScrollToTopOnReload;
+export default ScrollToTopOnReloadAndRouteChange;

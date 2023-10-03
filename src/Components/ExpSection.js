@@ -1,15 +1,17 @@
-import React, {  } from 'react'
+import React, { } from 'react'
 import { fadeIn } from '../Variants'
 import { motion } from 'framer-motion'
+import expImg from '../images/exp.png'
+
 const ExpSection = () => {
-    const myExp = [{ "duration": "Feb 2023 to May 2023", "title": "Full Stack Web Development", "company": "Innomatics Research Labs", "techStack": "HTML5, CSS, Javascript, ReactJs, MongoDb, NodeJs, Express etc..", "link": "https://www.innomatics.in/","doc":"https://drive.google.com/file/d/13iEc0lBA2MDqyjVxDK45X4NfO3gc6xdz/view?usp=drive_link" }
+    const myExp = [{ "duration": "Feb 2023 to May 2023", "title": "Full Stack Web Development", "company": "Innomatics Research Labs", "techStack": "HTML5, CSS, Javascript, ReactJs, MongoDb, NodeJs, Express etc..", "link": "https://www.innomatics.in/", "doc": "https://drive.google.com/file/d/13iEc0lBA2MDqyjVxDK45X4NfO3gc6xdz/view?usp=drive_link" }
     ]
     return (
         <div>
             <div className='font-1'>
                 <div className='pt-[7.5rem] md:mx-[205px] mx-8'>
                     <motion.div
-                        variants={fadeIn('right', 0.3,10)}
+                        variants={fadeIn('right', 0.3, 10)}
                         initial='hidden'
                         whileInView={'show'}
                         viewport={{ once: true, amount: 0.7 }}
@@ -17,12 +19,13 @@ const ExpSection = () => {
                         <span className='text-[#1cc2e7] text-[20px] md:text-[28px]' >III.</span>
                         <h2 className='text-[#94a9c9] w-[-webkit-fill-available] md:w-fit mx-2'>Experience</h2>
                     </motion.div>
-                    <div className='edu-TimeLine-Con flex items-center md:justify-start justify-center pt-5 my-3' >
+                    <div className='edu-TimeLine-Con flex md:flex-row flex-col items-center md:justify-between justify-center pt-5 my-3' >
+                        
                         <div className='timeLine  relative w-fit  items-center justify-center flex flex-col ml-4' >
                             {
                                 myExp.map((exp) => (
                                     <motion.div
-                                        variants={fadeIn('right', 0.4,10)}
+                                        variants={fadeIn('right', 0.4, 10)}
                                         initial='hidden'
                                         whileInView={'show'}
                                         viewport={{ once: true, amount: 0.7 }}
@@ -39,6 +42,14 @@ const ExpSection = () => {
 
 
                         </div>
+                        <motion.div
+                            variants={fadeIn('down', 0.6)}
+                            initial='hidden'
+                            whileInView={'show'}
+                            viewport={{ once: true, amount: 0.7 }}
+                            className='eduImgCon flex justify-center  relative'>
+                            <img src={expImg} className='edu-image max-w-[18rem] md:max-w-[28rem] w-[90%] my-12' alt="" />
+                        </motion.div>
                     </div>
                 </div>
             </div>
