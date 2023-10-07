@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import React, {  useState } from 'react'
 // import { BsGithub, BsLinkedin, BsInstagram, BsTwitter } from "react-icons/bs";
 import github from '../images/Social/github.svg'
 import linkedin from '../images/Social/linkedin.svg'
@@ -9,6 +8,10 @@ import github1 from '../images/Social/github1.svg'
 import linkedin1 from '../images/Social/linkedin1.svg'
 import insta1 from '../images/Social/insta1.svg'
 import twitter1 from '../images/Social/twitter1.svg'
+import { motion } from 'framer-motion'
+import { fadeIn } from '../Variants'
+
+import { Link } from 'react-router-dom'
 import '../Styles/Footer.css'
 import logo from '../images/logo.png'
 const Footer = () => {
@@ -28,7 +31,12 @@ const Footer = () => {
     
     return (
         <section className='footer pt-[7.5rem] sec-bg-color pb-4 text-[#94a9c9] px-4 font-1'>
-            <footer className=' py-[3rem] bg-[#131c31]  px-[2rem] md:mx-[205px]  mx-auto flex flex-col   justify-center items-center border border-[#222f43] rounded-[50px]'>
+            <motion.footer 
+             variants={fadeIn('down', 0)}
+             initial='hidden'
+             whileInView={'show'}
+             viewport={{ once: true, amount: 0.7 }}
+            className=' py-[3rem] bg-[#131c31]  px-[2rem] md:mx-[205px]  mx-auto flex flex-col   justify-center items-center border border-[#222f43] rounded-[50px]'>
                 <div className='flex flex-wrap footer-copyright-div relative  md:items-start flex-col justify-center items-center  md:flex-row'>
                     <div className=' flex flex-col justify-center items-center mx-1 px-1 md:w-[350px] w-[256px]'>
                         <div className='my-2 flex justify-between items-center'>
@@ -74,7 +82,7 @@ const Footer = () => {
                 <div className='flex my-2 p-3 justify-center items-center'>
                     <h3> &copy; 2023 Created by <span className='text-[#1cc2e7]' >Aditya Khade</span></h3>
                 </div>
-            </footer>
+            </motion.footer>
         </section>
     )
 }

@@ -28,7 +28,12 @@ const Projects = () => {
                 <div className=' items-con my-3 pt-7 flex justify-items-center items-center flex-col text-white' >
 
                     {Projects.map((project) => (
-                        <div className=' item flex  flex-col justify-center items-center md:flex-row max-w-[800px] w-[115%] px-[20px] my-auto mb-[4rem] min-w-[100px]' >
+                        <motion.div 
+                        variants={fadeIn('right', 0.4, 10)}
+                        initial='hidden'
+                        whileInView={'show'}
+                        viewport={{ once: true, amount: 0.7 }}
+                        className=' item flex  flex-col justify-center items-center md:flex-row max-w-[800px] w-[115%] px-[20px] my-auto mb-[4rem] min-w-[100px]' >
 
                             <div className='left z-[1]    flex-1'>
                                 <div className='pro-img overflow-hidden    rounded-xl  relative' >
@@ -54,7 +59,7 @@ const Projects = () => {
                             </div>
 
 
-                        </div>
+                        </motion.div>
 
                     ))}
 

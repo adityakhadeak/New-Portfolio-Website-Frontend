@@ -5,6 +5,7 @@ import '../Styles/Common.css'
 import abtImg from "../images/about.png"
 import { motion } from 'framer-motion'
 import { fadeIn } from '../Variants'
+import { Link } from 'react-router-dom'
 const AboutSection = () => {
     const abtMe = [{ "para": "👋 Hi there,🌐 I'm a third-year computer engineering student who's passionate about crafting websites. I'm familiar with HTML, CSS, and JavaScript. Additionally, I work with the MERN stack (MongoDB, Express.js, React, Node.js) and have some exposure to MySQL.", "animIn": 0.5 },
     { "para": "🧠 When I'm not building websites, you can find me tackling coding challenges on platforms like LeetCode. I enjoy sharpening my problem-solving skills and thinking algorithmically.", "animIn": 0.6 },
@@ -18,7 +19,7 @@ const AboutSection = () => {
                 <div className='bg-[#0f172a] relative font-1'>
                     <div className='pt-[7.5rem] md:ml-[205px] leftShadow after:top-[300px] md:mr-[145px] mx-8'>
                         <motion.div
-                            variants={fadeIn('left', 0.4)}
+                            variants={fadeIn('left', 0.5)}
                             initial='hidden'
                             whileInView={'show'}
                             viewport={{ once: true, amount: 0.7 }}
@@ -52,7 +53,7 @@ const AboutSection = () => {
                             whileInView={'show'}
                             viewport={{ once: true, amount: 0.7 }}
                             className='my-1'>
-                            <button className='btn btn-hover' >Know More</button>
+                            <Link to={'/about'} className='btn btn-hover' >Know More</Link>
                         </motion.div>
                     </div>
                 </div>

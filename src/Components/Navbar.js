@@ -43,7 +43,7 @@ const Navbar = () => {
     { "key": "IV.", "name": "Contact", "link": "/contact","animIn":0.6 }]
     return (
         <div >
-            <div className='z-[4] px-5 flex fixed top-0 h-[85px] w-screen bg-[#0f172a] items-center justify-between'>
+            <div className='z-[4] px-5 flex border-b border-[#222f43] fixed top-0 h-[85px] w-screen bg-[#0f172a] items-center justify-between'>
                 <motion.div
                     variants={fadeIn('right', 0.2,40)}
                     initial='hidden'

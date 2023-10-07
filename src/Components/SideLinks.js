@@ -2,8 +2,6 @@ import React from 'react';
 import '../Styles/SideLinks.css';
 import { motion } from 'framer-motion';
 import { fadeIn } from '../Variants';
-import { BsGithub, BsLinkedin, BsInstagram, BsTwitter } from "react-icons/bs";
-import { SiLeetcode } from "react-icons/si";
 import github from '../images/Social/github.svg'
 import linkedin from '../images/Social/linkedin.svg'
 import leetcode from '../images/Social/leetcode.svg'

@@ -26,11 +26,21 @@ const ContactSection = () => {
                     <span className='text-[#1cc2e7] text-[20px] md:text-[28px]' >V.</span>
                     <h2 className='text-[#94a9c9] w-[-webkit-fill-available] md:w-fit mx-2'>Contact</h2>
                 </motion.div>
-                <div className='flex my-2 justify-center text-lg font-mono text-[#94a9c9]'>
+                <motion.div 
+                variants={fadeIn('left', 0.25, 10)}
+                initial='hidden'
+                whileInView={'show'}
+                viewport={{ once: true, amount: 0.7 }}
+                className='flex my-2 justify-center text-lg font-mono text-[#94a9c9]'>
                     <h1>Get in Touch</h1>
-                </div>
+                </motion.div>
                 <div className='   flex  my-10 px-2 py-3  md:flex-row flex-col md:justify-evenly items-center text-[#94a9c9] font-mono'>
-                    <div className='contacts-left  flex flex-col justify-center items-center w-[100%]'>
+                    <motion.div 
+                     variants={fadeIn('right', 0.3, 10)}
+                     initial='hidden'
+                     whileInView={'show'}
+                     viewport={{ once: true, amount: 0.7 }}
+                    className='contacts-left  flex flex-col justify-center items-center w-[100%]'>
                         <div className='flex my-2 justify-center text-base md:text-xl text-[#94a9c9]'>
                             <h1 className='font-light'>Contact Details</h1>
                         </div>
@@ -49,11 +59,22 @@ const ContactSection = () => {
                             <a href="mailto:khadeaditya1@gmail.com" className='ml-1'>Badlapur, Thane </a>
                         </div>
 
-                    </div>
-                    <div className='contact-middle md:inline-block hidden mx-5'>
+                    </motion.div>
+                    <motion.div
+                    variants={fadeIn('left', 0.3)}
+                    initial='hidden'
+                    whileInView={'show'}
+                    viewport={{ once: true, amount: 0.7 }}
+                    className='contact-middle md:inline-block hidden mx-5'>
                         <div className='w-[3px] h-[300px] bg-[#94a9c9]' ></div>
-                    </div>
-                    <div className='contacts-right z-[1] flex flex-col justify-center items-center w-[100%]'>
+                    </motion.div>
+                    <motion.div 
+                    
+                    variants={fadeIn('left', 0.3, 10)}
+                    initial='hidden'
+                    whileInView={'show'}
+                    viewport={{ once: true, amount: 0.7 }}
+                    className='contacts-right z-[1] flex flex-col justify-center items-center w-[100%]'>
                         <div className='flex mt-[33px] my-2 justify-center text-base md:text-xl text-[#94a9c9]'>
                             <h1 className='font-light '>Contact Form</h1>
                         </div>
@@ -76,7 +97,7 @@ const ContactSection = () => {
                                 <button className='p-2 w-[90px] text-base hover:bg-[#222f43] border border-cyan-400'>Send</button>
                             </div>
                         </form>
-                    </div>
+                    </motion.div>
                 </div>
             </div>
         </section>

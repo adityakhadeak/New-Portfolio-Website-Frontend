@@ -17,9 +17,9 @@ const Projects = () => {
     { title: "NoteIT Web App", desc: "This a website which allows user to save the short notes. It also uses the local storage to store the notes. Its is build with React-Reducx", tool: { "1st": "React", "2nd": "Redux", "3rd": "Bootstrap" }, links: { github: "https://github.com/adityakhadeak/NoteIT_Web_App", live: "https://noteit-react-redux-byak.netlify.app/" } },
     { title: "NoteIT Web App", desc: "This a website which allows user to save the short notes. It also uses the local storage to store the notes. Its is build with React-Reducx", tool: { "1st": "React", "2nd": "Redux", "3rd": "Bootstrap" }, links: { github: "https://github.com/adityakhadeak/NoteIT_Web_App", live: "https://noteit-react-redux-byak.netlify.app/" } }
     ]
-    return (
+        return (
         <section className='projects relative font-1'>
-            <div className='pt-[7.5rem] leftShadow after:top-[420px] md:mx-[205px] mx-8'>
+            <div className='pt-[7.5rem] leftShadow rightShadow before:bottom-[0] after:top-[420px] md:mx-[205px] mx-8'>
                 <motion.div
                     variants={fadeIn('right', 0.3, 10)}
                     initial='hidden'
@@ -31,8 +31,14 @@ const Projects = () => {
                 </motion.div>
                 <div className=' items-con my-3 pt-7 flex  justify-center items-center md:flex-row flex-col flex-wrap text-white' >
 
-                    {Projects.map((project) => (
-                        <div className=' item flex  flex-col justify-center items-center md:flex-row max-w-[800px] w-[115%] px-[20px] my-auto mb-[4rem] min-w-[100px]' >
+                    {Projects.map((project,index) => (
+                        <motion.div 
+                        key={index}
+                        variants={fadeIn('right', 0.4, 10)}
+                                    initial='hidden'
+                                    whileInView={'show'}
+                                    viewport={{ once: true, amount: 0.7 }}
+                        className=' item flex  flex-col justify-center items-center md:flex-row max-w-[800px] w-[100%] px-[20px] my-auto mb-[4rem] min-w-[100px]' >
 
                             <div className='left z-[1]    flex-1'>
                                 <div className='pro-img overflow-hidden    rounded-xl  relative' >
@@ -58,15 +64,20 @@ const Projects = () => {
                             </div>
 
 
-                        </div>
+                        </motion.div>
 
                     ))}
 
-
-
-
                 </div>
-                
+                <motion.div 
+                    variants={fadeIn('right', 0.5)}
+                    initial='hidden'
+                    whileInView={'show'}
+                    viewport={{ once: true, amount: 0.7 }}
+                className='p-5 m-3 flex justify-center '>
+
+                    <button className='btn btn-hover  w-[200px]' ><a href="https://github.com/adityakhadeak" target="_blank" rel="noopener noreferrer">More on my Github</a></button>
+                </motion.div>
             </div>
         </section>
     )
