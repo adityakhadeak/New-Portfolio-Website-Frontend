@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import c from '../images/Skills/c.png'
 import cplus from '../images/Skills/c++.png'
 import js from '../images/Skills/js.png'
@@ -15,12 +15,13 @@ import mongodb from '../images/Skills/mongodb.png'
 import bootstrap from '../images/Skills/bootstrap.png'
 import tailwind from '../images/Skills/tailwind.png'
 import ScrollToTopOnReload from '../CustomHooks/ScrollToTopOnReload'
-
+import ThemeContext from '../Context/ThemeContext'
 import { fadeIn } from '../Variants'
 import { motion } from 'framer-motion'
 import '../Styles/Common.css'
 
 const Skills = () => {
+    const {mode}=useContext(ThemeContext)
     ScrollToTopOnReload()
     document.title = "Aditya's Portfolio | Skills"
 
@@ -54,8 +55,8 @@ const Skills = () => {
     const delayIncrement = 0.09;
     return (
 
-        <section className='skills relative z-[1] font-1'>
-            <div className='pt-[7.5rem] leftShadow rightShadow before:top-[300px] after:top-10 md:mx-[205px] mx-8'>
+        <section className={`${mode==='dark'?'bg-[#0f172a]':'bg-[#f9fbff]'} skills relative font-1`}>
+            <div className='pt-[3rem] leftShadow rightShadow before:top-[300px] after:top-10 md:mx-[205px] mx-8'>
                 <motion.div
                     variants={fadeIn('right', 0.3, 10)}
                     initial='hidden'
@@ -71,7 +72,7 @@ const Skills = () => {
                         initial='hidden'
                         whileInView={'show'}
                         viewport={{ once: true, amount: 0.7 }}
-                        className='text-[#b9e0f2] my-8 text-2xl font-bold  text-justify'>Skilled in the Use of These Technologies</motion.h1>                    <div className=' relative w-fit grid  md:grid-cols-4 grid-cols-2 gap-3 ' >
+                        className={`${mode==='dark'?'text-[#b9e0f2]':'text-[#94a9c9]'} my-8 text-2xl font-bold  text-justify`}>Skilled in the Use of These Technologies</motion.h1>                    <div className=' relative w-fit grid  md:grid-cols-4 grid-cols-2 gap-3 ' >
                         {
                             mySkills.map((skill, index) => (
                                 <motion.div
@@ -79,9 +80,9 @@ const Skills = () => {
                                     initial='hidden'
                                     whileInView={'show'}
                                     viewport={{ once: true, amount: 0.7 }}
-                                    className=' hover-neon flex px-4 bg-[#131c31] md:flex-row text-center flex-col border md:text-lg text-sm rounded-lg  min-w-min border-solid border-[#222f43] items-center md:gap-3 gap-2'>
+                                    className={` ${mode==='dark'?'hover-neon':'hover-neon-light'} flex px-4 ${mode==='dark'?'bg-[#131c31]':'bg-[#e8edf5]'} md:flex-row text-center flex-col border md:text-lg text-sm rounded-lg  min-w-min border-solid  ${mode==='dark'?'border-[#222f43]':'border-[#c2d4ee]'} items-center md:gap-3 gap-2`}>
                                     <img src={skill.img} alt="logo" className='w-[40px] p-1 md:w-[90px]' />
-                                    <h1 className=' text-[#b9e0f2] md:w-1/2 w-fit font-bold font-mono'>{skill.skill}</h1>
+                                    <h1 className={` ${mode==='dark'?'text-[#b9e0f2]':'text-[#94a9c9] '} w-1/2 font-bold font-mono`}>{skill.skill}</h1>
                                 </motion.div>
                             ))
                         }
@@ -91,7 +92,7 @@ const Skills = () => {
                         initial='hidden'
                         whileInView={'show'}
                         viewport={{ once: true, amount: 0.7 }}
-                        className='text-[#b9e0f2] my-8 text-2xl font-bold  text-justify'>And many more.....
+                        className={`${mode==='dark'?'text-[#b9e0f2]':'text-[#94a9c9]'} my-8 text-2xl font-bold  text-justify`}>And many more.....
                     </motion.h1>
 
                 </div>
@@ -121,10 +122,10 @@ const Skills = () => {
                                         initial='hidden'
                                         whileInView={'show'}
                                         viewport={{ once: true, amount: 0.7 }}
-                                        className=' text-[#94a9c9]  p-4 my-2 leading-8 rounded-3xl h-[fit]  w-fit md:w-[300px]  justify-center flex flex-col border-2 border-solid border-[#222f43] bg-[#141f35]'>
+                                        className={` text-[#94a9c9]  p-4 my-2 leading-8 rounded-3xl h-[fit]  w-fit md:w-[300px]  justify-center flex flex-col border-2 border-solid ${mode==='dark'?'border-[#222f43]':'border-[#c2d4ee]'} ${mode==='dark'?'bg-[#131c31]':'bg-[#e8edf5]'}`}>
                                         <h4 className='text-[#66768d] text-sm @apply gradient-text font-bold'>{cer.date}</h4>
-                                        <h2 className='text-[#b9e0f2] text-xl font-bold'>{cer.title}</h2>
-                                        <p className=' font-mono text-[#b9e0f2] text-[17px] hover:text-[#0ea0e4] transition-all duration-75'>{cer.platform}</p>
+                                        <h2 className={`${mode==='dark'?'text-[#b9e0f2]':'text-[#1cc2e7]'} text-xl font-bold`}>{cer.title}</h2>
+                                        <p className={` font-mono  text-[17px] hover:text-[#0ea0e4] ${mode==='dark'?'text-[#b9e0f2]':'text-[#0dace4]'} transition-all duration-75`}>{cer.platform}</p>
                                         <p className='font-mono text-[15px] text-justify my-2'>{cer.desc}</p>
                                         <div className='font-mono mb-3 text-[#0dace4] flex'>
                                             <p className='mr-3 text-sm'>{cer.label['1st']}</p>

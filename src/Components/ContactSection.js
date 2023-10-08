@@ -1,22 +1,24 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { motion } from 'framer-motion'
 import { fadeIn } from '../Variants'
 import '../Styles/ContactSection.css'
 import '../Styles/Common.css'
 import { BiMessageDetail } from "react-icons/bi";
-
+import { useLocation } from 'react-router-dom'
 import { BsTelephone } from "react-icons/bs";
 import { SlLocationPin } from "react-icons/sl";
 import { RiAccountCircleLine } from "react-icons/ri";
 
 import { GoMail } from "react-icons/go";
 import ScrollToTopOnReload from '../CustomHooks/ScrollToTopOnReload'
-
+import ThemeContext from '../Context/ThemeContext'
 const ContactSection = () => {
+    const {mode}=useContext(ThemeContext)
+    const location= useLocation()
     ScrollToTopOnReload()
     return (
-        <section className='contacts relative font-1 '>
-            <div className='pt-[7.5rem] rightShadow after:top-0 md:mx-[205px] mx-auto'>
+        <section className={` ${mode==='dark'?'bg-[#0f172a]':'bg-[#f9fbff]'} contacts relative font-1 `}>
+            <div className={` ${location.pathname==='/'?'pt-[7.5rem]':'pt-[3rem]'}  rightShadow after:top-0 md:mx-[205px] mx-auto`}>
                 <motion.div
                     variants={fadeIn('left', 0.2, 10)}
                     initial='hidden'
@@ -44,16 +46,16 @@ const ContactSection = () => {
                         <div className='flex my-2 justify-center text-base md:text-xl text-[#94a9c9]'>
                             <h1 className='font-light'>Contact Details</h1>
                         </div>
-                        <div className='relative cursor-pointer p-5 rounded my-2  md:max-w-[350px] md:w-[350px] w-[85%] flex justify-start items-center bg-[#222f43]'>
+                        <div className={` ${mode==='dark'?'bg-[#222f43]':'bg-[#e8edf5]'} relative cursor-pointer p-5 rounded my-2  md:max-w-[350px] md:w-[350px] w-[85%] flex justify-start items-center `}>
                             <span className='text-xl w-[45px]  '><BsTelephone /></span>
                             <a href="tel:+919422006299" className=''> +91 9422006299</a>
                         </div>
-                        <div className='relative cursor-pointer p-5 rounded my-2 md:max-w-[350px] md:w-[350px] w-[85%] flex justify-start items-center bg-[#222f43]'>
+                        <div className={` ${mode==='dark'?'bg-[#222f43]':'bg-[#e8edf5]'} relative cursor-pointer p-5 rounded my-2  md:max-w-[350px] md:w-[350px] w-[85%] flex justify-start items-center `}>
                             <span className='text-xl w-[45px] '><GoMail /></span>
 
                             <a href="mailto:khadeaditya1@gmail.com" className='ml-1'>khadeaditya1@gmail.com</a>
                         </div>
-                        <div className='relative cursor-pointer p-5 rounded my-2 md:max-w-[350px] md:w-[350px] w-[85%] flex justify-start items-center bg-[#222f43]'>
+                        <div className={` ${mode==='dark'?'bg-[#222f43]':'bg-[#e8edf5]'} relative cursor-pointer p-5 rounded my-2  md:max-w-[350px] md:w-[350px] w-[85%] flex justify-start items-center `}>
                             <span className='text-xl w-[45px] '>< SlLocationPin /></span>
 
                             <a href="mailto:khadeaditya1@gmail.com" className='ml-1'>Badlapur, Thane </a>
@@ -79,22 +81,22 @@ const ContactSection = () => {
                             <h1 className='font-light '>Contact Form</h1>
                         </div>
                         <form className='flex flex-col justify-center items-center w-[100%]'>
-                            <div className='relative h-[60px] p-2 px-4 rounded my-2 md:w-[350px] w-[85%] flex justify-start items-center bg-[#222f43]'>
+                            <div className={` ${mode==='dark'?'bg-[#222f43]':'bg-[#e8edf5]'} relative h-[60px] p-2 px-4 rounded my-2 md:w-[350px] w-[85%] flex justify-start items-center `}>
                                 <span className='text-xl w-[45px] '>< RiAccountCircleLine /></span>
-                                <input type="text" className='active-input bg-transparent placeholder:text-[#94a9c9] p-3  md:w-[330px]' placeholder='Enter your name' />
+                                <input type="text" className={` ${mode==='dark'?'active-input':'active-input-light'} bg-transparent placeholder:text-[#94a9c9] p-3  md:w-[330px]`} placeholder='Enter your name' />
                             </div>
-                            <div className='relative h-[60px] p-2 px-4 rounded my-2 md:w-[350px] w-[85%] flex justify-start items-center bg-[#222f43]'>
+                            <div className={` ${mode==='dark'?'bg-[#222f43]':'bg-[#e8edf5]'} relative h-[60px] p-2 px-4 rounded my-2 md:w-[350px] w-[85%] flex justify-start items-center `}>
                                 <span className='text-xl w-[45px] '>< GoMail /></span>
 
-                                <input type="text" className='active-input bg-transparent p-3 placeholder:text-[#94a9c9]  md:w-[330px]' placeholder='Enter your email' />
+                                <input type="text" className={` ${mode==='dark'?'active-input':'active-input-light'} bg-transparent placeholder:text-[#94a9c9] p-3  md:w-[330px]`} placeholder='Enter your email' />
                             </div>
-                            <div className='relative h-[60px] p-2 px-4 rounded my-2 md:w-[350px] w-[85%] flex justify-start items-center bg-[#222f43]'>
+                            <div className={` ${mode==='dark'?'bg-[#222f43]':'bg-[#e8edf5]'} relative h-[60px] p-2 px-4 rounded my-2 md:w-[350px] w-[85%] flex justify-start items-center `}>
                                 <span className='text-xl w-[45px] '>< BiMessageDetail /></span>
 
-                                <textarea type="text" rows={1} className='active-input bg-transparent p-3 placeholder:text-[#94a9c9] md:w-[330px]' placeholder='Enter your message' />
+                                <textarea type="text" rows={1} className={` ${mode==='dark'?'active-input':'active-input-light'} bg-transparent placeholder:text-[#94a9c9] p-3  md:w-[330px]`} placeholder='Enter your message' />
                             </div>
                             <div>
-                                <button className='p-2 w-[90px] text-base hover:bg-[#222f43] border border-cyan-400'>Send</button>
+                                <button className={`p-2 w-[90px] text-base  ${mode==='dark'?'hover:bg-[#222f43]':'hover:bg-[#e8edf5]'}  border border-cyan-400`}>Send</button>
                             </div>
                         </form>
                     </motion.div>

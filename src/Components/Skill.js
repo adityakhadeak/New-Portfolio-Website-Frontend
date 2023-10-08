@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import c from '../images/Skills/c.png'
 import cplus from '../images/Skills/c++.png'
 import js from '../images/Skills/js.png'
@@ -14,13 +14,14 @@ import express from '../images/Skills/express.png'
 import mongodb from '../images/Skills/mongodb.png'
 import bootstrap from '../images/Skills/bootstrap.png'
 import tailwind from '../images/Skills/tailwind.png'
-
+import ThemeContext from '../Context/ThemeContext'
 import { fadeIn } from '../Variants'
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import '../Styles/Common.css'
 
 const Skills = () => {
+    const {mode}=useContext(ThemeContext)
     const mySkills = [{ "skill": "C", "img": c },
     { "skill": "C++", "img": cplus },
     { "skill": "JS", "img": js },
@@ -44,7 +45,7 @@ const Skills = () => {
     const myFirst8Skills = mySkills.slice(0, 8)
     return (
 
-        <section className='skills relative font-1'>
+        <section className={`${mode==='dark'?'bg-[#0f172a]':'bg-[#f9fbff]'} skills relative font-1`}>
             <div className='pt-[7.5rem] leftShadow rightShadow before:top-[300px] after:top-10 md:mx-[205px] mx-8'>
                 <motion.div
                     variants={fadeIn('right', 0.3, 10)}
@@ -61,7 +62,7 @@ const Skills = () => {
                         initial='hidden'
                         whileInView={'show'}
                         viewport={{ once: true, amount: 0.7 }}
-                        className='text-[#b9e0f2] my-8 text-2xl font-bold  text-justify'>Skilled in the Use of These Technologies</motion.h1>
+                        className={`   ${mode==='dark'?'text-[#b9e0f2]':'text-[#94a9c9]'} my-8 text-2xl font-bold  text-justify`}>Skilled in the Use of These Technologies</motion.h1>
                     <div className=' relative w-fit grid  md:grid-cols-4 grid-cols-2 gap-3 ' >
                         {
                             myFirst8Skills.map((skill, index) => (
@@ -71,9 +72,9 @@ const Skills = () => {
                                     initial='hidden'
                                     whileInView={'show'}
                                     viewport={{ once: true, amount: 0.7 }}
-                                    className=' hover-neon flex px-4 bg-[#131c31]  border md:text-lg text-sm rounded-lg  min-w-min border-solid border-[#222f43] items-center md:gap-3 gap-2'>
+                                    className={` ${mode==='dark'?'hover-neon':'hover-neon-light'} flex px-4 ${mode==='dark'?'bg-[#131c31]':'bg-[#e8edf5]'} border md:text-lg text-sm rounded-lg  min-w-min border-solid  ${mode==='dark'?'border-[#222f43]':'border-[#c2d4ee]'} items-center md:gap-3 gap-2`}>
                                     <img src={skill.img} alt="logo" className='w-[50px] md:w-[90px]' />
-                                    <h1 className=' text-[#b9e0f2] w-1/2 font-bold font-mono'>{skill.skill}</h1>
+                                    <h1 className={` ${mode==='dark'?'text-[#b9e0f2]':'text-[#94a9c9]'} w-1/2 font-bold font-mono`}>{skill.skill}</h1>
                                 </motion.div>
                             ))
                         }

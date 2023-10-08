@@ -1,14 +1,17 @@
-import React, { } from 'react'
+import React, { useContext } from 'react'
 import { fadeIn } from '../Variants'
 import { motion } from 'framer-motion'
 import expImg from '../images/exp.png'
+import ThemeContext from '../Context/ThemeContext'
+
 import '../Styles/Common.css'
 const ExpSection = () => {
+    const {mode}=useContext(ThemeContext)
     const myExp = [{ "duration": "Feb 2023 to May 2023", "title": "Full Stack Web Development", "company": "Innomatics Research Labs", "techStack": "HTML5, CSS, Javascript, ReactJs, MongoDb, NodeJs, Express etc..", "link": "https://www.innomatics.in/", "doc": "https://drive.google.com/file/d/13iEc0lBA2MDqyjVxDK45X4NfO3gc6xdz/view?usp=drive_link" }
     ]
     return (
         <div>
-            <div className='font-1 relative'>
+            <div className={`${mode==='dark'?'bg-[#0f172a]':'bg-[#f9fbff]'} font-1 relative`}>
                 <div className='pt-[7.5rem] leftShadow after:top-6 md:mx-[205px] mx-8'>
                     <motion.div
                         variants={fadeIn('right', 0.3, 10)}
@@ -29,10 +32,10 @@ const ExpSection = () => {
                                         initial='hidden'
                                         whileInView={'show'}
                                         viewport={{ once: true, amount: 0.7 }}
-                                        className=' text-[#94a9c9] timeLine-item p-4 my-2 leading-8 rounded-3xl h-[fit]  w-[60vw] md:w-[500px]  justify-center flex flex-col border-2 border-solid border-[#222f43] bg-[#141f35]'>
+                                        className={` text-[#94a9c9] timeLine-item p-4 my-2 leading-8 rounded-3xl h-[fit]  w-[60vw] md:w-[500px]  justify-center flex flex-col border-2 border-solid  ${mode==='dark'?'border-[#222f43]':'border-[#c2d4ee]'} ${mode==='dark'?'bg-[#131c31]':'bg-[#e8edf5]'} `}>
                                         <h4 className='text-[#66768d] text-sm @apply gradient-text font-bold'>{exp.duration}</h4>
-                                        <h2 className='text-[#b9e0f2] text-xl font-bold'>{exp.title}</h2>
-                                        <a href={exp.link} rel="noreferrer" target='_blank' className=' font-mono text-[#b9e0f2] text-[17px] hover:text-[#0ea0e4] transition-all duration-75'>{exp.company}</a>
+                                        <h2 className={` ${mode==='dark'?'text-[#b9e0f2]':'text-[#1cc2e7]'} text-xl font-bold`}>{exp.title}</h2>
+                                        <a href={exp.link} rel="noreferrer" target='_blank' className={` font-mono  ${mode==='dark'?'text-[#b9e0f2]':'text-[#0dace4]'} text-[17px] hover:text-[#0ea0e4] transition-all duration-75`}>{exp.company}</a>
                                         <h3 className='font-mono text-[15px]'>{exp.techStack}</h3>
                                         <a href={exp.doc} target='_blank' rel="noreferrer" className='text-[#0ea0e4] font-mono'>Certificate</a>
                                     </motion.div>

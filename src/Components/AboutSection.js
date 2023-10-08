@@ -1,12 +1,13 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import '../Styles/AboutSection.css'
 import '../Styles/Common.css'
-
+import ThemeContext from '../Context/ThemeContext'
 import abtImg from "../images/about.png"
 import { motion } from 'framer-motion'
 import { fadeIn } from '../Variants'
 import { Link } from 'react-router-dom'
 const AboutSection = () => {
+    const {mode}=useContext(ThemeContext)
     const abtMe = [{ "para": "👋 Hi there,🌐 I'm a third-year computer engineering student who's passionate about crafting websites. I'm familiar with HTML, CSS, and JavaScript. Additionally, I work with the MERN stack (MongoDB, Express.js, React, Node.js) and have some exposure to MySQL.", "animIn": 0.5 },
     { "para": "🧠 When I'm not building websites, you can find me tackling coding challenges on platforms like LeetCode. I enjoy sharpening my problem-solving skills and thinking algorithmically.", "animIn": 0.6 },
     { "para": "🛠️ While I'm still on my journey, I've worked on various projects that have helped me grasp the essentials of web development, especially in learning React. Each project has been a stepping stone in my growth as a developer.", "animIn": 0.7 },
@@ -16,8 +17,8 @@ const AboutSection = () => {
     return (
         <>
             <section className='aboutsection'>
-                <div className='bg-[#0f172a] relative font-1'>
-                    <div className='pt-[7.5rem] md:ml-[205px] leftShadow after:top-[300px] md:mr-[145px] mx-8'>
+                <div className={`${mode==='dark'?'bg-[#0f172a]':'bg-[#f9fbff]'} relative font-1`}>
+                    <div className='pt-[7.5rem] md:ml-[205px] rightShadow  md:mr-[145px] mx-8'>
                         <motion.div
                             variants={fadeIn('left', 0.5)}
                             initial='hidden'

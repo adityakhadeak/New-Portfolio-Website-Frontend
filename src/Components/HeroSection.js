@@ -1,17 +1,19 @@
-import React from 'react'
+import React ,{useContext } from 'react'
+
 import { Typewriter } from 'react-simple-typewriter'
 import { motion } from 'framer-motion'
 import { fadeIn } from '../Variants'
+import ThemeContext from '../Context/ThemeContext';
 
 import '../Styles/Home.css'
 import SideLinks from './SideLinks'
 import { MypicAnimation } from './MypicAnimation'
 const Home = () => {
-
+  const {mode}=useContext(ThemeContext)
   return (
     <>
-      <div className='   bg-[#0f172a] font-1'>
-        <div className='  pt-[7rem] md:mt-5 mx-8 md:mx-20'>
+      <div className={`  ${mode==='dark'?'bg-[#0f172a]':'bg-[#f9fbff]'} font-1`}>
+        <div className='  pt-[3rem] md:mt-5 mx-8 md:mx-20'>
           <div className='relative  justify-evenly md:justify-around flex flex-col md:flex-row'>
             <div className='homeback w-fit md:w-[459px] flex flex-col'>
               <motion.h4 variants={fadeIn('up', 0.8)}
@@ -25,11 +27,11 @@ const Home = () => {
                 whileInView={'show'}
                 viewport={{ once: true, amount: 0.7 }} className=' w-fit flex flex-col my-2 '>
                 <div>
-                  <h1 className=' text-white   text-2xl md:text-3xl' >My name is</h1>
+                  <h1 className={`  ${mode==='dark'?'text-white ':'text-[#344161]'}  text-2xl md:text-3xl`} >My name is</h1>
                   <h1 className=' my-2 @apply gradient-text font-bold text-4xl md:text-[3.75rem] leading-[1.5]' >Aditya Khade</h1>
                 </div>
                 <div className='my-3'>
-                  <h1 className=' text-white   text-2xl md:text-3xl' >I’m a</h1>
+                  <h1 className={` ${mode==='dark'?'text-white ':'text-[#344161]'}   text-2xl md:text-3xl`}>I’m a</h1>
                   <h1 className=' my-3 h-[80px] md:h-fit @apply gradient-text w-fit md:w-[550px] font-bold text-4xl md:text-6xl leading-[1.5] text-[#94a9c9] '><Typewriter
 
                     words={["Web Developer", "Coder", "Learner"]}

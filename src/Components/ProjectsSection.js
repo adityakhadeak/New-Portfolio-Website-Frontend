@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import p1 from '../images/Projects/p1.png'
+import p2 from '../images/Projects/p2.png'
 import { BsGithub } from "react-icons/bs";
 import { BiLinkExternal } from "react-icons/bi";
 import '../Styles/Projects.css'
@@ -7,14 +8,16 @@ import { fadeIn } from '../Variants'
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom';
 import '../Styles/Common.css'
+import ThemeContext from '../Context/ThemeContext';
 import GithubContributions from './GithubContributions';
 const Projects = () => {
+    const {mode}=useContext(ThemeContext)
 
-    const Projects = [{ title: "Movies Explorer", desc: "This a website which allows user to browse movies and tv shows. It uses TMDB api and fetches info from there and shows here.", tool: { "1st": "API", "2nd": "HTML", "3rd": "CSS", "4th": "JS" }, links: { github: "https://github.com/adityakhadeak/AK-Movies-Explorer", live: "https://adityakhadeak.github.io/AK-Movies-Explorer/" } },
-    { title: "NoteIT Web App", desc: "This a website which allows user to save the short notes. It also uses the local storage to store the notes. Its is build with React-Reducx", tool: { "1st": "React", "2nd": "Redux", "3rd": "Bootstrap" }, links: { github: "https://github.com/adityakhadeak/NoteIT_Web_App", live: "https://noteit-react-redux-byak.netlify.app/" } }
+    const Projects = [{ title: "Movies Explorer", desc: "This a website which allows user to browse movies and tv shows. It uses TMDB api and fetches info from there and shows here.", tool: { "1st": "API", "2nd": "HTML", "3rd": "CSS", "4th": "JS" }, links: { github: "https://github.com/adityakhadeak/AK-Movies-Explorer", live: "https://adityakhadeak.github.io/AK-Movies-Explorer/" },img:p1 },
+    { title: "NoteIT Web App", desc: "This a website which allows user to save the short notes. It also uses the local storage to store the notes. Its is build with React-Reducx", tool: { "1st": "React", "2nd": "Redux", "3rd": "Bootstrap" }, links: { github: "https://github.com/adityakhadeak/NoteIT_Web_App", live: "https://noteit-react-redux-byak.netlify.app/" },img:p2 },
     ]
     return (
-        <section className='projects relative font-1'>
+        <section className={`${mode==='dark'?'bg-[#0f172a]':'bg-[#f9fbff]'} projects relative font-1`}>
             <div className='pt-[7.5rem] leftShadow after:top-[420px] md:mx-[205px] mx-8'>
                 <motion.div
                     variants={fadeIn('right', 0.3, 10)}
@@ -37,11 +40,11 @@ const Projects = () => {
 
                             <div className='left z-[1]    flex-1'>
                                 <div className='pro-img overflow-hidden    rounded-xl  relative' >
-                                    <img src={p1} className='object-cover' alt="project1" />
+                                    <img src={project.img} className='object-cover' alt="project1" />
                                 </div>
                             </div>
 
-                            <div className=' right pro-info rounded-lg bg-[#131c31] z-[2] w-[300px] md:w-fit md:-ml-[125px] px-[3rem] py-3 right flex flex-col justify-items-center justify-center items-center flex-1' >
+                            <div className={` right pro-info rounded-lg ${mode==='dark'?'bg-[#131c31]':'bg-[#e8edf5]'}  z-[2] w-[300px] md:w-fit md:-ml-[125px] px-[3rem] py-3 right flex flex-col justify-items-center justify-center items-center flex-1`} >
                                 <h1 className=' mb-3 text-xl text-[#94a9c9]  font-bold'>{project.title}</h1>
                                 <p className='text-[#a3afbf] mb-3 text-sm'>{project.desc}</p>
                                 <div className='font-mono mb-3 text-[#0dace4] flex'>
@@ -53,8 +56,8 @@ const Projects = () => {
 
                                 </div>
                                 <div className=' flex relative right-[10px] ' >
-                                    <a target='_blank' rel='noreferrer' className='mr-2 text-xl  text-[25px] p-[10px] relative  hover:text-[#0dace4] transition-all duration-[0.25s] cursor-pointer ' href={project.links.github}><BsGithub /></a>
-                                    <a target='_blank' rel='noreferrer' className='mr-2 text-xl  text-[25px] p-[10px] relative  hover:text-[#0dace4] transition-all duration-[0.25s] cursor-pointer ' href={project.links.live}><BiLinkExternal /></a>
+                                    <a target='_blank' rel='noreferrer' className={`mr-2 text-xl  text-[25px] p-[10px] relative ${mode==='dark'?'text-white':'text-[#a3afbf]'}  hover:text-[#0dace4] transition-all duration-[0.25s] cursor-pointer `} href={project.links.github}><BsGithub /></a>
+                                    <a target='_blank' rel='noreferrer' className={`mr-2 text-xl  text-[25px] p-[10px] relative   ${mode==='dark'?'text-white':'text-[#a3afbf]'}   hover:text-[#0dace4] transition-all duration-[0.25s] cursor-pointer `} href={project.links.live}><BiLinkExternal /></a>
                                 </div>
                             </div>
 

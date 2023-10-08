@@ -82,7 +82,7 @@
   height: 1287px;
   width: 550px;
   left: -80px;
-  z-index: 0;
+  z-index: 1;
 
   background-size: contain;
 }
@@ -94,7 +94,7 @@
   height: 1000px;
   width: 500px;
   right: 0px;
-  z-index: 0;
+  z-index: 1;
 
   background-size: contain;
 }
