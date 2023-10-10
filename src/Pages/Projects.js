@@ -13,9 +13,11 @@ import { fadeIn } from '../Variants'
 import { motion } from 'framer-motion'
 import '../Styles/Common.css'
 import ThemeContext from '../Context/ThemeContext';
+import NavFixContext from '../Context/NavFixContext'
 import ScrollToTopOnReload from '../CustomHooks/ScrollToTopOnReload'
 const Projects = () => {
     const {mode}=useContext(ThemeContext)
+    const {isFixed}=useContext(NavFixContext)
     document.title="Aditya's Portfolio | Projects"
 
   ScrollToTopOnReload()
@@ -29,7 +31,7 @@ const Projects = () => {
     ]
         return (
         <section className='projects relative font-1'>
-            <div className='pt-[3rem] leftShadow rightShadow before:bottom-[0] after:top-[420px] md:mx-[205px] mx-8'>
+            <div className={`pt-[3rem] leftShadow rightShadow before:bottom-[0] after:top-[420px] ${isFixed?"md:mt-[86px]":""} md:mx-[205px] mx-8`}>
                 <motion.div
                     variants={fadeIn('right', 0.3, 10)}
                     initial='hidden'

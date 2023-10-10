@@ -10,6 +10,7 @@ import About from './Pages/About';
 import ThemeContext from './Context/ThemeContext';
 import Projects from './Pages/Projects';
 import Footer from './Components/Footer';
+import NavFixed from './Components/NavFix/NavFixed';
 function App() {
   const { mode } = useContext(ThemeContext)
   const [loader, setLoader] = useState(false)
@@ -37,24 +38,26 @@ function App() {
 
   }, [mode])
   return (
-    <Router>
-      {loader ?
-        <Preloader /> :
-        <>
-          <Navbar />
-          <Routes>
-            <Route element={<Home />} path='/' />
-            <Route element={<About />} path='/about' />
-            <Route element={<Skills />} path='/skills' />
-            <Route element={<Contact />} path='/contact' />
-            <Route element={<Projects />} path='/projects' />
-          </Routes>
-          <Footer />
+    <NavFixed>
+      <Router>
+        {loader ?
+          <Preloader /> :
+          <>
+            <Navbar />
+            <Routes>
+              <Route element={<Home />} path='/' />
+              <Route element={<About />} path='/about' />
+              <Route element={<Skills />} path='/skills' />
+              <Route element={<Contact />} path='/contact' />
+              <Route element={<Projects />} path='/projects' />
+            </Routes>
+            <Footer />
 
-        </>
+          </>
 
-      }
-    </Router>
+        }
+      </Router>
+    </NavFixed>
   );
 }
 

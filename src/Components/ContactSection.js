@@ -12,13 +12,15 @@ import { RiAccountCircleLine } from "react-icons/ri";
 import { GoMail } from "react-icons/go";
 import ScrollToTopOnReload from '../CustomHooks/ScrollToTopOnReload'
 import ThemeContext from '../Context/ThemeContext'
+import NavFixContext from '../Context/NavFixContext'
 const ContactSection = () => {
     const {mode}=useContext(ThemeContext)
+    const {isFixed}=useContext(NavFixContext)
     const location= useLocation()
     ScrollToTopOnReload()
     return (
         <section className={` ${mode==='dark'?'bg-[#0f172a]':'bg-[#f9fbff]'} contacts relative font-1 `}>
-            <div className={` ${location.pathname==='/'?'pt-[7.5rem]':'pt-[3rem]'}  rightShadow after:top-0 md:mx-[205px] mx-auto`}>
+            <div className={` ${location.pathname==='/'?'pt-[7.5rem]':'pt-[3rem]'} ${location.pathname==='/contact'?isFixed?"md:mt-[86px]":"":""} rightShadow after:top-0 md:mx-[205px] mx-auto`}>
                 <motion.div
                     variants={fadeIn('left', 0.2, 10)}
                     initial='hidden'

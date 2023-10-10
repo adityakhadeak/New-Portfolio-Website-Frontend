@@ -16,12 +16,14 @@ import bootstrap from '../images/Skills/bootstrap.png'
 import tailwind from '../images/Skills/tailwind.png'
 import ScrollToTopOnReload from '../CustomHooks/ScrollToTopOnReload'
 import ThemeContext from '../Context/ThemeContext'
+import NavFixContext from '../Context/NavFixContext'
 import { fadeIn } from '../Variants'
 import { motion } from 'framer-motion'
 import '../Styles/Common.css'
 
 const Skills = () => {
     const {mode}=useContext(ThemeContext)
+    const {isFixed}=useContext(NavFixContext)
     ScrollToTopOnReload()
     document.title = "Aditya's Portfolio | Skills"
 
@@ -43,11 +45,11 @@ const Skills = () => {
     { "skill": "TAILWIND", "img": tailwind },
 
     ]
-    const myCer = [{ "title": "Python", "desc": "This is the course i did in holidays akfjakfjakls facnashas oafssn cnasjdha lsflkas csfs dkd lfafns", "date": "10-08-2023", "platform": "Kaggle", "label": { "1st": "Course", "2nd": "BootCamp" }, "doc": "https://drive.google.com/file/d/13iEc0lBA2MDqyjVxDK45X4NfO3gc6xdz/view?usp=drive_link" },
-    { "title": "Python", "desc": "This is the course i did in holidays akfja fjakls acnashas oafssncn sjdh alsflkas csfsdkd lfafns", "date": "10-08-2023", "platform": "Kaggle", "label": { "1st": "Course", "2nd": "BootCamp" }, "doc": "https://drive.google.com/file/d/13iEc0lBA2MDqyjVxDK45X4NfO3gc6xdz/view?usp=drive_link" },
-    { "title": "Python", "desc": "This is the course i did in holidays akfja fjakls acnashas oafssncn sjdh lsflkas csfsdkd lfafns", "date": "10-08-2023", "platform": "Kaggle", "label": { "1st": "Course", "2nd": "BootCamp" }, "doc": "https://drive.google.com/file/d/13iEc0lBA2MDqyjVxDK45X4NfO3gc6xdz/view?usp=drive_link" },
-    { "title": "Python", "desc": "This is the course i did in holidays akfja fjakls acnashas oafssncn sjdh lsflkas csfsdkd lfafns", "date": "10-08-2023", "platform": "Kaggle", "label": { "1st": "Course", "2nd": "BootCamp" }, "doc": "https://drive.google.com/file/d/13iEc0lBA2MDqyjVxDK45X4NfO3gc6xdz/view?usp=drive_link" },
-    { "title": "Python", "desc": "This is the course i did in holidays akfja fjakls acnashas oafssncn sjdh lsflkas csfsdkd lfafns", "date": "10-08-2023", "platform": "Kaggle", "label": { "1st": "Course", "2nd": "BootCamp" }, "doc": "https://drive.google.com/file/d/13iEc0lBA2MDqyjVxDK45X4NfO3gc6xdz/view?usp=drive_link" },
+    const myCer = [{ "title": "Python", "desc": "This is the course i did in holidays akfjakfjakls facnashas oafssn cnasjdha lsflkas csfs dkd lfafns", "date": "10-08-2023", "platform": "Kaggle", "label": { "1st": "Course" }, "doc": "https://drive.google.com/file/d/13iEc0lBA2MDqyjVxDK45X4NfO3gc6xdz/view?usp=drive_link" },
+    { "title": "Python", "desc": "This is the course i did in holidays akfja fjakls acnashas oafssncn sjdh alsflkas csfsdkd lfafns", "date": "10-08-2023", "platform": "Kaggle", "label": { "1st": "Course" }, "doc": "https://drive.google.com/file/d/13iEc0lBA2MDqyjVxDK45X4NfO3gc6xdz/view?usp=drive_link" },
+    { "title": "Python", "desc": "This is the course i did in holidays akfja fjakls acnashas oafssncn sjdh lsflkas csfsdkd lfafns", "date": "10-08-2023", "platform": "Kaggle", "label": { "1st": "Course" }, "doc": "https://drive.google.com/file/d/13iEc0lBA2MDqyjVxDK45X4NfO3gc6xdz/view?usp=drive_link" },
+    { "title": "Python", "desc": "This is the course i did in holidays akfja fjakls acnashas oafssncn sjdh lsflkas csfsdkd lfafns", "date": "10-08-2023", "platform": "Kaggle", "label": { "1st": "Course" }, "doc": "https://drive.google.com/file/d/13iEc0lBA2MDqyjVxDK45X4NfO3gc6xdz/view?usp=drive_link" },
+    { "title": "Python", "desc": "This is the course i did in holidays akfja fjakls acnashas oafssncn sjdh lsflkas csfsdkd lfafns", "date": "10-08-2023", "platform": "Kaggle", "label": { "1st": "Course" }, "doc": "https://drive.google.com/file/d/13iEc0lBA2MDqyjVxDK45X4NfO3gc6xdz/view?usp=drive_link" },
 
     ]
 
@@ -56,7 +58,7 @@ const Skills = () => {
     return (
 
         <section className={`${mode==='dark'?'bg-[#0f172a]':'bg-[#f9fbff]'} skills relative font-1`}>
-            <div className='pt-[3rem] leftShadow rightShadow before:top-[300px] after:top-10 md:mx-[205px] mx-8'>
+            <div className={`pt-[3rem] leftShadow rightShadow before:top-[300px] after:top-10 ${isFixed?"md:mt-[86px]":""} md:mx-[205px] mx-8`}>
                 <motion.div
                     variants={fadeIn('right', 0.3, 10)}
                     initial='hidden'

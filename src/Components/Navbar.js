@@ -7,10 +7,12 @@ import { Link,NavLink } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { fadeIn } from '../Variants'
 import ThemeContext from '../Context/ThemeContext';
+import NavFixContext from '../Context/NavFixContext';
 const Navbar = () => {
     const { mode, changeMode } = useContext(ThemeContext)
+    const { isFixed } = useContext(NavFixContext)
     const [menu, setMenu] = useState("off")
-    const [isFixed, setIsFixed] = useState(false);
+    // const [isFixed, setIsFixed] = useState(false);
 
     useEffect(() => {
         const handleResize = () => {
@@ -23,29 +25,29 @@ const Navbar = () => {
 
         handleResize();
         window.addEventListener('resize', handleResize);
-        window.addEventListener('scroll', handleScroll);
+        // window.addEventListener('scroll', handleScroll);
 
         // Clean up by removing the event listener when the component unmounts
         return () => {
             window.removeEventListener('resize', handleResize);
-            window.removeEventListener('scroll', handleScroll);
+            // window.removeEventListener('scroll', handleScroll);
 
         };
         // eslint-disable-next-line
     }, [menu]);
 
-    const handleScroll = () => {
-        // Define the scroll position or section offset where you want the change to occur
-        const triggerPosition = 150; // Adjust this value as needed
-        const scrollPosition = window.scrollY || window.pageYOffset;
+    // const handleScroll = () => {
+    //     // Define the scroll position or section offset where you want the change to occur
+    //     const triggerPosition = 55; // Adjust this value as needed
+    //     const scrollPosition = window.scrollY || window.pageYOffset;
 
-        // Check if the scroll position is greater than or equal to the trigger position
-        if (scrollPosition >= triggerPosition) {
-            setIsFixed(true);
-        } else {
-            setIsFixed(false);
-        }
-    };
+    //     // Check if the scroll position is greater than or equal to the trigger position
+    //     if (scrollPosition >= triggerPosition) {
+    //         setIsFixed(true);
+    //     } else {
+    //         setIsFixed(false);
+    //     }
+    // };
 
 
     const showMenu = () => {

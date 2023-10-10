@@ -7,8 +7,10 @@ import ScrollToTopOnReload from '../CustomHooks/ScrollToTopOnReload'
 import ExSection from '../Components/EduSection'
 import ExpSection from '../Components/ExpSection'
 import ThemeContext from '../Context/ThemeContext'
+import NavFixContext from '../Context/NavFixContext'
 const About = () => {
     const {mode}=useContext(ThemeContext)
+    const {isFixed}=useContext(NavFixContext)
     ScrollToTopOnReload()  
     const abtMe = [{ "para": "👋 Hi there,🌐 I'm a third-year computer engineering student who's passionate about crafting websites. I'm familiar with HTML, CSS, and JavaScript. Additionally, I work with the MERN stack (MongoDB, Express.js, React, Node.js) and have some exposure to MySQL.", "animIn": 0.5 },
     { "para": "🧠 When I'm not building websites, you can find me tackling coding challenges on platforms like LeetCode. I enjoy sharpening my problem-solving skills and thinking algorithmically.", "animIn": 0.6 },
@@ -21,7 +23,7 @@ const About = () => {
         <>
             <section className='aboutsection'>
             <div className={`${mode==='dark'?'bg-[#0f172a]':'bg-[#f9fbff]'} relative font-1`}>
-                    <div className='pt-[3rem] md:ml-[205px] md:mr-[145px] mx-8'>
+                    <div className={`pt-[3rem] md:ml-[205px] ${isFixed?"md:mt-[86px]":""} md:mr-[145px] mx-8`}>
                         <motion.div
                             variants={fadeIn('left', 0.4)}
                             initial='hidden'
