@@ -56,7 +56,7 @@ const Skills = () => {
                     <span className='text-[#1cc2e7] text-[20px] md:text-[28px]' >IV.</span>
                     <h2 className='text-[#94a9c9]  w-fit md:w-fit mx-2'>Skills & Expertise</h2>
                 </motion.div>
-                <div className=' flex relative z-[1] items-center flex-col justify-center pt-5 my-3' >
+                <div className=' flex relative z-[2] items-center flex-col justify-center pt-5 my-3' >
                     <motion.h1
                         variants={fadeIn('right', 0.3, 10)}
                         initial='hidden'

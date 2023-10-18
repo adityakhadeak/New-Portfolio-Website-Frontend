@@ -11,6 +11,8 @@ import ThemeContext from './Context/ThemeContext';
 import Projects from './Pages/Projects';
 import Footer from './Components/Footer';
 import NavFixed from './Components/NavFix/NavFixed';
+import ManageSkill from './Components/Admin/ManageSkill';
+import ManageProject from './Components/Admin/ManageProject';
 function App() {
   const { mode } = useContext(ThemeContext)
   const [loader, setLoader] = useState(false)
@@ -50,7 +52,10 @@ function App() {
               <Route element={<Skills />} path='/skills' />
               <Route element={<Contact />} path='/contact' />
               <Route element={<Projects />} path='/projects' />
+              <Route element={<ManageSkill />} path='/manageskill' />
+              <Route element={<ManageProject />} path='/manageproject' />
             </Routes>
+              
             <Footer />
 
           </>

@@ -45,11 +45,11 @@ const Skills = () => {
     { "skill": "TAILWIND", "img": tailwind },
 
     ]
-    const myCer = [{ "title": "Python", "desc": "This is the course i did in holidays akfjakfjakls facnashas oafssn cnasjdha lsflkas csfs dkd lfafns", "date": "10-08-2023", "platform": "Kaggle", "label": { "1st": "Course" }, "doc": "https://drive.google.com/file/d/13iEc0lBA2MDqyjVxDK45X4NfO3gc6xdz/view?usp=drive_link" },
-    { "title": "Python", "desc": "This is the course i did in holidays akfja fjakls acnashas oafssncn sjdh alsflkas csfsdkd lfafns", "date": "10-08-2023", "platform": "Kaggle", "label": { "1st": "Course" }, "doc": "https://drive.google.com/file/d/13iEc0lBA2MDqyjVxDK45X4NfO3gc6xdz/view?usp=drive_link" },
-    { "title": "Python", "desc": "This is the course i did in holidays akfja fjakls acnashas oafssncn sjdh lsflkas csfsdkd lfafns", "date": "10-08-2023", "platform": "Kaggle", "label": { "1st": "Course" }, "doc": "https://drive.google.com/file/d/13iEc0lBA2MDqyjVxDK45X4NfO3gc6xdz/view?usp=drive_link" },
-    { "title": "Python", "desc": "This is the course i did in holidays akfja fjakls acnashas oafssncn sjdh lsflkas csfsdkd lfafns", "date": "10-08-2023", "platform": "Kaggle", "label": { "1st": "Course" }, "doc": "https://drive.google.com/file/d/13iEc0lBA2MDqyjVxDK45X4NfO3gc6xdz/view?usp=drive_link" },
-    { "title": "Python", "desc": "This is the course i did in holidays akfja fjakls acnashas oafssncn sjdh lsflkas csfsdkd lfafns", "date": "10-08-2023", "platform": "Kaggle", "label": { "1st": "Course" }, "doc": "https://drive.google.com/file/d/13iEc0lBA2MDqyjVxDK45X4NfO3gc6xdz/view?usp=drive_link" },
+    const myCer = [{ "title": "Python", "desc": "This is the course i did in holidays akfjakfjakls facnashas oafssn cnasjdha lsflkas csfs dkd lfafns", "date": "10-08-2023", "platform": "Kaggle", "label": "Course" , "doc": "https://drive.google.com/file/d/13iEc0lBA2MDqyjVxDK45X4NfO3gc6xdz/view?usp=drive_link" },
+    { "title": "Python", "desc": "This is the course i did in holidays akfja fjakls acnashas oafssncn sjdh alsflkas csfsdkd lfafns", "date": "10-08-2023", "platform": "Kaggle", "label": "Course", "doc": "https://drive.google.com/file/d/13iEc0lBA2MDqyjVxDK45X4NfO3gc6xdz/view?usp=drive_link" },
+    { "title": "Python", "desc": "This is the course i did in holidays akfja fjakls acnashas oafssncn sjdh lsflkas csfsdkd lfafns", "date": "10-08-2023", "platform": "Kaggle", "label": "Course", "doc": "https://drive.google.com/file/d/13iEc0lBA2MDqyjVxDK45X4NfO3gc6xdz/view?usp=drive_link" },
+    { "title": "Python", "desc": "This is the course i did in holidays akfja fjakls acnashas oafssncn sjdh lsflkas csfsdkd lfafns", "date": "10-08-2023", "platform": "Kaggle", "label": "Course", "doc": "https://drive.google.com/file/d/13iEc0lBA2MDqyjVxDK45X4NfO3gc6xdz/view?usp=drive_link" },
+    { "title": "Python", "desc": "This is the course i did in holidays akfja fjakls acnashas oafssncn sjdh lsflkas csfsdkd lfafns", "date": "10-08-2023", "platform": "Kaggle", "label": "Course", "doc": "https://drive.google.com/file/d/13iEc0lBA2MDqyjVxDK45X4NfO3gc6xdz/view?usp=drive_link" },
 
     ]
 
@@ -68,7 +68,7 @@ const Skills = () => {
                     <span className='text-[#1cc2e7] text-[20px] md:text-[28px]' >IV.</span>
                     <h2 className='text-[#94a9c9]  w-fit md:w-fit mx-2'>Skills & Expertise</h2>
                 </motion.div>
-                <div className=' flex relative z-[1] items-center flex-col justify-center pt-5 my-3' >
+                <div className=' flex relative z-[2] items-center flex-col justify-center pt-5 my-3' >
                     <motion.h1
                         variants={fadeIn('right', 0.3, 10)}
                         initial='hidden'
@@ -130,8 +130,7 @@ const Skills = () => {
                                         <p className={` font-mono  text-[17px] hover:text-[#0ea0e4] ${mode==='dark'?'text-[#b9e0f2]':'text-[#0dace4]'} transition-all duration-75`}>{cer.platform}</p>
                                         <p className='font-mono text-[15px] text-justify my-2'>{cer.desc}</p>
                                         <div className='font-mono mb-3 text-[#0dace4] flex'>
-                                            <p className='mr-3 text-sm'>{cer.label['1st']}</p>
-                                            <p className='mr-3 text-sm'>{cer.label['2nd']}</p>
+                                            <p className='mr-3 text-sm'>{cer.label}</p>
 
                                         </div>
                                         <a href={cer.doc} target='_blank' rel="noreferrer" className='text-[#0ea0e4] font-mono'>Certificate</a>

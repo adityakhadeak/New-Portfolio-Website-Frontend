@@ -14,6 +14,7 @@
   }
 }
 body {
+  scroll-behavior: smooth;
   background-color: #0f172a;
 }
 .sec-bg-color {
@@ -175,6 +176,7 @@ body {
 
   }
 }
+
 
 ::-webkit-scrollbar {
   width: 10px;
