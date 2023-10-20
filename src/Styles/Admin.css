@@ -1,0 +1,7 @@
+.admin-nav-link{
+    transition: all;
+    transition-duration: 0.3;
+}
+.admin-nav-link:hover{
+    border-right: solid 3px #94a9c9 ;
+}

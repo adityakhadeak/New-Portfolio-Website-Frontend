@@ -1,5 +1,6 @@
 import React, { useContext } from 'react'
 import '../Styles/AboutSection.css'
+import SideLinks from '../Components/SideLinks'
 import { motion } from 'framer-motion'
 import { fadeIn } from '../Variants'
 import { MypicAnimation } from '../Components/MypicAnimation'
@@ -54,6 +55,7 @@ const About = () => {
             </section>
             <ExSection/>
             <ExpSection/>
+            <SideLinks/>
         </>
     )
 

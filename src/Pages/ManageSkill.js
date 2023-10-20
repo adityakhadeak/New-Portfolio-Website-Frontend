@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react'
-import ThemeContext from '../../Context/ThemeContext'
-import '../../Styles/Common.css'
-import { fadeIn } from '../../Variants'
+import ThemeContext from '../Context/ThemeContext'
+import '../Styles/Common.css'
+import { fadeIn } from '../Variants'
 import { motion } from 'framer-motion'
 const ManageSkill = () => {
     const { mode } = useContext(ThemeContext)
@@ -59,7 +59,7 @@ const ManageSkill = () => {
                 <h2 className='text-[#94a9c9] w-[-webkit-fill-available] md:w-fit mx-2'>Add Your Skills</h2>
             </motion.div>
             <div className='my-6 py-4 px-2 flex justify-center flex-col items-center'>
-                <form className='flex flex-col justify-center items-center text-[#94a9c9] w-[40%] rounded-lg py-12 border border-[#222f43]' method='post' encType='multipart/form-data'>
+                <form className='flex flex-col justify-center items-center text-[#94a9c9] w-[100%] rounded-lg py-12 px-10 border border-[#222f43]' method='post' encType='multipart/form-data'>
                     
                         <div  className='flex justify-start flex-col my-3'>
                             <div className='flex justify-start flex-col my-3 '>
@@ -84,6 +84,7 @@ const ManageSkill = () => {
                     </div>
                 </div>
             </div>
+            
         </div>
     )
 }
