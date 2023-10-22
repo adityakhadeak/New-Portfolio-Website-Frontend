@@ -7,6 +7,7 @@ import ManageAbout from './ManageAbout.js';
 import ManageMsgs from './ManageMsgs.js';
 import ManageExp from './ManageExp.js';
 import ManageEdu from './ManageEdu.js';
+import ManageCer from './ManageCer.js';
 const Dashboard = () => {
   return (
     <div>
@@ -18,6 +19,7 @@ const Dashboard = () => {
       <Route element={<ManageMsgs />} path="managecontacts" />
       <Route element={<ManageEdu />} path="manageedu" />
       <Route element={<ManageExp />} path="manageexp" />
+      <Route element={<ManageCer />} path="managecer" />
     </Routes>
     </AdminSideBar>
   </div>

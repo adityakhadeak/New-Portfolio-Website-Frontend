@@ -56,7 +56,7 @@ console.log(formData)
                 viewport={{ once: true, amount: 0.7 }}
                 className=' mx-8 flex items-center justify-center text-[25px] md:text-[30px] font-[Montserrat] my-4 py-2 font-semibold'>
                 <span className='text-[#1cc2e7] text-[20px] md:text-[28px]' ></span>
-                <h2 className='text-[#94a9c9] w-[-webkit-fill-available] md:w-fit mx-2'>Add Your Projects</h2>
+                <h2 className='text-[#94a9c9] w-[-webkit-fill-available] md:w-fit mx-2'>Add Details About Projects</h2>
             </motion.div>
             <div className='my-6 py-4 px-2 flex justify-center flex-col items-center'>
                 <form className='flex flex-col justify-center items-center text-[#94a9c9] w-[100%] rounded-lg py-12 px-10 border border-[#222f43]' method='post' encType='multipart/form-data'>

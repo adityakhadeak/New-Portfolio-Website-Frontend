@@ -41,7 +41,7 @@ const routes = [
     name: 'Project'
   },
   {
-    path: 'managecertificates',
+    path: 'managecer',
     icon: <PiCertificateDuotone />,
     name: 'Certificates'
   },
@@ -72,12 +72,12 @@ const AdminSideBar = ({children}) => {
   const toggle = () => setShowNav(!showNav)
   return (
     <div className={`flex  main-container relative text-[#94a9c9]`}>
-      <motion.div animate={{ width:showNav?"250px":'65px' }} className={`fixed left-0 top-[85px] ${mode === 'dark' ? 'bg-[#131c31]' : 'bg-[#f9fbff]'}  h-[100vh]`}>
+      <motion.div animate={{ width:showNav?"250px":'65px' }} className={`fixed left-0 z-[10000] top-[85px] ${mode === 'dark' ? 'bg-[#131c31]' : 'bg-[#f9fbff]'}  h-[100vh]`}>
         <div className='flex justify-between items-center px-5 h-[50px] py-3'>
           {showNav&&<motion.h1 variants={showAnimation} initial='hidden' animate='show' exit='hidden' className={`whitespace-nowrap font-bold text-2xl`}>Aditya Khade</motion.h1>}
           <div className='text-xl'><FaBars onClick={toggle} /></div>
         </div>
-        <section>
+        <section className=''>
           {routes.map((route) => (
             <NavLink to={route.path} className=' admin-nav-link hover:bg-[#222f43] flex flex-row items-center text-[18px]  my-3 p-[10px]' key={route.name} >
               <div className='mx-2 my-1 text-xl text-[#94a9c9]'>{route.icon}</div>

@@ -16,7 +16,7 @@ const ManageExp = () => {
     }
     const handleOnChange = (index, e) => {
         const data = [...expData]
-        data[index][e.target.name]=[e.target.value]
+        data[index][e.target.name]=e.target.value
         setexpData(data)
     }
 
@@ -27,16 +27,17 @@ const handleAddexp=()=>{
 
     const handleSubmit = async () => {
 
-        const response = await fetch(`http://localhost:5000/api/project/addproject`, {
+        const response = await fetch(`http://localhost:5000/api/exp/addexp`, {
             method: "POST",
             headers: {
+                "Content-Type": "application/json",
                 "auth-token": 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjUyOTg5NjA1NjE1YjRkY2M3MTg4YWEwIn0sImlhdCI6MTY5NzI2OTgyN30.sxqnzWQB7hJNplDzraLglz88qjyR_x72mKo1OIF8wk4'
             },
-            // body: formData // body data type must match "Content-Type" header
+            body: JSON.stringify(expData) // body data type must match "Content-Type" header
         });
         const res = await response.json()
         console.log(res)
-        setexpData([{ duration:'',title:'',company:'',techstack:'',link:'',doc:'' }])
+        // setexpData([{ duration:'',title:'',company:'',techstack:'',link:'',doc:'' }])
     }
     return (
         <div>
@@ -47,7 +48,7 @@ const handleAddexp=()=>{
                 viewport={{ once: true, amount: 0.7 }}
                 className=' mx-8 flex items-center justify-center text-[25px] md:text-[30px] font-[Montserrat] my-4 py-2 font-semibold'>
                 <span className='text-[#1cc2e7] text-[20px] md:text-[28px]' ></span>
-                <h2 className='text-[#94a9c9] w-[-webkit-fill-available] md:w-fit mx-2'>Add About Para's</h2>
+                <h2 className='text-[#94a9c9] w-[-webkit-fill-available] md:w-fit mx-2'>Add Details About Experience</h2>
             </motion.div>
             <div className='my-6 py-4 px-2 flex justify-center flex-col items-center'>
                 <form className='flex flex-col justify-center items-center text-[#94a9c9] w-[100%] rounded-lg py-12 px-10 border border-[#222f43]' method='post' encType='multipart/form-data'>
