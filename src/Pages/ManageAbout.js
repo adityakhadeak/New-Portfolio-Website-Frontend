@@ -81,7 +81,7 @@ const ManageAbout = () => {
         setaboutData([{ para: "" }])
     }
     return (
-        <div>
+        <div className='ml-[75px] flex flex-col justify-start items-center'>
             <motion.div
                 variants={fadeIn('left', 0.2, 10)}
                 initial='hidden'
@@ -91,8 +91,8 @@ const ManageAbout = () => {
                 <span className='text-[#1cc2e7] text-[20px] md:text-[28px]' ></span>
                 <h2 className='text-[#94a9c9] w-[-webkit-fill-available] md:w-fit mx-2'>Add About Para's</h2>
             </motion.div>
-            <div className='my-6 py-4 px-2 flex justify-center flex-col items-center'>
-                <form className='flex flex-col justify-center items-center text-[#94a9c9] w-[50%] rounded-lg py-12 px-10 border border-[#222f43]' method='post' encType='multipart/form-data'>
+            <div className='my-6 py-4 px-2 flex justify-center flex-col border w-[230px] md:w-[500px] border-[#222f43] items-center'>
+                <form className='flex flex-col justify-center items-center text-[#94a9c9] min-w-[fit] rounded-lg py-12 px-10 ' method='post' encType='multipart/form-data'>
                     {aboutData.map((data, index) => (
 
                         <div key={index} className='flex justify-start flex-col my-3'>
@@ -108,17 +108,17 @@ const ManageAbout = () => {
                     ))}
 
                 </form>
-                <div className='flex text-[#94a9c9]'>
-                    <div className='m-5'>
+                <div className='flex  text-[#94a9c9]'>
+                    <div className='mr-5'>
                         <button onClick={handleAddPara} className={`p-2 w-[90px] text-base  ${mode === 'dark' ? 'hover:bg-[#222f43]' : 'hover:bg-[#e8edf5]'}  border border-cyan-400`}>Add More </button>
                     </div>
-                    <div className='m-5'>
+                    <div className=''>
                         <button onClick={handleSubmit} className={`p-2 w-[90px] text-base  ${mode === 'dark' ? 'hover:bg-[#222f43]' : 'hover:bg-[#e8edf5]'}  border border-cyan-400`}>Submit</button>
                     </div>
                 </div>
             </div>
             <AboutModal paras={paras} setParas={setParas} para={selectedPara.para} paraid={selectedPara.id} isOpen={isOpen} setIsOpen={setIsOpen} />
-            <section>
+            <section className='flex flex-col justify-center items-center'>
                 <motion.div
                     variants={fadeIn('left', 0.2, 10)}
                     initial='hidden'
@@ -126,7 +126,7 @@ const ManageAbout = () => {
                     viewport={{ once: true, amount: 0.7 }}
                     className=' mx-8 flex items-center justify-center text-[25px] md:text-[30px] font-[Montserrat] my-4 py-2 font-semibold'>
                     <span className='text-[#1cc2e7] text-[20px] md:text-[28px]' ></span>
-                    <h2 className='text-[#94a9c9] w-[-webkit-fill-available] md:w-fit mx-2'>Current Paragraphs</h2>
+                    <h2 className='text-[#94a9c9] w-[-webkit-fill-available] text-center md:w-fit mx-2'>Current Paragraphs</h2>
                 </motion.div>
                 <div className='my-5 grid md:grid-cols-2 grid-cols-1 gap-3'>
                     {
@@ -136,7 +136,7 @@ const ManageAbout = () => {
                                 initial='hidden'
                                 whileInView={'show'}
                                 viewport={{ once: true, amount: 0.7 }}
-                                key={index} className='w-[500px] bg-[#131c31] p-3 rounded-lg my-5 font-mono'>
+                                key={index} className=' w-[295px] md:w-[500px] bg-[#131c31] p-3 rounded-lg my-5 font-mono'>
                                 <h3>Paragraph-{index + 1}</h3>
                                 <p className='text-justify text-[#94a9c9] my-3 w-[fit]  leading-7  '>
                                     {para.para}

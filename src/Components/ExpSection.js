@@ -24,7 +24,7 @@ const ExpSection = () => {
                     </motion.div>
                     <div className='edu-TimeLine-Con flex md:flex-row flex-col items-center md:justify-between justify-center pt-5 my-3' >
                         
-                        <div className='timeLine  relative w-fit  items-center justify-center flex flex-col ml-4' >
+                        <div className='timeLine  relative w-fit  z-[2] items-center justify-center flex flex-col ml-4' >
                             {
                                 myExp.map((exp) => (
                                     <motion.div

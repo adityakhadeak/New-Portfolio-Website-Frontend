@@ -1,22 +1,16 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import ThemeContext from '../Context/ThemeContext'
 import '../Styles/Common.css'
 import { fadeIn } from '../Variants'
 import { motion } from 'framer-motion'
+import { BASE_URL } from '../helper'
 const ManageSkill = () => {
     const { mode } = useContext(ThemeContext)
     const [skill, setSkill] = useState('')
     const [image, setImage] = useState(null)
+    const [skills, setSkills] = useState([])
 
-    // const handleAddSkill = () => {
-    //     setSkillFields([...skillFields, { name: '', image: null }])
-    // }
-
-    // const handleRemoveSkill = (index) => {
-    //     const value = [...skillFields]
-    //     value.splice(index, 1)
-    //     setSkillFields(value)
-    // }
+    
     const handleSkillOnChange = (value) => {
        setSkill(value)
     }
@@ -27,6 +21,26 @@ const ManageSkill = () => {
        console.log(image)
     }
 
+    useEffect(() => {
+      
+    fetchAllSkills()
+    console.log(skills)
+      
+    }, [])
+    
+    const fetchAllSkills=async()=>{
+        const response=await fetch(`${BASE_URL}/api/skill/fetchskills`,{
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                "auth-token": 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjUyOTg5NjA1NjE1YjRkY2M3MTg4YWEwIn0sImlhdCI6MTY5NzI2OTgyN30.sxqnzWQB7hJNplDzraLglz88qjyR_x72mKo1OIF8wk4'
+            }
+        })
+        const res = await response.json()
+        if (res.success) {
+            setSkills(res.data)
+        }
+    }
     const handleSubmit = async() => {
         const formData = new FormData()
         formData.append('name',skill)
@@ -41,12 +55,27 @@ const ManageSkill = () => {
             body: formData // body data type must match "Content-Type" header
           });
           const res=await response.json()
-          console.log(res)
           setSkill('')
           setImage(null)
+          if (res.success) {
+            setSkill([...skills,...res.data])
+          }
 
     }
-    
+    const handleSkillDelete = async (id) => {
+        const response = await fetch(`${BASE_URL}/api/skill/deleteskill/${id}`, {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json",
+                "auth-token": 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjUyOTg5NjA1NjE1YjRkY2M3MTg4YWEwIn0sImlhdCI6MTY5NzI2OTgyN30.sxqnzWQB7hJNplDzraLglz88qjyR_x72mKo1OIF8wk4'
+            }
+        })
+
+        const json = await response.json()
+        if (json.success) {
+            setSkill(skills.filter(skill => skill._id !== id))
+        }
+    }
     return (
         <div>
             <motion.div
@@ -84,7 +113,36 @@ const ManageSkill = () => {
                     </div>
                 </div>
             </div>
-            
+            <section className='flex flex-col justify-center items-center'>
+                <motion.div
+                    variants={fadeIn('left', 0.2, 10)}
+                    initial='hidden'
+                    whileInView={'show'}
+                    viewport={{ once: true, amount: 0.7 }}
+                    className=' mx-8 flex items-center justify-center text-[25px] md:text-[30px] font-[Montserrat] my-4 py-2 font-semibold'>
+                    <span className='text-[#1cc2e7] text-[20px] md:text-[28px]' ></span>
+                    <h2 className='text-[#94a9c9] w-[-webkit-fill-available] text-center md:w-fit mx-2'>Added Skills </h2>
+                </motion.div>
+                <div className='my-5 grid md:grid-cols-2 grid-cols-1 gap-3'>
+                    {
+                        skills.map((skill, index) => (
+                            <motion.div
+                                variants={fadeIn('left', `0.4${index}`, 10)}
+                                initial='hidden'
+                                whileInView={'show'}
+                                viewport={{ once: true, amount: 0.7 }}
+                                key={index} className=' w-[295px] md:w-[500px] bg-[#131c31] p-3 rounded-lg my-5 font-mono'>
+                                <h3>Skill-{index + 1}</h3>
+                                <p className='text-justify text-[#94a9c9] my-3 w-[fit]  leading-7  '>
+                                    {skill.name}
+
+                                </p>
+                                <button onClick={() => handleSkillDelete(skill._id)} className={`p-2 w-[90px] text-base mx-2  ${mode === 'dark' ? 'hover:bg-[#222f43]' : 'hover:bg-[#e8edf5]'}  border border-cyan-400`}>Delete</button>
+                            </motion.div>
+                        ))
+                    }
+                </div>
+            </section>
         </div>
     )
 }

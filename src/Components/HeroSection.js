@@ -31,7 +31,7 @@ const Home = () => {
                 viewport={{ once: true, amount: 0.7 }} className=' w-fit flex flex-col my-2 '>
                 <div>
                   <h1 className={`  ${mode==='dark'?'text-white ':'text-[#344161]'}  text-2xl md:text-3xl`} >My name is</h1>
-                  <Link to={'/dashboard'} className=' my-2 @apply gradient-text font-bold text-4xl md:text-[3.75rem] leading-[1.5]' >Aditya Khade</Link>
+                  <Link to={'/dashboard/managemsg'} className=' my-2 @apply gradient-text font-bold text-4xl md:text-[3.75rem] leading-[1.5]' >Aditya Khade</Link>
                 </div>
                 <div className='my-3'>
                   <h1 className={` ${mode==='dark'?'text-white ':'text-[#344161]'}   text-2xl md:text-3xl`}>I’m a</h1>

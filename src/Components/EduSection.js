@@ -30,7 +30,7 @@ const ExSection = () => {
             className='eduImgCon flex justify-center  relative'>
             <img src={eduImg} className='edu-image max-w-[18rem] md:max-w-[28rem] w-[90%] my-12'  alt="" />
           </motion.div>
-          <div className='timeLine relative w-fit items-center justify-center flex flex-col ml-4' >
+          <div className='timeLine relative w-fit items-center z-[2] justify-center flex flex-col ml-4' >
             {
               myEdu.map((edu) => (
                 <motion.div
