@@ -11,8 +11,9 @@ const CerModal = (props) => {
 
     useEffect(() => {
         setUpdateCer({ title: selectedCer.title, desc: selectedCer.desc, date: selectedCer.date, platform: selectedCer.platform, label: selectedCer.platform, doc: selectedCer.doc })
-    }, [isOpen])
-
+        // eslint-disable-next-line
+    }, [isOpen]
+    )
     const handleOnChange = (e) => {
         setUpdateCer({ ...updateCer, [e.target.name]: e.target.value })
     }
@@ -30,7 +31,7 @@ const CerModal = (props) => {
         })
         const json = await response.json()
         if (json.success) {
-            setCers(cers.filter(para1 => para1._id != selectedCer.id))
+            setCers(cers.filter(para1 => para1._id !== selectedCer.id))
             setCers([...cers, json.updatedData])
         }
         setIsOpen(false)

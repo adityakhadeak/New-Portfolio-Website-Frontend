@@ -24,7 +24,6 @@ const ManageSkill = () => {
     useEffect(() => {
       
     fetchAllSkills()
-    console.log(skills)
       
     }, [])
     
@@ -55,10 +54,10 @@ const ManageSkill = () => {
             body: formData // body data type must match "Content-Type" header
           });
           const res=await response.json()
-          setSkill('')
+          setSkill(' ')
           setImage(null)
           if (res.success) {
-            setSkill([...skills,...res.data])
+            setSkills([...skills,...res.data])
           }
 
     }
@@ -73,7 +72,7 @@ const ManageSkill = () => {
 
         const json = await response.json()
         if (json.success) {
-            setSkill(skills.filter(skill => skill._id !== id))
+            setSkills(skills.filter(skill => skill._id !== id))
         }
     }
     return (

@@ -172,8 +172,9 @@ body {
     width: 100%;
     display: none;
   }
-  .mobile-nav{
-
+  .mob-nav{
+    position: fixed;
+    top: 0;
   }
 }
 
