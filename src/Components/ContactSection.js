@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import { motion } from 'framer-motion'
 import { fadeIn } from '../Variants'
 import '../Styles/ContactSection.css'
@@ -8,21 +8,44 @@ import { useLocation } from 'react-router-dom'
 import { BsTelephone } from "react-icons/bs";
 import { SlLocationPin } from "react-icons/sl";
 import { RiAccountCircleLine } from "react-icons/ri";
-
 import { GoMail } from "react-icons/go";
 import ScrollToTopOnReload from '../CustomHooks/ScrollToTopOnReload'
 import ThemeContext from '../Context/ThemeContext'
 import NavFixContext from '../Context/NavFixContext'
+import { BASE_URL } from '../helper'
 const ContactSection = () => {
     const {mode}=useContext(ThemeContext)
     const {isFixed}=useContext(NavFixContext)
     const location= useLocation()
     ScrollToTopOnReload()
+
+    const [message,setMessage]=useState({name:"",email:"",msg:""})
+    const handleOnChange=(e)=>{
+        setMessage({...message,[e.target.name]:e.target.value})
+    }
+    const SendMessage= async(e)=>{ 
+        e.preventDefault()
+        console.log(message)
+        const response= await fetch(`${BASE_URL}/api/contact/addmsg`,{method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "auth-token": 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjUyOTg5NjA1NjE1YjRkY2M3MTg4YWEwIn0sImlhdCI6MTY5NzI2OTgyN30.sxqnzWQB7hJNplDzraLglz88qjyR_x72mKo1OIF8wk4'
+        },
+        body:JSON.stringify(message)
+        
+        })
+        const res = await response.json()
+    if (res.success) {
+        alert("Message send")
+        setMessage({name:"",email:"",msg:""})
+    }
+    
+    }
     return (
         <section className={` ${mode==='dark'?'bg-[#0f172a]':'bg-[#f9fbff]'} contacts relative font-1 `}>
             <div className={` ${location.pathname==='/'?'pt-[7.5rem]':'pt-[3rem]'} ${location.pathname==='/contact'?isFixed?"md:mt-[86px]":"":""} rightShadow after:top-0 md:mx-[205px] mx-auto`}>
                 <motion.div
-                    variants={fadeIn('left', 0.2, 10)}
+                    variants={fadeIn('left', 0.2)}
                     initial='hidden'
                     whileInView={'show'}
                     viewport={{ once: true, amount: 0.7 }}
@@ -31,7 +54,7 @@ const ContactSection = () => {
                     <h2 className='text-[#94a9c9] w-[-webkit-fill-available] md:w-fit mx-2'>Contact</h2>
                 </motion.div>
                 <motion.div 
-                variants={fadeIn('left', 0.25, 10)}
+                variants={fadeIn('left', 0.25)}
                 initial='hidden'
                 whileInView={'show'}
                 viewport={{ once: true, amount: 0.7 }}
@@ -40,7 +63,7 @@ const ContactSection = () => {
                 </motion.div>
                 <div className='   flex  my-10 px-2 py-3  md:flex-row flex-col md:justify-evenly items-center text-[#94a9c9] font-mono'>
                     <motion.div 
-                     variants={fadeIn('right', 0.3, 10)}
+                     variants={fadeIn('right', 0.3)}
                      initial='hidden'
                      whileInView={'show'}
                      viewport={{ once: true, amount: 0.7 }}
@@ -74,7 +97,7 @@ const ContactSection = () => {
                     </motion.div>
                     <motion.div 
                     
-                    variants={fadeIn('left', 0.3, 10)}
+                    variants={fadeIn('left', 0.3)}
                     initial='hidden'
                     whileInView={'show'}
                     viewport={{ once: true, amount: 0.7 }}
@@ -85,20 +108,20 @@ const ContactSection = () => {
                         <form className='flex flex-col justify-center items-center w-[100%]'>
                             <div className={` ${mode==='dark'?'bg-[#222f43]':'bg-[#e8edf5]'} relative h-[60px] p-2 px-4 rounded my-2 md:w-[350px] w-[85%] flex justify-start items-center `}>
                                 <span className='text-xl w-[45px] '>< RiAccountCircleLine /></span>
-                                <input type="text" className={` ${mode==='dark'?'active-input':'active-input-light'} bg-transparent placeholder:text-[#94a9c9] p-3  md:w-[330px]`} placeholder='Enter your name' />
+                                <input onChange={e=>handleOnChange(e)} type="text" name='name' value={message.name} className={` ${mode==='dark'?'active-input':'active-input-light'} bg-transparent  placeholder:text-[#94a9c9] p-3  md:w-[330px]`} placeholder='Enter your name' />
                             </div>
                             <div className={` ${mode==='dark'?'bg-[#222f43]':'bg-[#e8edf5]'} relative h-[60px] p-2 px-4 rounded my-2 md:w-[350px] w-[85%] flex justify-start items-center `}>
                                 <span className='text-xl w-[45px] '>< GoMail /></span>
 
-                                <input type="text" className={` ${mode==='dark'?'active-input':'active-input-light'} bg-transparent placeholder:text-[#94a9c9] p-3  md:w-[330px]`} placeholder='Enter your email' />
+                                <input onChange={e=>handleOnChange(e)} type="text" name='email' value={message.email} className={` ${mode==='dark'?'active-input':'active-input-light'} bg-transparent placeholder:text-[#94a9c9] p-3  md:w-[330px]`} placeholder='Enter your email' />
                             </div>
                             <div className={` ${mode==='dark'?'bg-[#222f43]':'bg-[#e8edf5]'} relative h-[60px] p-2 px-4 rounded my-2 md:w-[350px] w-[85%] flex justify-start items-center `}>
                                 <span className='text-xl w-[45px] '>< BiMessageDetail /></span>
 
-                                <textarea type="text" rows={1} className={` ${mode==='dark'?'active-input':'active-input-light'} bg-transparent placeholder:text-[#94a9c9] p-3  md:w-[330px]`} placeholder='Enter your message' />
+                                <textarea onChange={e=>handleOnChange(e)} type="text" name='msg' value={message.msg} rows={1} className={` ${mode==='dark'?'active-input':'active-input-light'} bg-transparent placeholder:text-[#94a9c9] p-3  md:w-[330px]`} placeholder='Enter your message' />
                             </div>
                             <div>
-                                <button className={`p-2 w-[90px] text-base  ${mode==='dark'?'hover:bg-[#222f43]':'hover:bg-[#e8edf5]'}  border border-cyan-400`}>Send</button>
+                                <button onClick={e=>SendMessage(e)} className={`p-2 w-[90px] text-base  ${mode==='dark'?'hover:bg-[#222f43]':'hover:bg-[#e8edf5]'}  border border-cyan-400`}>Send</button>
                             </div>
                         </form>
                     </motion.div>

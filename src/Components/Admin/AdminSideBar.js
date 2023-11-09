@@ -11,7 +11,7 @@ import { GiGraduateCap } from "react-icons/gi";
 import { NavLink } from 'react-router-dom';
 const routes = [
   {
-    path: 'managemsg',
+    path: 'managecontacts',
     icon: <BiMessageDetail />,
     name: 'Messages'
   },
@@ -75,7 +75,7 @@ const AdminSideBar = ({children}) => {
       <motion.div animate={{ width:showNav?"250px":'65px' }} className={`fixed left-0 z-[10000] top-[85px] ${mode === 'dark' ? 'bg-[#131c31]' : 'bg-[#f9fbff]'}  h-[100vh]`}>
         <div className='flex justify-between items-center px-5 h-[50px] py-3'>
           {showNav&&<motion.h1 variants={showAnimation} initial='hidden' animate='show' exit='hidden' className={`whitespace-nowrap font-bold text-2xl`}>Aditya Khade</motion.h1>}
-          <div className='text-xl'><FaBars onClick={toggle} /></div>
+          <div className='text-xl cursor-pointer'><FaBars onClick={toggle} /></div>
         </div>
         <section className=''>
           {routes.map((route) => (

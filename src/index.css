@@ -172,12 +172,12 @@ body {
     width: 100%;
     display: none;
   }
-  .mob-nav{
-    position: fixed;
-    top: 0;
-  }
+  
 }
 
+input:-webkit-autofill {
+  background-color: transparent !important
+}
 
 ::-webkit-scrollbar {
   width: 10px;

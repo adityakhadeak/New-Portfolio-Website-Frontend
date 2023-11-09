@@ -32,9 +32,9 @@ const Footer = () => {
     }
     
     return (
-        <section className={`${mode==='dark'?'bg-[#0f172a]':'bg-[#f9fbff]'} footer pt-[7.5rem]  pb-4 text-[#94a9c9] px-4 font-1`}>
+        <section className={`${mode==='dark'?'bg-[#0f172a]':'bg-[#f9fbff]'} footer pt-[7.5rem]  pb-[0.5rem] text-[#94a9c9] px-4 font-1`}>
             <motion.footer 
-             variants={fadeIn('down', 0)}
+             variants={fadeIn('up', 0)}
              initial='hidden'
              whileInView={'show'}
              viewport={{ once: true, amount: 0.7 }}
