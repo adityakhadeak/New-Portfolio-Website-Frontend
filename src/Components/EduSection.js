@@ -32,8 +32,9 @@ const ExSection = () => {
           </motion.div>
           <div className='timeLine relative w-fit items-center z-[2] justify-center flex flex-col ml-4' >
             {
-              myEdu.map((edu) => (
+              myEdu.map((edu,index) => (
                 <motion.div
+                key={index}
                   variants={fadeIn('left', 0.3, 10)}
                   initial='hidden'
                   whileInView={'show'}

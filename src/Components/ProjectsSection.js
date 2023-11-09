@@ -30,8 +30,9 @@ const Projects = () => {
                 </motion.div>
                 <div className=' items-con my-3 pt-7 flex justify-items-center items-center flex-col text-white' >
 
-                    {Projects.map((project) => (
+                    {Projects.map((project,index) => (
                         <motion.div 
+                        key={index}
                         variants={fadeIn('right', 0.4, 10)}
                         initial='hidden'
                         whileInView={'show'}

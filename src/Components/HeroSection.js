@@ -16,7 +16,7 @@ const Home = () => {
   return (
     <>
       <div className={`  ${mode==='dark'?'bg-[#0f172a]':'bg-[#f9fbff]'} font-1`}>
-        <div className={`  pt-[3rem] mx-8 ${isFixed?"md:mt-[86px]":"md:mt-5"}  md:mx-20`}>
+        <div className={`  pt-[3rem] mx-8 ${isFixed?"md:mt-[106px]":"md:mt-5"}  md:mx-20`}>
           <div className='relative  justify-evenly md:justify-around flex flex-col md:flex-row'>
             <div className='homeback w-fit md:w-[459px] flex flex-col'>
               <motion.h4 variants={fadeIn('up', 0.8)}

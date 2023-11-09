@@ -7,7 +7,7 @@ import EduDetails from '../Components/Admin/EduDetails'
 const ManageEdu = () => {
     const { mode } = useContext(ThemeContext)
     const [eduData, seteduData] = useState([{ year:'',clg:'',edu:'',sts:'',link:'' }])
-
+    const [edus, setEdus] = useState([])
     const [isOpen, setIsOpen] = useState(false)
 
     const handleRemoveEdu = (index) => {
@@ -38,7 +38,10 @@ const handleAddEdu=()=>{
         });
         const res = await response.json()
         console.log(res)
-        seteduData([{ year:'',clg:'',edu:'',sts:'',link:'' }])
+        if(res.success){
+            setEdus([...edus,...res.data])
+            seteduData([{ year:'',clg:'',edu:'',sts:'',link:'' }])
+        }
     }
     return (
         <div>
@@ -95,7 +98,7 @@ const handleAddEdu=()=>{
                     </div>
                 </div>
             </div>
-        <EduDetails isOpen={isOpen} setIsOpen={setIsOpen}/>
+        <EduDetails isOpen={isOpen} setIsOpen={setIsOpen} edus={edus} setEdus={setEdus}/>
         </div>
     )
 }

@@ -90,7 +90,7 @@ const ManageMsgs = () => {
                                 </div>
 
                                 <button onClick={() => handleMsgDelete(msg._id)} className={`p-2 w-[90px] text-base mx-2  ${mode === 'dark' ? 'hover:bg-[#222f43]' : 'hover:bg-[#e8edf5]'}  border border-cyan-400`}>Delete</button>
-                                <a href={`mailto:${msg.email}`} className={`p-2 w-[90px] text-base mx-2 ${mode === 'dark' ? 'hover:bg-[#222f43]' : 'hover:bg-[#e8edf5]'}  border border-cyan-400`}>Reply</a>
+                                <button className={`p-2 w-[90px] text-base mx-2 ${mode === 'dark' ? 'hover:bg-[#222f43]' : 'hover:bg-[#e8edf5]'}  border border-cyan-400`}><a href={`mailto:${msg.email}`} >Reply</a></button>
                             </motion.div>
                         ))
                         }

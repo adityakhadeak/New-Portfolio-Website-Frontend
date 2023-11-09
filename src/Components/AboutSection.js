@@ -30,8 +30,8 @@ const AboutSection = () => {
                         </motion.div>
                         <div className='  flex md:flex-wrap-reverse flex-col-reverse md:flex-row justify-between  items-center'>
                             <div className='text-[#94a9c9] my-5 w-[fit] leading-7  font-mono'>
-                                {abtMe.map((para) => {
-                                    return <motion.p variants={fadeIn('up', para.animIn)}
+                                {abtMe.map((para,index) => {
+                                    return <motion.p key={index} variants={fadeIn('up', para.animIn)}
                                         initial='hidden'
                                         whileInView={'show'}
                                         viewport={{ once: true, amount: 0.7 }} className='m-0 w-fit md:w-[500px] text-justify mb-3'>{para.para} </motion.p>

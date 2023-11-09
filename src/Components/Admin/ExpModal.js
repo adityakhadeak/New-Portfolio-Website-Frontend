@@ -1,111 +1,93 @@
-import React, { useContext, useEffect, useState } from 'react'
-import EduModal from './EduModal'
-import { BASE_URL } from '../../helper'
-import { fadeIn } from '../../Variants'
-import { motion } from 'framer-motion'
-import ThemeContext from '../../Context/ThemeContext'
-const EduDetails = (props) => {
-    const {mode}=useContext(ThemeContext)
-    const {isOpen, setIsOpen}=props
-    const [edus, setEdus] = useState([])
-    const [selectedEdu, setSelectedEdu] = useState({year: '', clg: '', edu: '', sts: '', link: '',id:''})
+import React, { useState, useContext, useEffect } from 'react'
+import { RxCross2 } from "react-icons/rx";
+import { AnimatePresence, motion } from 'framer-motion';
+import ThemeContext from '../../Context/ThemeContext.js'
+import { BASE_URL } from '../../helper.js';
+
+const ExpModal = (props) => {
+    const { exps, setExps, setIsOpen,setSelectedExp, selectedExp, isOpen } = props
+    const { mode } = useContext(ThemeContext)
+    const [updateExp, setUpdateExp] = useState({ duration:'',title:'',company:'',techstack:'',link:'',doc:'',id:'' })
 
     useEffect(() => {
-        fetchEdus()
-    }, [isOpen])
-
-
-    const fetchEdus = async () => {
-        const response = await fetch(`${BASE_URL}/api/edu/fetchedu`, {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json",
-                "auth-token": 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjUyOTg5NjA1NjE1YjRkY2M3MTg4YWEwIn0sImlhdCI6MTY5NzI2OTgyN30.sxqnzWQB7hJNplDzraLglz88qjyR_x72mKo1OIF8wk4'
-            }
-        })
-        const res = await response.json()
-        if (res.success) {
-            setEdus(res.data)
-        }
+        setUpdateExp({ duration: selectedExp.duration, title: selectedExp.title, company: selectedExp.company, techstack: selectedExp.techstack, link: selectedExp.link,doc: selectedExp.doc})
+        // eslint-disable-next-line
+    }, [isOpen]
+    )
+    const handleOnChange = (e) => {
+        setUpdateExp({ ...updateExp, [e.target.name]: e.target.value })
     }
-
-    const handleEduDelete = async (id) => {
-        console.log("CAlled")
-        console.log(id)
-        const response = await fetch(`${BASE_URL}/api/edu/deleteedu/${id}`, {
-            method: "DELETE",
+    const handleUpdate = async () => {
+        const response = await fetch(`${BASE_URL}/api/exp/updateexp/${selectedExp.id}`, {
+            method: "PUT",
             headers: {
                 "Content-Type": "application/json",
                 "auth-token": 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjUyOTg5NjA1NjE1YjRkY2M3MTg4YWEwIn0sImlhdCI6MTY5NzI2OTgyN30.sxqnzWQB7hJNplDzraLglz88qjyR_x72mKo1OIF8wk4'
-            }
-        })
+            },
+            body: JSON.stringify(updateExp)
 
+        })
         const json = await response.json()
         if (json.success) {
-            setEdus(edus.filter(edu => edu._id !== id))
+            setExps(exps.filter(exp => exp._id !== selectedExp.id))
+            setExps([...exps, json.updatedData])
         }
+        setIsOpen(false)
     }
-
-    const UpdateEdu = async (year,clg,edu,sts,link,id) => {
-        setIsOpen(true)
-        setSelectedEdu({ year,clg,edu,sts,link,id})
-    }
-  return (
-    <>
-    <EduModal edus={edus} setEdus={setEdus} selectedEdu={selectedEdu} setSelectedEdu={setSelectedEdu}  isOpen={isOpen} setIsOpen={setIsOpen} />
-
-    <section className='flex flex-col justify-center items-center'>
+    return (
+        <AnimatePresence>
+            {isOpen && <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0, duration: 0.4 }}
+                className=' flex justify-center items-center fixed z-[1000] top-0 left-0 w-[100%] h-[100vh] backdrop-blur-sm bg-[#131c316f]'>
                 <motion.div
-                    variants={fadeIn('left', 0.2, 10)}
-                    initial='hidden'
-                    whileInView={'show'}
-                    viewport={{ once: true, amount: 0.7 }}
-                    className=' mx-8 flex items-center justify-center text-[25px] md:text-[30px] font-[Montserrat] my-4 py-2 font-semibold'>
-                    <span className='text-[#1cc2e7] text-[20px] md:text-[28px]' ></span>
-                    <h2 className='text-[#94a9c9] w-[-webkit-fill-available] text-center md:w-fit mx-2'>Current Education Details</h2>
+                    initial={{ scale: 0 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0, transition: { duration: .3 } }}
+                    className={`modal mx-auto  md:w-[400px] bg-[#131c31] relative border ${mode === 'dark' ? 'border-[#222f43]' : 'border-[#c2d4ee]'} rounded-[10px] `}>
+                    <div className='absolute right-2 top-2'>
+                        <RxCross2 onClick={() => setIsOpen(false)} />
+                    </div>
+                    <div className='flex justify-start flex-col my-3 p-4 h-[400px] overflow-scroll '>
+                        <div className='flex justify-start flex-col my-3'>
+                            <div className='flex justify-start flex-col my-3 '>
+                                <label htmlFor={`duration `} className='my-1'>Duration</label>
+                                <input type="text" name='duration' value={updateExp.duration} onChange={(e) => handleOnChange(e)} className={` ${mode === 'dark' ? 'active-input' : 'active-input-light'} bg-transparent placeholder:text-[#94a9c9] p-3  border border-[#222f43] rounded-lg md:w-[330px]`} placeholder='Enter title' />
+                            </div>
+                            <div className='flex justify-start flex-col my-3 '>
+                                <label htmlFor={`title `} className='my-1'>Title</label>
+                                <input type="text" name='title' value={updateExp.title} onChange={(e) => handleOnChange(e)} className={` ${mode === 'dark' ? 'active-input' : 'active-input-light'} bg-transparent placeholder:text-[#94a9c9] p-3  border border-[#222f43] rounded-lg md:w-[330px]`} placeholder='Enter Description' />
+                            </div>
+                            
+                            <div className='flex justify-start flex-col my-3 '>
+                                <label htmlFor={`company `} className='my-1'>Company</label>
+                                <input type="text" name='company' value={updateExp.company} onChange={(e) => handleOnChange(e)} className={` ${mode === 'dark' ? 'active-input' : 'active-input-light'} bg-transparent placeholder:text-[#94a9c9] p-3  border border-[#222f43] rounded-lg md:w-[330px]`} placeholder='Enter Platform like cousera,kaggle etc' />
+                            </div>
+                            <div className='flex justify-start flex-col my-3 '>
+                                <label htmlFor={`techstack `} className='my-1'>TechStack</label>
+                                <input type="text" name='techstack' value={updateExp.techstack} onChange={(e) => handleOnChange(e)} className={` ${mode === 'dark' ? 'active-input' : 'active-input-light'} bg-transparent placeholder:text-[#94a9c9] p-3  border border-[#222f43] rounded-lg md:w-[330px]`} placeholder='Enter label course/bootcamp' />
+                            </div>
+                            <div className='flex justify-start flex-col my-3 '>
+                                <label htmlFor={`link `} className='my-1'>Link</label>
+                                <input type="text" name='link' value={updateExp.link} onChange={(e) => handleOnChange(e)} className={` ${mode === 'dark' ? 'active-input' : 'active-input-light'} bg-transparent placeholder:text-[#94a9c9] p-3  border border-[#222f43] rounded-lg md:w-[330px]`} placeholder='Enter link of doc' />
+                            </div>
+                            <div className='flex justify-start flex-col my-3 '>
+                                <label htmlFor={`doc `} className='my-1'>Doc</label>
+                                <input type="text" name='doc' value={updateExp.doc} onChange={(e) => handleOnChange(e)} className={` ${mode === 'dark' ? 'active-input' : 'active-input-light'} bg-transparent placeholder:text-[#94a9c9] p-3  border border-[#222f43] rounded-lg md:w-[330px]`} placeholder='Enter link of doc' />
+                            </div>
+
+                        </div>
+
+                        <div className='m-5 flex justify-center items-center'>
+                            <button onClick={() => handleUpdate()} className={`p-2 w-[90px] text-base  ${mode === 'dark' ? 'hover:bg-[#222f43]' : 'hover:bg-[#e8edf5]'}  border border-cyan-400`}>Update</button>
+                        </div>
+                    </div>
+
                 </motion.div>
-                <div className='my-5 grid md:grid-cols-2 grid-cols-1 gap-3'>
-                    {
-                        edus.map((edu, index) => (
-                            <motion.div
-                                variants={fadeIn('left', `0.4${index}`, 10)}
-                                initial='hidden'
-                                whileInView={'show'}
-                                viewport={{ once: true, amount: 0.7 }}
-                                key={index} className=' w-[295px] md:w-[500px] bg-[#131c31] p-3 rounded-lg my-5 font-mono'>
-                                <h3>Education-{index + 1}</h3>
-                                <div className='flex justify-start flex-col my-3 '>
-                                    <div  className='my-1'>Year</div>
-                                    <div>{edu.year}</div>
-                                </div>
-                                <div className='flex justify-start flex-col my-3 '>
-                                    <div className='my-1'>College</div>
-                                    <div>{edu.clg}</div>
-
-                                </div>
-                                
-                                <div className='flex justify-start flex-col my-3 '>
-                                    <div  className='my-1'>Education</div>
-                                    <div>{edu.edu}</div>
-                                </div>
-                                <div className='flex justify-start flex-col my-3 '>
-                                    <div htmlFor={`label `} className='my-1'>status</div>
-                                    <div>{edu.sts}</div>
-                                </div>
-                                <div className='flex justify-start flex-col my-3 '>
-                                    <div htmlFor={`doclabel `} className='my-1'>Link</div>
-                                    <div>{edu.link}</div>
-
-                                </div>
-                                <button onClick={() => handleEduDelete(edu._id)} className={`p-2 w-[90px] text-base mx-2  ${mode === 'dark' ? 'hover:bg-[#222f43]' : 'hover:bg-[#e8edf5]'}  border border-cyan-400`}>Delete</button>
-                                <button onClick={() => UpdateEdu(edu.year,edu.clg,edu.edu,edu.sts,edu.link,edu._id)} className={`p-2 w-[90px] text-base mx-2 ${mode === 'dark' ? 'hover:bg-[#222f43]' : 'hover:bg-[#e8edf5]'}  border border-cyan-400`}>Update</button>
-                            </motion.div>
-                        ))
-                    }
-                </div>
-            </section>
-            </>
-  )
+            </motion.div>}
+        </AnimatePresence>
+    )
 }
 
-export default EduDetails
+export default ExpModal

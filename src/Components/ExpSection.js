@@ -26,8 +26,9 @@ const ExpSection = () => {
                         
                         <div className='timeLine  relative w-fit  z-[2] items-center justify-center flex flex-col ml-4' >
                             {
-                                myExp.map((exp) => (
+                                myExp.map((exp,index) => (
                                     <motion.div
+                                    key={index}
                                         variants={fadeIn('right', 0.4, 10)}
                                         initial='hidden'
                                         whileInView={'show'}

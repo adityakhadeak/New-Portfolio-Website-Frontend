@@ -79,9 +79,10 @@ const ManageCer = () => {
         });
         const res = await response.json()
         console.log(res)
-        if(res.success)
+        if(res.success){
         setCers([...cers,...res.data])
         setcerData([{ title: '', desc: '', date: '', platform: '', label: '', doc: '' }])
+        }
     }
     return (
         <div className='ml-[75px] flex flex-col justify-start items-center'>

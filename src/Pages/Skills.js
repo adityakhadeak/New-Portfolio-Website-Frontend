@@ -78,6 +78,7 @@ const Skills = () => {
                         {
                             mySkills.map((skill, index) => (
                                 <motion.div
+                                key={index}
                                     variants={fadeIn('right', initialDelay + index * delayIncrement, 10)}
                                     initial='hidden'
                                     whileInView={'show'}

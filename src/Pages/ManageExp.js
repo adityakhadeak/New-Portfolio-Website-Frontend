@@ -3,11 +3,13 @@ import ThemeContext from '../Context/ThemeContext'
 import '../Styles/Common.css'
 import { fadeIn } from '../Variants'
 import { motion } from 'framer-motion'
+import ExpDetails from '../Components/Admin/ExpDetails'
 const ManageExp = () => {
     const { mode } = useContext(ThemeContext)
     const [expData, setexpData] = useState([{ duration:'',title:'',company:'',techstack:'',link:'',doc:'' }])
+    const [exps, setExps] = useState([])
 
-
+    const [isOpen, setIsOpen] = useState(false)
 
     const handleRemoveexp = (index) => {
         const value = [...expData]
@@ -37,7 +39,10 @@ const handleAddexp=()=>{
         });
         const res = await response.json()
         console.log(res)
-        // setexpData([{ duration:'',title:'',company:'',techstack:'',link:'',doc:'' }])
+        if (res.success) {
+            setExps([...exps,...res.data])
+            setexpData([{ duration:'',title:'',company:'',techstack:'',link:'',doc:'' }])
+        }
     }
     return (
         <div>
@@ -53,39 +58,39 @@ const handleAddexp=()=>{
             <div className='my-6 py-4 px-2 flex justify-center flex-col items-center'>
                 <form className='flex flex-col justify-center items-center text-[#94a9c9] w-[100%] rounded-lg py-12 px-10 border border-[#222f43]' method='post' encType='multipart/form-data'>
                     {expData.map((data, index) => (
-                       <>    <h1 className='font-bold text-2xl text-center'>Form-{index+1}</h1>
+                       <div key={index}>    <h1 className='font-bold text-2xl text-center'>Form-{index+1}</h1>
 
-                        <div key={index} className='flex justify-start flex-col my-3'>
+                        <div  className='flex justify-start flex-col my-3'>
                             <div className='flex justify-start flex-col my-3 '>
                                 <label htmlFor={`duration-${index}`} className='my-1'>Duration <span>format-(2021-2025)</span></label>
                                 <input type="text" name='duration' value={data.duration} onChange={(e) => handleOnChange(index, e)} className={` ${mode === 'dark' ? 'active-input' : 'active-input-light'} bg-transparent placeholder:text-[#94a9c9] p-3  border border-[#222f43] rounded-lg md:w-[330px]`} placeholder='Enter duration' />
                             </div>
                             <div className='flex justify-start flex-col my-3 '>
                                 <label htmlFor={`title-${index}`} className='my-1'>Title</label>
-                                <input type="text" name='title' value={data.title} onChange={(e) => handleOnChange(index, e)} className={` ${mode === 'dark' ? 'active-input' : 'active-input-light'} bg-transparent placeholder:text-[#94a9c9] p-3  border border-[#222f43] rounded-lg md:w-[330px]`} placeholder='Enter college' />
+                                <input type="text" name='title' value={data.title} onChange={(e) => handleOnChange(index, e)} className={` ${mode === 'dark' ? 'active-input' : 'active-input-light'} bg-transparent placeholder:text-[#94a9c9] p-3  border border-[#222f43] rounded-lg md:w-[330px]`} placeholder='Enter title' />
                             </div>
                             <div className='flex justify-start flex-col my-3 '>
                                 <label htmlFor={`company-${index}`} className='my-1'>Company</label>
-                                <input type="text" name='company' value={data.company} onChange={(e) => handleOnChange(index, e)} className={` ${mode === 'dark' ? 'active-input' : 'active-input-light'} bg-transparent placeholder:text-[#94a9c9] p-3  border border-[#222f43] rounded-lg md:w-[330px]`} placeholder='Enter expcation' />
+                                <input type="text" name='company' value={data.company} onChange={(e) => handleOnChange(index, e)} className={` ${mode === 'dark' ? 'active-input' : 'active-input-light'} bg-transparent placeholder:text-[#94a9c9] p-3  border border-[#222f43] rounded-lg md:w-[330px]`} placeholder='Enter company' />
                             </div>
                             <div className='flex justify-start flex-col my-3 '>
                                 <label htmlFor={`techstack-${index}`} className='my-1'>Tech Stack</label>
-                                <input type="text" name='techstack' value={data.techstack} onChange={(e) => handleOnChange(index, e)} className={` ${mode === 'dark' ? 'active-input' : 'active-input-light'} bg-transparent placeholder:text-[#94a9c9] p-3  border border-[#222f43] rounded-lg md:w-[330px]`} placeholder='Enter current status' />
+                                <input type="text" name='techstack' value={data.techstack} onChange={(e) => handleOnChange(index, e)} className={` ${mode === 'dark' ? 'active-input' : 'active-input-light'} bg-transparent placeholder:text-[#94a9c9] p-3  border border-[#222f43] rounded-lg md:w-[330px]`} placeholder='Enter techstack' />
                             </div>
                             <div className='flex justify-start flex-col my-3 '>
                                 <label htmlFor={`link-${index}`} className='my-1'>Link</label>
-                                <input type="text" name='link' value={data.link} onChange={(e) => handleOnChange(index, e)} className={` ${mode === 'dark' ? 'active-input' : 'active-input-light'} bg-transparent placeholder:text-[#94a9c9] p-3  border border-[#222f43] rounded-lg md:w-[330px]`} placeholder='Enter link of title/school' />
+                                <input type="text" name='link' value={data.link} onChange={(e) => handleOnChange(index, e)} className={` ${mode === 'dark' ? 'active-input' : 'active-input-light'} bg-transparent placeholder:text-[#94a9c9] p-3  border border-[#222f43] rounded-lg md:w-[330px]`} placeholder='Enter link of company' />
                             </div>
                             <div className='flex justify-start flex-col my-3 '>
                                 <label htmlFor={`doclink-${index}`} className='my-1'>Doc Link</label>
-                                <input type="text" name='doc' value={data.doc} onChange={(e) => handleOnChange(index, e)} className={` ${mode === 'dark' ? 'active-input' : 'active-input-light'} bg-transparent placeholder:text-[#94a9c9] p-3  border border-[#222f43] rounded-lg md:w-[330px]`} placeholder='Enter link of title/school' />
+                                <input type="text" name='doc' value={data.doc} onChange={(e) => handleOnChange(index, e)} className={` ${mode === 'dark' ? 'active-input' : 'active-input-light'} bg-transparent placeholder:text-[#94a9c9] p-3  border border-[#222f43] rounded-lg md:w-[330px]`} placeholder='Enter link of certificate' />
                             </div>
 
                             <div className='m-5 flex justify-center items-center'>
                                 <button onClick={(e)=>handleRemoveexp(index)} className={`p-2 w-[90px] text-base  ${mode === 'dark' ? 'hover:bg-[#222f43]' : 'hover:bg-[#e8edf5]'}  border border-cyan-400`}>Remove</button>
                             </div>
                         </div>
-                        </> 
+                        </div> 
                     ))}
 
                 </form>
@@ -98,6 +103,7 @@ const handleAddexp=()=>{
                     </div>
                 </div>
             </div>
+            <ExpDetails isOpen={isOpen}  setIsOpen={setIsOpen} exps={exps} setExps={setExps}/>
         </div>
     )
 }
