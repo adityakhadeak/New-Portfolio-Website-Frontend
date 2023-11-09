@@ -37,7 +37,7 @@ const ManageMsgs = () => {
         const res = await response.json()
         if (res.success) {
             alert(res.message)
-            setMessages(messages.filter(message => message._id != id))
+            setMessages(messages.filter(message => message._id !== id))
         }
         else {
             alert(res.message)
@@ -55,7 +55,7 @@ const ManageMsgs = () => {
                     <span className='text-[#1cc2e7] text-[20px] md:text-[28px]' ></span>
                     <h2 className='text-[#94a9c9] w-[-webkit-fill-available] text-center md:w-fit mx-2'>Messages</h2>
                 </motion.div>
-                {messages.length == 0 ? (
+                {messages.length === 0 ? (
                     <div className='flex justify-center items-center'>
                         <p className='text-[#94a9c9] w-[-webkit-fill-available] text-center md:w-fit mx-auto'>
                             No messages to display

@@ -3,11 +3,12 @@ import ThemeContext from '../Context/ThemeContext'
 import '../Styles/Common.css'
 import { fadeIn } from '../Variants'
 import { motion } from 'framer-motion'
+import EduDetails from '../Components/Admin/EduDetails'
 const ManageEdu = () => {
     const { mode } = useContext(ThemeContext)
     const [eduData, seteduData] = useState([{ year:'',clg:'',edu:'',sts:'',link:'' }])
 
-
+    const [isOpen, setIsOpen] = useState(false)
 
     const handleRemoveEdu = (index) => {
         const value = [...eduData]
@@ -94,6 +95,7 @@ const handleAddEdu=()=>{
                     </div>
                 </div>
             </div>
+        <EduDetails isOpen={isOpen} setIsOpen={setIsOpen}/>
         </div>
     )
 }
