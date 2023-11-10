@@ -4,8 +4,11 @@ import '../Styles/Common.css'
 import { fadeIn } from '../Variants'
 import { motion } from 'framer-motion'
 import { BASE_URL } from '../helper'
+import AlertContext from '../Context/AlertContext'
 const ManageSkill = () => {
     const { mode } = useContext(ThemeContext)
+    const { showAlert } = useContext(AlertContext)
+
     const [skill, setSkill] = useState('')
     const [image, setImage] = useState(null)
     const [skills, setSkills] = useState([])
@@ -50,7 +53,7 @@ const ManageSkill = () => {
         const res = await response.json()
 
         if (res.success) {
-            alert("Skilled Added")
+            showAlert('success', res.message)
             setSkill(' ')
             setImage(null)
             setSkills([...skills, ...res.data])
@@ -134,10 +137,10 @@ const ManageSkill = () => {
                                     initial='hidden'
                                     whileInView={'show'}
                                     viewport={{ once: true, amount: 0.7 }}
-                                    key={index}  className={` ${mode==='dark'?'hover-neon':'hover-neon-light'} flex px-4 py-2 ${mode==='dark'?'bg-[#131c31]':'bg-[#e8edf5]'}  text-center flex-col border md:text-lg text-sm rounded-lg md:w-[400px] min-w-min border-solid  ${mode==='dark'?'border-[#222f43]':'border-[#c2d4ee]'} items-center md:gap-3 gap-2`}>
-                                    <h1>{`Skill-${index+1}`}</h1>
+                                    key={index} className={` ${mode === 'dark' ? 'hover-neon' : 'hover-neon-light'} flex px-4 py-2 ${mode === 'dark' ? 'bg-[#131c31]' : 'bg-[#e8edf5]'}  text-center flex-col border md:text-lg text-sm rounded-lg md:w-[400px] min-w-min border-solid  ${mode === 'dark' ? 'border-[#222f43]' : 'border-[#c2d4ee]'} items-center md:gap-3 gap-2`}>
+                                    <h1>{`Skill-${index + 1}`}</h1>
                                     <img src={skill.image} alt="logo" className='w-[40px] p-1 md:w-[90px]' />
-                                    <h1 className={` ${mode==='dark'?'text-[#b9e0f2]':'text-[#94a9c9] '} w-1/2 font-bold font-mono`}>{skill.name}</h1>
+                                    <h1 className={` ${mode === 'dark' ? 'text-[#b9e0f2]' : 'text-[#94a9c9] '} w-1/2 font-bold font-mono`}>{skill.name}</h1>
                                     <button onClick={() => handleSkillDelete(skill._id)} className={`p-2 w-[90px] my-5 text-base mx-2  ${mode === 'dark' ? 'hover:bg-[#222f43]' : 'hover:bg-[#e8edf5]'}  border border-cyan-400`}>Delete</button>
                                 </motion.div>
                             ))

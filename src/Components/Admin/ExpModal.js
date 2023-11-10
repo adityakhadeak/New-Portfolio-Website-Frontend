@@ -3,10 +3,12 @@ import { RxCross2 } from "react-icons/rx";
 import { AnimatePresence, motion } from 'framer-motion';
 import ThemeContext from '../../Context/ThemeContext.js'
 import { BASE_URL } from '../../helper.js';
+import AlertContext from '../../Context/AlertContext.js';
 
 const ExpModal = (props) => {
     const { exps, setExps, setIsOpen, selectedExp, isOpen } = props
     const { mode } = useContext(ThemeContext)
+    const {showAlert}=useContext(AlertContext)
     const [updateExp, setUpdateExp] = useState({ duration:'',title:'',company:'',techstack:'',link:'',doc:'',id:'' })
 
     useEffect(() => {
@@ -31,6 +33,8 @@ const ExpModal = (props) => {
         if (json.success) {
             setExps(exps.filter(exp => exp._id !== selectedExp.id))
             setExps([...exps, json.updatedData])
+            showAlert('success',"Experience Updated Successfully")
+
         }
         setIsOpen(false)
     }

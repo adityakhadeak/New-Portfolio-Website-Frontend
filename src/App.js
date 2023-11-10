@@ -11,7 +11,11 @@ import ThemeContext from './Context/ThemeContext';
 import Projects from './Pages/Projects';
 import Footer from './Components/Footer';
 import NavFixed from './Components/NavFix/NavFixed';
+import AlertFunction from './Components/Alert/AlertFunctions';
 import Dashboard from './Pages/Dashboard';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 function App() {
   const { mode } = useContext(ThemeContext)
   const [loader, setLoader] = useState(false)
@@ -39,30 +43,45 @@ function App() {
 
   }, [mode])
   return (
-    <NavFixed>
-      <Router>
-        {loader ?
-          <Preloader /> :
-          <>
-            <Navbar />
-            <Routes>
-              <Route element={<Home />} path='/' />
-              <Route element={<About />} path='/about' />
-              <Route element={<Skills />} path='/skills' />
-              <Route element={<Contact />} path='/contact' />
-              <Route element={<Projects />} path='/projects' />
-              <Route element={<Dashboard />} path="/dashboard/*" />
-                
+    <AlertFunction>
+      <NavFixed>
+        <Router>
+          {loader ?
+            <Preloader /> :
+            <>
+              <Navbar />
+              <Routes>
+                <Route element={<Home />} path='/' />
+                <Route element={<About />} path='/about' />
+                <Route element={<Skills />} path='/skills' />
+                <Route element={<Contact />} path='/contact' />
+                <Route element={<Projects />} path='/projects' />
+                <Route element={<Dashboard />} path="/dashboard/*" />
 
-            </Routes>
 
-            <Footer />
+              </Routes>
 
-          </>
+              <Footer />
 
-        }
-      </Router>
-    </NavFixed>
+            </>
+
+          }
+        </Router>
+      </NavFixed>
+      <ToastContainer
+        position="bottom-center"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme={mode}
+      />
+    </AlertFunction>
+
   );
 }
 

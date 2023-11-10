@@ -3,10 +3,12 @@ import { RxCross2 } from "react-icons/rx";
 import { AnimatePresence, motion } from 'framer-motion';
 import ThemeContext from '../../Context/ThemeContext.js'
 import { BASE_URL } from '../../helper.js';
+import AlertContext from '../../Context/AlertContext.js';
 
 const CerModal = (props) => {
     const { cers, setCers, setIsOpen, selectedCer, isOpen } = props
     const { mode } = useContext(ThemeContext)
+    const { showAlert } = useContext(AlertContext)
     const [updateCer, setUpdateCer] = useState({ title: '', desc: '', date: '', platform: '', label: '', doc: ''})
 
     useEffect(() => {
@@ -33,6 +35,8 @@ const CerModal = (props) => {
         if (json.success) {
             setCers(cers.filter(para1 => para1._id !== selectedCer.id))
             setCers([...cers, json.updatedData])
+            showAlert('success',"Certificate Updated Successfully")
+
         }
         setIsOpen(false)
     }

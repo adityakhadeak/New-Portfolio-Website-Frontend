@@ -3,10 +3,12 @@ import { RxCross2 } from "react-icons/rx";
 import { AnimatePresence, motion } from 'framer-motion';
 import ThemeContext from '../../Context/ThemeContext.js'
 import { BASE_URL } from '../../helper.js';
+import AlertContext from '../../Context/AlertContext.js';
 
 const EduModal = (props) => {
     const { edus, setEdus, setIsOpen, selectedEdu, isOpen } = props
     const { mode } = useContext(ThemeContext)
+    const { showAlert } = useContext(AlertContext)
     const [updateEdu, setUpdateEdu] = useState({year: '', clg: '', edu: '', sts: '', link: '',id:''})
 
     useEffect(() => {
@@ -31,6 +33,8 @@ const EduModal = (props) => {
         if (json.success) {
             setEdus(edus.filter(edu => edu._id !== selectedEdu.id))
             setEdus([...edus, json.updatedData])
+            showAlert('success',"Education Updated Successfully")
+
         }
         setIsOpen(false)
     }

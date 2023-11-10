@@ -5,8 +5,10 @@ import { fadeIn } from '../Variants'
 import { motion } from 'framer-motion'
 import { BASE_URL } from '../helper'
 import CerModal from '../Components/Admin/CerModal'
+import AlertContext from '../Context/AlertContext'
 const ManageCer = () => {
     const { mode } = useContext(ThemeContext)
+    const { showAlert } = useContext(AlertContext)
     const [cerData, setcerData] = useState([{ title: '', desc: '', date: '', platform: '', label: '', doc: '' }])
     const [cers, setCers] = useState([])
     const [selectedCer, setSelectedCer] = useState({ title: '', desc: '', date: '', platform: '', label: '', doc: '', id: "" })
@@ -82,6 +84,7 @@ const ManageCer = () => {
         if (res.success) {
             setCers([...cers, ...res.data])
             setcerData([{ title: '', desc: '', date: '', platform: '', label: '', doc: '' }])
+            showAlert('success',"Certificate details Added")
         }
     }
     return (

@@ -15,6 +15,7 @@ import '../Styles/Common.css'
 import ThemeContext from '../Context/ThemeContext';
 import NavFixContext from '../Context/NavFixContext'
 import ScrollToTopOnReload from '../CustomHooks/ScrollToTopOnReload'
+import SideLinks from '../Components/SideLinks'
 const Projects = () => {
     const {mode}=useContext(ThemeContext)
     const {isFixed}=useContext(NavFixContext)
@@ -86,6 +87,7 @@ const Projects = () => {
                     <button className='btn btn-hover  w-[200px]' ><a href="https://github.com/adityakhadeak" target="_blank" rel="noopener noreferrer">More on my Github</a></button>
                 </motion.div>
             </div>
+            <SideLinks/>
         </section>
     )
 }

@@ -5,8 +5,10 @@ import { fadeIn } from '../Variants'
 import { motion } from 'framer-motion'
 import ProjectDetails from '../Components/Admin/ProjectDetails'
 import { BASE_URL } from '../helper'
+import AlertContext from '../Context/AlertContext'
 const ManageProject = () => {
     const { mode } = useContext(ThemeContext)
+    const { showAlert } = useContext(AlertContext)
     const [projectData, setProjectData] = useState({ title: '', desc: '', tools: '', github: '', live: '' })
     const [image, setImage] = useState(null)
     const [projects, setProjects] = useState([])
@@ -54,8 +56,14 @@ const ManageProject = () => {
         });
         const res = await response.json()
         console.log(res)
-        setProjectData({ title: '', desc: '', tools: '', github: '', live: '' })
+        if(res.success)
+        {
+            showAlert('success',res.message)
+         setProjectData({ title: '', desc: '', tools: '', github: '', live: '' })
         setImage(null)
+        setProjects([...projects,...res.data])
+        }
+        
     }
     return (
         <div>

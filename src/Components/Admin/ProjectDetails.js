@@ -1,8 +1,10 @@
 import React, { useContext } from 'react'
 import { motion } from 'framer-motion'
 import { fadeIn } from '../../Variants'
+import '../../Styles/Common.css'
 import ThemeContext from '../../Context/ThemeContext'
 import { BASE_URL } from '../../helper'
+
 const ProjectDetails = (props) => {
     const { mode } = useContext(ThemeContext)
     const { projects, setProjects } = props
@@ -45,48 +47,47 @@ const ProjectDetails = (props) => {
                     </p>
                 </motion.div>
             ) : (
-                <div className=' items-con my-3 pt-7 flex  justify-center items-center md:flex-row flex-col flex-wrap text-white' >
-
-                    {projects.map((project, index) => (
-                        <motion.div
-                            key={index}
-                            variants={fadeIn('right', 0.4, 10)}
-                            initial='hidden'
-                            whileInView={'show'}
-                            viewport={{ once: true, amount: 0.7 }}
-                            className=' item flex  flex-col justify-center items-center md:flex-row max-w-[800px] w-[100%] px-[20px] my-auto mb-[4rem] min-w-[100px]' >
-
-                            <div className='left z-[1]    flex-1'>
-                                <div className='pro-img overflow-hidden    rounded-xl  relative' >
-                                    <img src={project.img} className='object-cover h-[13rem]' alt="project1" />
+                <div className='my-5 grid md:grid-cols-2 grid-cols-1 gap-3'>
+                    {
+                        projects.map((project, index) => (
+                            <motion.div
+                                variants={fadeIn('left', `0.4${index}`, 10)}
+                                initial='hidden'
+                                whileInView={'show'}
+                                viewport={{ once: true, amount: 0.7 }}
+                                key={index} className=' w-[295px] md:w-[500px] bg-[#131c31] p-3 rounded-lg my-5 font-mono'>
+                                <h3>Project-{index + 1}</h3>
+                                <div>
+                                    <img src={project.image} alt="project-pic" />
                                 </div>
-                            </div>
-
-                            <div className={` right pro-info rounded-lg ${mode === 'dark' ? 'bg-[#131c31]' : 'bg-[#e8edf5]'}  z-[2] w-[300px] md:w-fit md:-ml-[125px] px-[3rem] py-3 right flex flex-col justify-items-center justify-center items-center flex-1`}>
-                                <h1 className=' mb-3 text-xl text-[#94a9c9]  font-bold'>{project.title}</h1>
-                                <p className='text-[#a3afbf] mb-3 text-sm'>{project.desc}</p>
-                                <div className='font-mono mb-3 text-[#0dace4] flex'>
-                                    <p className='mr-3 text-sm'>{project.tool['1st']}</p>
-                                    <p className='mr-3 text-sm'>{project.tool['2nd']}</p>
-                                    <p className='mr-3 text-sm'>{project.tool['3rd']}</p>
-                                    <p className='text-sm'>{project.tool['4th']}</p>
-
+                                <div className='flex justify-start flex-col my-3 '>
+                                    <div className='my-1'>Title</div>
+                                    <div>{project.title}</div>
+                                </div>
+                                <div className='flex justify-start flex-col my-3 '>
+                                    <div className='my-1'>Description</div>
+                                    <div>{project.desc}</div>
 
                                 </div>
-                                <div className=' flex relative right-[10px] ' >
-                                    <p>{project.links.github}</p>
-                                    <p>{project.links.live}</p>
+
+                                <div className='flex justify-start flex-col my-3 '>
+                                    <div className='my-1'>Tools</div>
+                                    <div>{project.tools}</div>
                                 </div>
-                            </div>
+                                <div className='flex justify-start flex-col my-3 '>
+                                    <div  className='my-1'>GitHub Link</div>
+                                    <div>{project.links.github}</div>
+                                </div>
+                                <div className='flex justify-start flex-col my-3 '>
+                                    <div  className='my-1'>Live Link</div>
+                                    <div>{project.links.live}</div>
 
-                            <div>
-                                <button onClick={() => handleProjectDelete(project._id)} className={`p-2 w-[90px] my-5 text-base mx-2  ${mode === 'dark' ? 'hover:bg-[#222f43]' : 'hover:bg-[#e8edf5]'}  border border-cyan-400`}>Delete</button>
-
-                            </div>
-                        </motion.div>
-
-                    ))}
-
+                                </div>
+                                
+                                <button onClick={() => handleProjectDelete(project._id)} className={`p-2 w-[90px] text-base mx-2  ${mode === 'dark' ? 'hover:bg-[#222f43]' : 'hover:bg-[#e8edf5]'}  border border-cyan-400`}>Delete</button>
+                            </motion.div>
+                        ))
+                    }
                 </div>)
             }
         </section>

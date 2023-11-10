@@ -4,8 +4,10 @@ import '../Styles/Common.css'
 import { fadeIn } from '../Variants'
 import { motion } from 'framer-motion'
 import EduDetails from '../Components/Admin/EduDetails'
+import AlertContext from '../Context/AlertContext'
 const ManageEdu = () => {
     const { mode } = useContext(ThemeContext)
+    const { showAlert } = useContext(AlertContext)
     const [eduData, seteduData] = useState([{ year:'',clg:'',edu:'',sts:'',link:'' }])
     const [edus, setEdus] = useState([])
     const [isOpen, setIsOpen] = useState(false)
@@ -41,6 +43,7 @@ const handleAddEdu=()=>{
         if(res.success){
             setEdus([...edus,...res.data])
             seteduData([{ year:'',clg:'',edu:'',sts:'',link:'' }])
+            showAlert('success',"Education Details Added")
         }
     }
     return (

@@ -20,6 +20,7 @@ import NavFixContext from '../Context/NavFixContext'
 import { fadeIn } from '../Variants'
 import { motion } from 'framer-motion'
 import '../Styles/Common.css'
+import SideLinks from '../Components/SideLinks'
 
 const Skills = () => {
     const {mode}=useContext(ThemeContext)
@@ -149,7 +150,7 @@ const Skills = () => {
 
             </div>
 
-
+            <SideLinks/>
         </section>
 
 

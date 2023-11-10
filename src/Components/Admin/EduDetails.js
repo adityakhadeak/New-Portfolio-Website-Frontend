@@ -4,8 +4,10 @@ import { BASE_URL } from '../../helper'
 import { fadeIn } from '../../Variants'
 import { motion } from 'framer-motion'
 import ThemeContext from '../../Context/ThemeContext'
+import AlertContext from '../../Context/AlertContext'
 const EduDetails = (props) => {
     const { mode } = useContext(ThemeContext)
+    const { showAlert } = useContext(AlertContext)
     const { isOpen, setIsOpen, edus, setEdus } = props
     const [selectedEdu, setSelectedEdu] = useState({ year: '', clg: '', edu: '', sts: '', link: '', id: '' })
 
@@ -43,6 +45,8 @@ const EduDetails = (props) => {
         const json = await response.json()
         if (json.success) {
             setEdus(edus.filter(edu => edu._id !== id))
+            showAlert('success',"Education Deleted Successfully")
+
         }
     }
 

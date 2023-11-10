@@ -4,9 +4,10 @@ import '../Styles/Common.css'
 import { fadeIn } from '../Variants'
 import { motion } from 'framer-motion'
 import { BASE_URL } from '../helper'
+import AlertContext from '../Context/AlertContext'
 const ManageMsgs = () => {
     const { mode } = useContext(ThemeContext)
-
+    const {showAlert}=useContext(AlertContext)
     const [messages, setMessages] = useState([])
     useEffect(() => {
         fetchAllMessages()
@@ -36,11 +37,11 @@ const ManageMsgs = () => {
         })
         const res = await response.json()
         if (res.success) {
-            alert(res.message)
+            showAlert("success",res.message)
             setMessages(messages.filter(message => message._id !== id))
         }
         else {
-            alert(res.message)
+            showAlert("error",res.message)
         }
     }
     return (

@@ -26,7 +26,7 @@ const About = () => {
             <div className={`${mode==='dark'?'bg-[#0f172a]':'bg-[#f9fbff]'} relative font-1`}>
                     <div className={`pt-[3rem] md:ml-[205px] ${isFixed?"md:mt-[86px] mt-[86px]":""} md:mr-[145px] mx-8`}>
                         <motion.div
-                            variants={fadeIn('left', 0.4)}
+                            variants={fadeIn('left', 0.5)}
                             initial='hidden'
                             whileInView={'show'}
                             viewport={{ once: true, amount: 0.7 }}

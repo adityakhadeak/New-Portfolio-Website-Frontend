@@ -3,14 +3,17 @@ import { RxCross2 } from "react-icons/rx";
 import { AnimatePresence, motion } from 'framer-motion';
 import ThemeContext from '../../Context/ThemeContext.js'
 import { BASE_URL } from '../../helper.js';
+import AlertContext from '../../Context/AlertContext.js';
 
 const AboutModal = (props) => {
     const { paras, setParas, setIsOpen, para, paraid, isOpen } = props
     const { mode } = useContext(ThemeContext)
+    const { showAlert } = useContext(AlertContext)
     const [aboutPara, setaboutPara] = useState({ para: '' })
 
     useEffect(() => {
         setaboutPara({ para: para })
+        // eslint-disable-next-line
     }, [isOpen])
 
     const handleOnChange = (e) => {
@@ -29,8 +32,10 @@ const AboutModal = (props) => {
         })
         const json = await response.json()
         if (json.success) {
-            setParas(paras.filter(para1 => para1._id != paraid))
+            setParas(paras.filter(para1 => para1._id !== paraid))
             setParas([...paras, json.updatedAbout])
+            showAlert('success',"Paragraph Updated Successfully")
+
         }
         setIsOpen(false)
     }

@@ -5,15 +5,18 @@ import { BASE_URL } from '../helper'
 import { fadeIn } from '../Variants'
 import { motion } from 'framer-motion'
 import AboutModal from '../Components/Admin/AboutModal'
+import AlertContext from '../Context/AlertContext'
 const ManageAbout = () => {
     const { mode } = useContext(ThemeContext)
+    const { showAlert } = useContext(AlertContext)
+
     const [aboutData, setaboutData] = useState([{ para: "" }])
     const [paras, setParas] = useState([])
     const [selectedPara, setSelectedPara] = useState({ para: "", id: "" })
     const [isOpen, setIsOpen] = useState(false)
     useEffect(() => {
         fetchAboutParas()
-        console.log(paras)
+        // eslint-disable-next-line
     }, [isOpen])
 
     const fetchAboutParas = async () => {
@@ -43,7 +46,8 @@ const ManageAbout = () => {
 
         const json = await response.json()
         if (json.success) {
-            setParas(paras.filter(para => para._id != id))
+            showAlert('success',"Paragraph Delete Successfully")
+            setParas(paras.filter(para => para._id !== id))
         }
     }
 
@@ -76,6 +80,7 @@ const ManageAbout = () => {
         });
         const res = await response.json()
         if (res.success) {
+            showAlert('success',"Paragraphs Added Successfully")
             setParas([...paras, ...res.data])
         }
         setaboutData([{ para: "" }])

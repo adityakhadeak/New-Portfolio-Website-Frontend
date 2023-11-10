@@ -50,11 +50,11 @@ const Footer = () => {
                     <div className=' flex flex-col justify-center items-center  mx-1 px-1 w-[200px]'>
                         <h3 className={`text-lg my-2   ${mode==='dark'?'text-[#aae0f2]':'text-[#1cc2e7]'}`}>Important links</h3>
                         <div className='flex my-5 flex-col items-center justify-center'>
-                            <Link className='my-1 footer-links' to={'/home'}>Home</Link>
+                            <Link className='my-1 footer-links' to={'/'}>Home</Link>
                             <Link className='my-1 footer-links' to={'/about'}>About</Link>
                             <Link className='my-1 footer-links' to={'/skills'}>Skills</Link>
                             <Link className='my-1 footer-links' to={'/projects'}>Projects</Link>
-                            <Link className='my-1 footer-links' to={'/comtacts'}>Contact</Link>
+                            <Link className='my-1 footer-links' to={'/contacts'}>Contact</Link>
                         </div>
                     </div>
                     <div className=' flex flex-col justify-center items-center  mx-1 px-1 w-[200px]'>

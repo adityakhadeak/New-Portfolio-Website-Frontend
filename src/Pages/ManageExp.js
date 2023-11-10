@@ -4,8 +4,11 @@ import '../Styles/Common.css'
 import { fadeIn } from '../Variants'
 import { motion } from 'framer-motion'
 import ExpDetails from '../Components/Admin/ExpDetails'
+import AlertContext from '../Context/AlertContext'
 const ManageExp = () => {
     const { mode } = useContext(ThemeContext)
+    const { showAlert } = useContext(AlertContext)
+
     const [expData, setexpData] = useState([{ duration:'',title:'',company:'',techstack:'',link:'',doc:'' }])
     const [exps, setExps] = useState([])
 
@@ -42,6 +45,7 @@ const handleAddexp=()=>{
         if (res.success) {
             setExps([...exps,...res.data])
             setexpData([{ duration:'',title:'',company:'',techstack:'',link:'',doc:'' }])
+            showAlert("success","Experience Details Added")
         }
     }
     return (
