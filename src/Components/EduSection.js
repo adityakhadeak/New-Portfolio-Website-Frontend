@@ -19,7 +19,7 @@ const ExSection = () => {
           viewport={{ once: true, amount: 0.7 }}
           className='lineImg   flex items-center md:justify-end justify-center text-[25px] md:text-[30px] '>
           <span className='text-[#1cc2e7] text-[20px] md:text-[28px]' >II.</span>
-          <h2 className='text-[#94a9c9] w-[-webkit-fill-available] md:w-fit mx-2'>Education</h2>
+          <h2 className='text-[#94a9c9] w-fit md:w-fit mx-2'>Education</h2>
         </motion.div>
         <div className='edu-TimeLine-Con flex md:flex-row flex-col items-center md:justify-between justify-center pt-5 my-3' >
           <motion.div

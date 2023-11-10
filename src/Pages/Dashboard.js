@@ -8,6 +8,7 @@ import ManageMsgs from './ManageMsgs.js';
 import ManageExp from './ManageExp.js';
 import ManageEdu from './ManageEdu.js';
 import ManageCer from './ManageCer.js';
+import AdminProfile from './AdminProfile.js';
 const Dashboard = () => {
   return (
     <div>
@@ -15,6 +16,7 @@ const Dashboard = () => {
     <Routes>
       <Route element={<ManageProject />} path="manageprojects" />
       <Route element={<ManageSkill />} path="manageskills" />
+      <Route element={<AdminProfile />} path="adminprofile" />
       <Route element={<ManageAbout />} path="manageabout" />
       <Route element={<ManageMsgs />} path="managecontacts" />
       <Route element={<ManageEdu />} path="manageedu" />

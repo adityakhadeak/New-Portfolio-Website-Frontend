@@ -54,7 +54,7 @@ const Skills = () => {
                     viewport={{ once: true, amount: 0.7 }}
                     className='lineImg flex items-center justify-center text-[25px] md:text-[30px] '>
                     <span className='text-[#1cc2e7] text-[20px] md:text-[28px]' >IV.</span>
-                    <h2 className='text-[#94a9c9]  w-[2814px] text-center md:w-fit mx-2'>Skills & Expertise</h2>
+                    <h2 className='text-[#94a9c9]  w-fit text-center md:w-fit mx-2'>Skills & Expertise</h2>
                 </motion.div>
                 <div className=' flex relative z-[2] items-center flex-col justify-center pt-5 my-3' >
                     <motion.h1

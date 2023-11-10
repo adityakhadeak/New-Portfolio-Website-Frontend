@@ -15,6 +15,7 @@ import AlertFunction from './Components/Alert/AlertFunctions';
 import Dashboard from './Pages/Dashboard';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Login from './Pages/Login';
 
 function App() {
   const { mode } = useContext(ThemeContext)
@@ -57,6 +58,7 @@ function App() {
                 <Route element={<Contact />} path='/contact' />
                 <Route element={<Projects />} path='/projects' />
                 <Route element={<Dashboard />} path="/dashboard/*" />
+                <Route element={<Login />} path="login" />
 
 
               </Routes>

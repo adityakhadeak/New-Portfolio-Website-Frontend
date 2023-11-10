@@ -24,9 +24,9 @@ const AboutSection = () => {
                             initial='hidden'
                             whileInView={'show'}
                             viewport={{ once: true, amount: 0.7 }}
-                            className='lineImg flex items-center text-[25px] md:mb-0 mb-9 md:text-[30px]  '>
+                            className='lineImg flex items-center justify-center md:justify-start text-[25px] md:mb-0 mb-9 md:text-[30px]  '>
                             <span className='text-[#1cc2e7] text-[20px] md:text-[28px]' >I.</span>
-                            <h2 className='text-[#94a9c9] w-[550px] md:w-fit mx-2'>About Me</h2>
+                            <h2 className='text-[#94a9c9] w-fit md:w-fit mx-2'>About Me</h2>
                         </motion.div>
                         <div className='  flex md:flex-wrap-reverse flex-col-reverse md:flex-row justify-between  items-center'>
                             <div className='text-[#94a9c9] my-5 w-[fit] leading-7  font-mono'>
