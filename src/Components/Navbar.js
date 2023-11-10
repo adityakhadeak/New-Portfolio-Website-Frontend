@@ -21,6 +21,8 @@ const Navbar = () => {
             if (width > 768) {
                 hideMenu();
             }
+
+            
         };
 
         handleResize();
@@ -53,11 +55,15 @@ const Navbar = () => {
     const showMenu = () => {
         if (menu === "off") {
             setMenu("on")
+            document.body.style.overflow='hidden'
+
         }
     }
     const hideMenu = () => {
         if (menu === "on") {
             setMenu("off");
+            document.body.style.overflow='auto'
+
         }
     }
     const links = [{ "key": "I.", "name": "About", "link": "/about", "animIn": 0.3 },

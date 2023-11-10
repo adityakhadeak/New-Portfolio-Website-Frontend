@@ -24,7 +24,7 @@ const About = () => {
         <>
             <section className='aboutsection'>
             <div className={`${mode==='dark'?'bg-[#0f172a]':'bg-[#f9fbff]'} relative font-1`}>
-                    <div className={`pt-[3rem] md:ml-[205px] ${isFixed?"md:mt-[86px]":""} md:mr-[145px] mx-8`}>
+                    <div className={`pt-[3rem] md:ml-[205px] ${isFixed?"md:mt-[86px] mt-[86px]":""} md:mr-[145px] mx-8`}>
                         <motion.div
                             variants={fadeIn('left', 0.4)}
                             initial='hidden'
@@ -32,7 +32,7 @@ const About = () => {
                             viewport={{ once: true, amount: 0.7 }}
                             className='lineImg flex items-center justify-center text-[25px] md:text-[30px]  '>
                             <span className='text-[#1cc2e7] text-[20px] md:text-[28px]' >I.</span>
-                            <h2 className='text-[#94a9c9] w-[-webkit-fill-available] md:w-fit mx-2'>About Me</h2>
+                            <h2 className='text-[#94a9c9] w-[550px] md:w-fit mx-2'>About Me</h2>
                         </motion.div>
                         <div className='  flex md:flex-wrap-reverse flex-col-reverse md:flex-row justify-between  md:items-end items-center'>
                             <div className='text-[#94a9c9] my-5 w-[fit] leading-7  font-mono'>

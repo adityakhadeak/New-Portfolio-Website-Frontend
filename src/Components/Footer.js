@@ -34,10 +34,10 @@ const Footer = () => {
     return (
         <section className={`${mode==='dark'?'bg-[#0f172a]':'bg-[#f9fbff]'} footer pt-[7.5rem]  pb-[0.5rem] text-[#94a9c9] px-4 font-1`}>
             <motion.footer 
-             variants={fadeIn('up', 0)}
+             variants={fadeIn('left', 0)}
              initial='hidden'
              whileInView={'show'}
-             viewport={{ once: true, amount: 0.7 }}
+             viewport={{ once: true, amount: 0.4 }}
             className={` ${mode==='dark'?'bg-[#131c31]':'bg-[#e8edf5]'} py-[3rem]    px-[2rem] md:mx-[205px]  mx-auto flex flex-col   justify-center items-center border   ${mode==='dark'?'border-[#222f43]':'border-[#c2d4ee]'} rounded-[50px]`}>
                 <div className={`relative z-[2] flex flex-wrap footer-copyright-div   ${mode==='dark'?'after:bg-[#222f43]':'after:bg-[#c2d4ee]'} relative  md:items-start flex-col justify-center items-center  md:flex-row`}>
                     <div className=' flex flex-col justify-center items-center mx-1 px-1 md:w-[350px] w-[256px]'>

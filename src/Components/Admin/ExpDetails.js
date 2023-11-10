@@ -64,7 +64,7 @@ const ExpDetails = (props) => {
                     <span className='text-[#1cc2e7] text-[20px] md:text-[28px]' ></span>
                     <h2 className='text-[#94a9c9] w-[-webkit-fill-available] text-center md:w-fit mx-2'>Current Experience Details</h2>
                 </motion.div>
-                {exps.length == 0 ? (
+                {exps.length === 0 ? (
                     <motion.div
                     variants={fadeIn('left', `0.4`)}
                     initial='hidden'

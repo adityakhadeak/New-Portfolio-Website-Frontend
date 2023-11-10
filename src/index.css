@@ -166,11 +166,11 @@ body {
 @media screen and (max-width: 768px) {
   .lineImg::after {
     width: 100%;
-    display: none;
+    display: block;
   }
   .lineImg::before {
     width: 100%;
-    display: none;
+    display: block;
   }
   
 }

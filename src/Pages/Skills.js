@@ -58,7 +58,7 @@ const Skills = () => {
     return (
 
         <section className={`${mode==='dark'?'bg-[#0f172a]':'bg-[#f9fbff]'} skills relative font-1`}>
-            <div className={`pt-[3rem] leftShadow rightShadow before:top-[300px] after:top-10 ${isFixed?"md:mt-[86px]":""} md:mx-[205px] mx-8`}>
+            <div className={`pt-[3rem] leftShadow rightShadow before:top-[300px] after:top-10 ${isFixed?"md:mt-[86px] mt-[86px] ":""} md:mx-[205px] mx-8`}>
                 <motion.div
                     variants={fadeIn('right', 0.3, 10)}
                     initial='hidden'
@@ -66,7 +66,7 @@ const Skills = () => {
                     viewport={{ once: true, amount: 0.7 }}
                     className='lineImg flex items-center justify-center text-[25px] md:text-[30px] '>
                     <span className='text-[#1cc2e7] text-[20px] md:text-[28px]' >IV.</span>
-                    <h2 className='text-[#94a9c9]  w-fit md:w-fit mx-2'>Skills & Expertise</h2>
+                    <h2 className='text-[#94a9c9]  w-[2814px] text-center md:w-fit mx-2'>Skills & Expertise</h2>
                 </motion.div>
                 <div className=' flex relative z-[2] items-center flex-col justify-center pt-5 my-3' >
                     <motion.h1

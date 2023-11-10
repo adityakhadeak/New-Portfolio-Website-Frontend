@@ -9,7 +9,7 @@ const ManageCer = () => {
     const { mode } = useContext(ThemeContext)
     const [cerData, setcerData] = useState([{ title: '', desc: '', date: '', platform: '', label: '', doc: '' }])
     const [cers, setCers] = useState([])
-    const [selectedCer, setSelectedCer] = useState({title: '', desc: '', date: '', platform: '', label: '', doc: '', id: "" })
+    const [selectedCer, setSelectedCer] = useState({ title: '', desc: '', date: '', platform: '', label: '', doc: '', id: "" })
 
     const [isOpen, setIsOpen] = useState(false)
     useEffect(() => {
@@ -47,9 +47,9 @@ const ManageCer = () => {
         }
     }
 
-    const UpdateCer = async (title,desc,date,platform,label,doc,id) => {
+    const UpdateCer = async (title, desc, date, platform, label, doc, id) => {
         setIsOpen(true)
-        setSelectedCer({ title,desc,date,platform,label,doc,id})
+        setSelectedCer({ title, desc, date, platform, label, doc, id })
     }
     const handleRemoveexp = (index) => {
         const value = [...cerData]
@@ -79,9 +79,9 @@ const ManageCer = () => {
         });
         const res = await response.json()
         console.log(res)
-        if(res.success){
-        setCers([...cers,...res.data])
-        setcerData([{ title: '', desc: '', date: '', platform: '', label: '', doc: '' }])
+        if (res.success) {
+            setCers([...cers, ...res.data])
+            setcerData([{ title: '', desc: '', date: '', platform: '', label: '', doc: '' }])
         }
     }
     return (
@@ -143,7 +143,7 @@ const ManageCer = () => {
                     </div>
                 </div>
             </div>
-            <CerModal cers={cers} setCers={setCers} selectedCer={selectedCer} setSelectedCer={setSelectedCer}  isOpen={isOpen} setIsOpen={setIsOpen} />
+            <CerModal cers={cers} setCers={setCers} selectedCer={selectedCer} setSelectedCer={setSelectedCer} isOpen={isOpen} setIsOpen={setIsOpen} />
 
             <section className='flex flex-col justify-center items-center'>
                 <motion.div
@@ -155,48 +155,61 @@ const ManageCer = () => {
                     <span className='text-[#1cc2e7] text-[20px] md:text-[28px]' ></span>
                     <h2 className='text-[#94a9c9] w-[-webkit-fill-available] text-center md:w-fit mx-2'>Current Certificates</h2>
                 </motion.div>
-                <div className='my-5 grid md:grid-cols-2 grid-cols-1 gap-3'>
-                    {
-                        cers.map((cer, index) => (
-                            <motion.div
-                                variants={fadeIn('left', `0.4${index}`, 10)}
-                                initial='hidden'
-                                whileInView={'show'}
-                                viewport={{ once: true, amount: 0.7 }}
-                                key={index} className=' w-[295px] md:w-[500px] bg-[#131c31] p-3 rounded-lg my-5 font-mono'>
-                                <h3>Certificate-{index + 1}</h3>
-                                <div className='flex justify-start flex-col my-3 '>
-                                    <div  className='my-1'>Title</div>
-                                    <div>{cer.title}</div>
-                                </div>
-                                <div className='flex justify-start flex-col my-3 '>
-                                    <div className='my-1'>Description</div>
-                                    <div>{cer.desc}</div>
+                {cers.length === 0 ? (
+                    <motion.div
+                        variants={fadeIn('left', `0.4`)}
+                        initial='hidden'
+                        whileInView={'show'}
+                        viewport={{ once: true, amount: 0.7 }}
+                        className='flex justify-center items-center'>
+                        <p className='text-[#94a9c9] w-[-webkit-fill-available] text-center md:w-fit mx-auto'>
+                            No Certificates to display
+                        </p>
+                    </motion.div>
+                ) : (
+                    <div className='my-5 grid md:grid-cols-2 grid-cols-1 gap-3'>
+                        {
+                            cers.map((cer, index) => (
+                                <motion.div
+                                    variants={fadeIn('left', `0.4${index}`, 10)}
+                                    initial='hidden'
+                                    whileInView={'show'}
+                                    viewport={{ once: true, amount: 0.7 }}
+                                    key={index} className=' w-[295px] md:w-[500px] bg-[#131c31] p-3 rounded-lg my-5 font-mono'>
+                                    <h3>Certificate-{index + 1}</h3>
+                                    <div className='flex justify-start flex-col my-3 '>
+                                        <div className='my-1'>Title</div>
+                                        <div>{cer.title}</div>
+                                    </div>
+                                    <div className='flex justify-start flex-col my-3 '>
+                                        <div className='my-1'>Description</div>
+                                        <div>{cer.desc}</div>
 
-                                </div>
-                                <div className='flex justify-start flex-col my-3 '>
-                                    <div  className='my-1'>Date <span>format-(10-08-2023)</span></div>
-                                    <div>{cer.date}</div>
-                                </div>
-                                <div className='flex justify-start flex-col my-3 '>
-                                    <div  className='my-1'>Platform</div>
-                                    <div>{cer.platform}</div>
-                                </div>
-                                <div className='flex justify-start flex-col my-3 '>
-                                    <div htmlFor={`label `} className='my-1'>Label</div>
-                                    <div>{cer.label}</div>
-                                </div>
-                                <div className='flex justify-start flex-col my-3 '>
-                                    <div htmlFor={`doclabel `} className='my-1'>Doc</div>
-                                    <div>{cer.doc}</div>
+                                    </div>
+                                    <div className='flex justify-start flex-col my-3 '>
+                                        <div className='my-1'>Date <span>format-(10-08-2023)</span></div>
+                                        <div>{cer.date}</div>
+                                    </div>
+                                    <div className='flex justify-start flex-col my-3 '>
+                                        <div className='my-1'>Platform</div>
+                                        <div>{cer.platform}</div>
+                                    </div>
+                                    <div className='flex justify-start flex-col my-3 '>
+                                        <div htmlFor={`label `} className='my-1'>Label</div>
+                                        <div>{cer.label}</div>
+                                    </div>
+                                    <div className='flex justify-start flex-col my-3 '>
+                                        <div htmlFor={`doclabel `} className='my-1'>Doc</div>
+                                        <div>{cer.doc}</div>
 
-                                </div>
-                                <button onClick={() => handleCerDelete(cer._id)} className={`p-2 w-[90px] text-base mx-2  ${mode === 'dark' ? 'hover:bg-[#222f43]' : 'hover:bg-[#e8edf5]'}  border border-cyan-400`}>Delete</button>
-                                <button onClick={() => UpdateCer(cer.title,cer.desc,cer.date,cer.platform,cer.label,cer.doc,cer._id)} className={`p-2 w-[90px] text-base mx-2 ${mode === 'dark' ? 'hover:bg-[#222f43]' : 'hover:bg-[#e8edf5]'}  border border-cyan-400`}>Update</button>
-                            </motion.div>
-                        ))
-                    }
-                </div>
+                                    </div>
+                                    <button onClick={() => handleCerDelete(cer._id)} className={`p-2 w-[90px] text-base mx-2  ${mode === 'dark' ? 'hover:bg-[#222f43]' : 'hover:bg-[#e8edf5]'}  border border-cyan-400`}>Delete</button>
+                                    <button onClick={() => UpdateCer(cer.title, cer.desc, cer.date, cer.platform, cer.label, cer.doc, cer._id)} className={`p-2 w-[90px] text-base mx-2 ${mode === 'dark' ? 'hover:bg-[#222f43]' : 'hover:bg-[#e8edf5]'}  border border-cyan-400`}>Update</button>
+                                </motion.div>
+                            ))
+                        }
+                    </div>)
+                }
             </section>
         </div>
     )

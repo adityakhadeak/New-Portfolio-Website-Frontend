@@ -43,7 +43,7 @@ const ContactSection = () => {
     }
     return (
         <section className={` ${mode==='dark'?'bg-[#0f172a]':'bg-[#f9fbff]'} contacts relative font-1 `}>
-            <div className={` ${location.pathname==='/'?'pt-[7.5rem]':'pt-[3rem]'} ${location.pathname==='/contact'?isFixed?"md:mt-[86px]":"":""} rightShadow after:top-0 md:mx-[205px] mx-auto`}>
+            <div className={` ${location.pathname==='/'?'pt-[7.5rem]':'pt-[3rem]'} ${location.pathname==='/contact'?isFixed?"md:mt-[86px] mt-[86px]":"":""} rightShadow after:top-0 md:mx-[205px] mx-auto`}>
                 <motion.div
                     variants={fadeIn('left', 0.2)}
                     initial='hidden'

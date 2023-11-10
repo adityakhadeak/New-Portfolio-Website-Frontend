@@ -5,7 +5,7 @@ import ThemeContext from '../../Context/ThemeContext.js'
 import { BASE_URL } from '../../helper.js';
 
 const ExpModal = (props) => {
-    const { exps, setExps, setIsOpen,setSelectedExp, selectedExp, isOpen } = props
+    const { exps, setExps, setIsOpen, selectedExp, isOpen } = props
     const { mode } = useContext(ThemeContext)
     const [updateExp, setUpdateExp] = useState({ duration:'',title:'',company:'',techstack:'',link:'',doc:'',id:'' })
 

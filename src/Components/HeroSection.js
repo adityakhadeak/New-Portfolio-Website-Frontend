@@ -16,7 +16,7 @@ const Home = () => {
   return (
     <>
       <div className={`  ${mode==='dark'?'bg-[#0f172a]':'bg-[#f9fbff]'} font-1`}>
-        <div className={`  pt-[3rem] mx-8 ${isFixed?"md:mt-[106px]":"md:mt-5"}  md:mx-20`}>
+        <div className={`  pt-[3rem] mx-8 ${isFixed?"md:mt-[106px] mt-[86px]":"md:mt-5"}  md:mx-20`}>
           <div className='relative  justify-evenly md:justify-around flex flex-col md:flex-row'>
             <div className='homeback w-fit md:w-[459px] flex flex-col'>
               <motion.h4 variants={fadeIn('up', 0.8)}
@@ -30,20 +30,20 @@ const Home = () => {
                 whileInView={'show'}
                 viewport={{ once: true, amount: 0.7 }} className=' w-fit flex flex-col my-2 '>
                 <div>
-                  <h1 className={`  ${mode==='dark'?'text-white ':'text-[#344161]'}  text-2xl md:text-3xl`} >My name is</h1>
-                  <Link to={'/dashboard/managecontacts'} className=' my-2 @apply gradient-text font-bold text-4xl md:text-[3.75rem] leading-[1.5]' >Aditya Khade</Link>
+                  <h1 className={`  ${mode==='dark'?'text-white ':'text-[#344161]'}  text-4xl md:text-3xl`} >My name is</h1>
+                  <Link to={'/dashboard/managecontacts'} className=' my-2 @apply gradient-text font-bold text-5xl md:text-[3.75rem] leading-[1.5]' >Aditya Khade</Link>
                 </div>
                 <div className='my-3'>
-                  <h1 className={` ${mode==='dark'?'text-white ':'text-[#344161]'}   text-2xl md:text-3xl`}>I’m a</h1>
-                  <h1 className=' my-3 h-[80px] md:h-fit @apply gradient-text w-fit md:w-[550px] font-bold text-4xl md:text-6xl leading-[1.5] text-[#94a9c9] '><Typewriter
+                  <h1 className={` ${mode==='dark'?'text-white ':'text-[#344161]'}   text-4xl md:text-3xl`}>I’m a</h1>
+                  <h1 className=' my-3 h-[130px] md:h-fit @apply gradient-text w-fit md:w-[550px] font-bold text-5xl md:text-6xl leading-[1.5] text-[#94a9c9] '><Typewriter
 
                     words={["Web Developer", "Coder", "Learner"]}
                     loop={''}
                     cursor
                     cursorStyle='|'
                     cursorColor='white'
-                    typeSpeed={50}
-                    deleteSpeed={50}
+                    typeSpeed={40}
+                    deleteSpeed={40}
                   />
                   </h1>
                 </div>
