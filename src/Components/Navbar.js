@@ -112,7 +112,7 @@ const Navbar = () => {
                     </motion.div>
                 </div>
             </div>
-            <div className={`flex text-[#94a9c9] z-[3] overflow-hidden fixed font-mono justify-center items-center transition-all duration-700 ${menu === "on" ? "top-[85px]" : "-top-[384px]"} flex-col space-y-6 w-screen h-96 bg-[#1b294b] md:-right-48 md:hidden`}>
+            <div className={`flex text-[#94a9c9] z-[3] overflow-hidden fixed font-mono justify-center items-center transition-all duration-700 ${menu === "on" ? "top-[85px]" : "-top-[384px]"} flex-col space-y-6 w-screen h-96 ${mode === 'dark' ? 'bg-[#1b294b]' : 'bg-[#f9fbff]'}  md:-right-48 md:hidden`}>
                 {links.map((link) => {
                     return <Link key={link.key} className='relative w-20 text-center  hover:text-[#1cc2e7] text-lg transition-colors duration-300' to={link.link}><span className='text-[#1cc2e7] mx-1 block  '>{link.key}</span>{link.name}</Link>
                 })}

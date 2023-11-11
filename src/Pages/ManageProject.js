@@ -6,7 +6,9 @@ import { motion } from 'framer-motion'
 import ProjectDetails from '../Components/Admin/ProjectDetails'
 import { BASE_URL } from '../helper'
 import AlertContext from '../Context/AlertContext'
+import { useNavigate } from 'react-router-dom'
 const ManageProject = () => {
+    const navigate=useNavigate()
     const { mode } = useContext(ThemeContext)
     const { showAlert } = useContext(AlertContext)
     const [projectData, setProjectData] = useState({ title: '', desc: '', tools: '', github: '', live: '' })
@@ -21,8 +23,16 @@ const ManageProject = () => {
     const handleImgOnChange = (file) => {
         setImage(file)
     }
+    
+    const token=localStorage.getItem('token')
     useEffect(() => {
-        fetchAllProjects()
+        if ( token== null) {
+            navigate("/login")
+        }
+        else{
+            fetchAllProjects()
+        }
+        // eslint-disable-next-line
     }, [])
 
     const fetchAllProjects = async () => {

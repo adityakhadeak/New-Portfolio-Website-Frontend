@@ -1,11 +1,11 @@
 import React, { useContext, useEffect, useState } from 'react'
 import ThemeContext from '../Context/ThemeContext'
 import { BASE_URL } from '../helper'
-import AlertContext from '../Context/AlertContext'
 import { RxCross2 } from 'react-icons/rx'
 import { AnimatePresence, motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom'
 import { fadeIn } from '../Variants'
+import AlertContext from '../Context/AlertContext';
 const AdminProfile = () => {
     const navigate = useNavigate()
     const { mode } = useContext(ThemeContext)
@@ -13,12 +13,12 @@ const AdminProfile = () => {
     const [updatedPass, setUpdatePass] = useState({ oldpass: "", newpass: "" })
     const [userInfo, setUserInfo] = useState({})
     const [isOpen, setIsOpen] = useState(false)
-
+    const token=localStorage.getItem('token')
     useEffect(() => {
-        if (localStorage.getItem('token') == null) {
+        if ( token== null) {
             navigate("/login")
         }
-        else {
+        else{
             getUser()
         }
         // eslint-disable-next-line
@@ -64,7 +64,10 @@ const AdminProfile = () => {
         if (res.success) {
             setUserInfo(res.data)
         }
-        console.log(userInfo)
+        else if(res.message==="Token has expired"){
+            localStorage.removeItem("token")
+            navigate("/login")
+        }
 
     }
 

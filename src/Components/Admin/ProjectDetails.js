@@ -4,9 +4,12 @@ import { fadeIn } from '../../Variants'
 import '../../Styles/Common.css'
 import ThemeContext from '../../Context/ThemeContext'
 import { BASE_URL } from '../../helper'
+import AlertContext from '../../Context/AlertContext'
 
 const ProjectDetails = (props) => {
     const { mode } = useContext(ThemeContext)
+    const { showAlert } = useContext(AlertContext)
+
     const { projects, setProjects } = props
 
     const handleProjectDelete = async (id) => {
@@ -20,7 +23,7 @@ const ProjectDetails = (props) => {
 
         const res = await response.json()
         if (res.success) {
-            alert(res.message)
+            showAlert('success',res.message)
             setProjects(projects.filter(project => project._id !== id))
         }
     }

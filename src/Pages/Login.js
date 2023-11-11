@@ -16,31 +16,34 @@ const Login = () => {
 
   const handleShowPass = () => {
     setShowPass(!showPass)
-    console.log(showPass)
   }
   const handleOnChange = (e) => {
     setCredentials({ ...credentials, [e.target.name]: e.target.value })
   }
   const handleLogin = async (e) => {
     e.preventDefault()
-    const response = await fetch(`${BASE_URL}/api/user/login`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "auth-token": 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjUyOTg5NjA1NjE1YjRkY2M3MTg4YWEwIn0sImlhdCI6MTY5NzI2OTgyN30.sxqnzWQB7hJNplDzraLglz88qjyR_x72mKo1OIF8wk4'
-      },
-      body: JSON.stringify(credentials)
-    });
-    const res = await response.json()
-    if (res.success) {
-      localStorage.setItem('token', res.authtoken)
-      navigate('/dashboard/adminprofile')
-      setCredentials({ username: "", password: "" })
-      showAlert('success', "Logged In  Successfully")
+    if ((credentials.username === '' || credentials.password === "")) {
+      showAlert("warning", "Please fill all fields")
     }
-    else
-      showAlert('error', res.message)
-
+    else {
+      const response = await fetch(`${BASE_URL}/api/user/login`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "auth-token": 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjUyOTg5NjA1NjE1YjRkY2M3MTg4YWEwIn0sImlhdCI6MTY5NzI2OTgyN30.sxqnzWQB7hJNplDzraLglz88qjyR_x72mKo1OIF8wk4'
+        },
+        body: JSON.stringify(credentials)
+      });
+      const res = await response.json()
+      if (res.success) {
+        localStorage.setItem('token', res.authtoken)
+        showAlert('success', "Logged In  Successfully")
+        navigate('/dashboard/adminprofile')
+        setCredentials({ username: "", password: "" })
+      }
+      else
+        showAlert('error', res.message)
+    }
   }
   return (
     <section className='h-[80vh] flex justify-center items-center'>

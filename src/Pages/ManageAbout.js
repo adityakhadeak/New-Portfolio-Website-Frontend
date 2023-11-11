@@ -6,7 +6,9 @@ import { fadeIn } from '../Variants'
 import { motion } from 'framer-motion'
 import AboutModal from '../Components/Admin/AboutModal'
 import AlertContext from '../Context/AlertContext'
+import { useNavigate } from 'react-router-dom'
 const ManageAbout = () => {
+    const navigate=useNavigate()
     const { mode } = useContext(ThemeContext)
     const { showAlert } = useContext(AlertContext)
 
@@ -14,8 +16,14 @@ const ManageAbout = () => {
     const [paras, setParas] = useState([])
     const [selectedPara, setSelectedPara] = useState({ para: "", id: "" })
     const [isOpen, setIsOpen] = useState(false)
+    const token=localStorage.getItem('token')
     useEffect(() => {
-        fetchAboutParas()
+        if ( token== null) {
+            navigate("/login")
+        }
+        else{
+            fetchAboutParas()
+        }
         // eslint-disable-next-line
     }, [isOpen])
 
@@ -31,6 +39,7 @@ const ManageAbout = () => {
         if (res.success) {
             setParas(res.data)
         }
+        
     }
 
     const handleParaDelete = async (id) => {

@@ -5,16 +5,27 @@ import { motion } from 'framer-motion'
 import ThemeContext from '../../Context/ThemeContext'
 import ExpModal from './ExpModal'
 import AlertContext from '../../Context/AlertContext'
+import { useNavigate } from 'react-router-dom'
 const ExpDetails = (props) => {
+    const navigate=useNavigate()   
     const { mode } = useContext(ThemeContext)
     const { showAlert } = useContext(AlertContext)
     const { isOpen, setIsOpen, exps, setExps } = props
     const [selectedExp, setSelectedExp] = useState({ duration: '', title: '', company: '', techstack: '', link: '', doc: '', id: '' })
 
+
+    const token=localStorage.getItem('token')
+
     useEffect(() => {
-        fetchExps()
+        if ( token== null) {
+            navigate("/login")
+        }
+        else{
+            fetchExps()
+        }
         // eslint-disable-next-line
-    }, [isOpen])
+    }, [])
+  
 
 
     const fetchExps = async () => {

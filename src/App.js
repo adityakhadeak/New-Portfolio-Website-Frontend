@@ -27,15 +27,12 @@ function App() {
 
       document.body.classList.add('scrollbar-dark');
 
-      console.log(mode)
     }
     else {
       document.body.style.backgroundColor = '#f9fbff'
       document.body.classList.remove('scrollbar-dark');
 
       document.body.classList.add('scrollbar-light');
-
-      console.log(mode)
 
     }
     setTimeout(() => {
@@ -44,6 +41,7 @@ function App() {
 
   }, [mode])
   return (
+  
     <AlertFunction>
       <NavFixed>
         <Router>
@@ -83,6 +81,7 @@ function App() {
         theme={mode}
       />
     </AlertFunction>
+    
 
   );
 }

@@ -5,14 +5,25 @@ import { fadeIn } from '../Variants'
 import { motion } from 'framer-motion'
 import { BASE_URL } from '../helper'
 import AlertContext from '../Context/AlertContext'
+import { useNavigate } from 'react-router-dom'
 const ManageMsgs = () => {
+    const navigate =useNavigate()
     const { mode } = useContext(ThemeContext)
     const {showAlert}=useContext(AlertContext)
     const [messages, setMessages] = useState([])
-    useEffect(() => {
-        fetchAllMessages()
-    }, [])
 
+    const token=localStorage.getItem('token')
+
+    useEffect(() => {
+        if ( token== null) {
+            navigate("/login")
+        }
+        else{
+            fetchAllMessages()
+        }
+        // eslint-disable-next-line
+    }, [])
+   
     const fetchAllMessages = async () => {
 
         const response = await fetch(`${BASE_URL}/api/contact/fetchallmsg`, {
@@ -25,6 +36,10 @@ const ManageMsgs = () => {
         const res = await response.json()
         if (res.success) {
             setMessages(res.data)
+        }
+        else if(res.message==="Token has expired"){
+            localStorage.removeItem("token")
+            navigate("/login")
         }
     }
     const handleMsgDelete = async (id) => {

@@ -6,7 +6,9 @@ import { motion } from 'framer-motion'
 import { BASE_URL } from '../helper'
 import CerModal from '../Components/Admin/CerModal'
 import AlertContext from '../Context/AlertContext'
+import { useNavigate } from 'react-router-dom'
 const ManageCer = () => {
+    const navigate=useNavigate()
     const { mode } = useContext(ThemeContext)
     const { showAlert } = useContext(AlertContext)
     const [cerData, setcerData] = useState([{ title: '', desc: '', date: '', platform: '', label: '', doc: '' }])
@@ -14,8 +16,18 @@ const ManageCer = () => {
     const [selectedCer, setSelectedCer] = useState({ title: '', desc: '', date: '', platform: '', label: '', doc: '', id: "" })
 
     const [isOpen, setIsOpen] = useState(false)
+
+
+    const token=localStorage.getItem('token')
+
     useEffect(() => {
-        fetchAboutCers()
+        if ( token== null) {
+            navigate("/login")
+        }
+        else{
+            fetchAboutCers()
+        }
+        // eslint-disable-next-line
     }, [isOpen])
 
     const fetchAboutCers = async () => {

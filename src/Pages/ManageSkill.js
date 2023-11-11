@@ -5,7 +5,9 @@ import { fadeIn } from '../Variants'
 import { motion } from 'framer-motion'
 import { BASE_URL } from '../helper'
 import AlertContext from '../Context/AlertContext'
+import { useNavigate } from 'react-router-dom'
 const ManageSkill = () => {
+    const navigate=useNavigate()
     const { mode } = useContext(ThemeContext)
     const { showAlert } = useContext(AlertContext)
 
@@ -21,8 +23,15 @@ const ManageSkill = () => {
         setImage(file)
     }
 
+    const token=localStorage.getItem('token')
     useEffect(() => {
-        fetchAllSkills()
+        if ( token== null) {
+            navigate("/login")
+        }
+        else{
+            fetchAllSkills()
+        }
+        // eslint-disable-next-line
     }, [])
 
     const fetchAllSkills = async () => {
