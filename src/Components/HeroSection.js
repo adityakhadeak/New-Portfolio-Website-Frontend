@@ -34,13 +34,13 @@ const Home = () => {
               <motion.h4 variants={fadeIn('up', 0.8)}
                 initial='hidden'
                 whileInView={'show'}
-                viewport={{ once: true, amount: 0.7 }} className='text-[#94a9c9] text-base md:text-lg w-fit font-mono my-2 font-bold'>{"<> Hello World !</>"}
+                viewport={{ once: true, amount: 0.5 }} className='text-[#94a9c9] text-base md:text-lg w-fit font-mono my-2 font-bold'>{"<> Hello World !</>"}
               </motion.h4>
               <motion.div
                 variants={fadeIn('up', 0.9)}
                 initial='hidden'
                 whileInView={'show'}
-                viewport={{ once: true, amount: 0.7 }} className=' w-fit flex flex-col my-2 '>
+                viewport={{ once: true, amount: 0.5 }} className=' w-fit flex flex-col my-2 '>
                 <div>
                   <h1 className={`  ${mode === 'dark' ? 'text-white ' : 'text-[#344161]'}  text-4xl md:text-3xl`} >My name is</h1>
                   <Link to={!isLoggedIn ? '/login' : '/dashboard/adminprofile'} className=' my-2 @apply gradient-text font-bold text-5xl md:text-[3.75rem] leading-[1.5]' >Aditya Khade</Link>
@@ -64,7 +64,7 @@ const Home = () => {
                 variants={fadeIn('up', 1)}
                 initial='hidden'
                 whileInView={'show'}
-                viewport={{ once: true, amount: 0.7 }}
+                viewport={{ once: true, amount: 0.5 }}
                 className="text-[#94a9c9]  font-mono w-fit  md:w-[22rem]">A Third Year Computer  Engineering Student at PCE, Navi-Mumbai. Primarily interested in Web Development and CP.</motion.p>
             </div>
             <MypicAnimation />

@@ -35,8 +35,8 @@ const ExpModal = (props) => {
             setExps([...exps, json.updatedData])
             showAlert('success',"Experience Updated Successfully")
 
+            setIsOpen(false)
         }
-        setIsOpen(false)
     }
     return (
         <AnimatePresence>

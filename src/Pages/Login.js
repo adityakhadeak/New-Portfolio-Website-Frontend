@@ -54,14 +54,14 @@ const Login = () => {
             <span className='text-lg w-[45px] text-[#94a9c9]'> Username</span>
             <div className={` relative border ${mode === 'dark' ? 'border-[#222f43]' : 'border-[#c2d4ee]'} rounded-[10px] w-full `}>
               <span className='absolute left-2 top-[11px]'>< BiUserCircle className='text-[#94a9c9] text-2xl' /></span>
-              <input onChange={e => handleOnChange(e)} type="text" name='username' value={credentials.username} className={`text-[#94a9c9]  px-[3rem]  ${mode === 'dark' ? 'active-input' : 'active-input-light'} bg-transparent  placeholder:text-[#94a9c9] p-3  md:w-full`} placeholder='Enter your username' />
+              <input onChange={e => handleOnChange(e)} type="text" name='username' value={credentials.username} autoComplete='username' className={`text-[#94a9c9]  px-[3rem]  ${mode === 'dark' ? 'active-input' : 'active-input-light'} bg-transparent  placeholder:text-[#94a9c9] p-3  md:w-full`} placeholder='Enter your username' />
             </div>
           </div>
           <div className={`  relative h-[60px] p-2 px-4 rounded my-8 md:w-[350px] w-[85%] flex flex-col justify-start items-start  `}>
             <span className='text-lg w-[45px] text-[#94a9c9]'>Password</span>
             <div className={` relative border ${mode === 'dark' ? 'border-[#222f43]' : 'border-[#c2d4ee]'} rounded-[10px] w-full `}>
               <span className='absolute left-2 top-[11px]'>< RiLockPasswordLine className='text-[#94a9c9] text-2xl' /></span>
-              <input onChange={e => handleOnChange(e)} type={`${showPass ? 'text' : 'password'}`} name='password' value={credentials.password} className={` text-[#94a9c9] px-[3rem]   ${mode === 'dark' ? 'active-input' : 'active-input-light'} bg-transparent placeholder:text-[#94a9c9] p-3  md:w-full`} placeholder='Enter your password' />
+              <input onChange={e => handleOnChange(e)} type={`${showPass ? 'text' : 'password'}`} name='password'  autoComplete="current-password" value={credentials.password} className={` text-[#94a9c9] px-[3rem]   ${mode === 'dark' ? 'active-input' : 'active-input-light'} bg-transparent placeholder:text-[#94a9c9] p-3  md:w-full`} placeholder='Enter your password' />
               {showPass && <span onClick={handleShowPass} className='absolute transition-all duration-500 right-2 top-[11px]'>< BiHide className='text-[#94a9c9] text-2xl' /></span>}
               {!showPass && <span onClick={handleShowPass} className='absolute transition-all duration-500 right-2 top-[11px]'>< BiShow className='text-[#94a9c9] text-2xl' /></span>}
             </div>

@@ -16,6 +16,7 @@ import Dashboard from './Pages/Dashboard';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Login from './Pages/Login';
+import FetchAll from './Components/FetchAll/FetchAll';
 
 function App() {
   const { mode } = useContext(ThemeContext)
@@ -44,6 +45,7 @@ function App() {
   
     <AlertFunction>
       <NavFixed>
+        <FetchAll>
         <Router>
           {loader ?
             <Preloader /> :
@@ -67,6 +69,7 @@ function App() {
 
           }
         </Router>
+        </FetchAll>
       </NavFixed>
       <ToastContainer
         position="bottom-center"

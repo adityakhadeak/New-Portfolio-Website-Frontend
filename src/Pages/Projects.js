@@ -1,11 +1,4 @@
-import React, { useContext } from 'react'
-import p1 from '../images/Projects/p1.png'
-import p2 from '../images/Projects/p2.png'
-import p3 from '../images/Projects/p3.png'
-import p4 from '../images/Projects/p4.png'
-import p5 from '../images/Projects/p5.png'
-import p6 from '../images/Projects/p6.png'
-import p7 from '../images/Projects/p7.png'
+import React, { useContext, useEffect } from 'react'
 import { BsGithub } from "react-icons/bs";
 import { BiLinkExternal } from "react-icons/bi";
 import '../Styles/Projects.css'
@@ -16,20 +9,27 @@ import ThemeContext from '../Context/ThemeContext';
 import NavFixContext from '../Context/NavFixContext'
 import ScrollToTopOnReload from '../CustomHooks/ScrollToTopOnReload'
 import SideLinks from '../Components/SideLinks'
+import FetchContext from '../Context/FetchContext'
 const Projects = () => {
     const {mode}=useContext(ThemeContext)
     const {isFixed}=useContext(NavFixContext)
+    const {Projects,fetchAllProjects}=useContext(FetchContext)
+
     document.title="Aditya's Portfolio | Projects"
 
   ScrollToTopOnReload()
-    const Projects = [{ title: "Movies Explorer", desc: "This a website which allows user to browse movies and tv shows. It uses TMDB api and fetches info from there and shows here.", tool: "API | HTML | CSS JS" , links: { github: "https://github.com/adityakhadeak/AK-Movies-Explorer", live: "https://adityakhadeak.github.io/AK-Movies-Explorer/" },img:p1 },
-    { title: "NoteIT Web App", desc: "This a website which allows user to save the short notes. It also uses the local storage to store the notes. Its is build with React-Reducx", tool: "React | Redux | Bootstrap", links: { github: "https://github.com/adityakhadeak/NoteIT_Web_App", live: "https://noteit-react-redux-byak.netlify.app/" },img:p2 },
-    { title: "InforMedia-News-App", desc: "This a website which allows user to read news. It is a News website build with React Js and newsapi. This was build to learn new skills and technique used in this project", tool: "React | API | Bootstrap", links: { github: "https://github.com/adityakhadeak/InforMedia-News-App", live: "https://github.com/adityakhadeak/InforMedia-News-App" },img:p3 },
-    { title: "Python Planner", desc: "This is a planner made with python. In this you can add your daily task to perform and it will give a remainder through mail", tool:  "Python | Tkinter | Figma" , links: { github: "https://github.com/adityakhadeak/Planner-Project1", live: "https://github.com/adityakhadeak/Planner-Project1" },img:p4 },
-    { title: "My Old Portfolio Site", desc: "This is my first personal website which is made by me with HTML,CSS and Javascript. This is a basic site which will be further upgraded to a advance one", tool: "HTML | CSS | Javascript" , links: { github: "https://github.com/adityakhadeak/adityakhadeak.github.io", live: "https://adityakhadeak.github.io/" }, img:p5},
-    { title: "QuikNotes", desc: "This is a cloud based note taking web app. Ii is almost similar to NoteIT site only difference is that it uses a database to store notes. I have done this project to learn the backend (MERN) Stack", tool:  "React | Mongodb | Node JS", links: { github: "https://github.com/adityakhadeak/QuikNotes-Front-End", live: "https://quiknotes.netlify.app/" },img:p6 },
-    { title: "Covid-Data-Tracker", desc: "This Page Shows the Covid cases details state wise using an API, It was build to learn how to work with api in react", tool: "React | API | Bootstrap" , links: { github: "https://github.com/adityakhadeak/Covid-Data-Tracker", live: "https://coviddataak.netlify.app/" },img:p7 }
-    ]
+    // const Projects = [{ title: "Movies Explorer", desc: "This a website which allows user to browse movies and tv shows. It uses TMDB api and fetches info from there and shows here.", tool: "API | HTML | CSS JS" , links: { github: "https://github.com/adityakhadeak/AK-Movies-Explorer", live: "https://adityakhadeak.github.io/AK-Movies-Explorer/" },img:p1 },
+    // { title: "NoteIT Web App", desc: "This a website which allows user to save the short notes. It also uses the local storage to store the notes. Its is build with React-Reducx", tool: "React | Redux | Bootstrap", links: { github: "https://github.com/adityakhadeak/NoteIT_Web_App", live: "https://noteit-react-redux-byak.netlify.app/" },img:p2 },
+    // { title: "InforMedia-News-App", desc: "This a website which allows user to read news. It is a News website build with React Js and newsapi. This was build to learn new skills and technique used in this project", tool: "React | API | Bootstrap", links: { github: "https://github.com/adityakhadeak/InforMedia-News-App", live: "https://github.com/adityakhadeak/InforMedia-News-App" },img:p3 },
+    // { title: "Python Planner", desc: "This is a planner made with python. In this you can add your daily task to perform and it will give a remainder through mail", tool:  "Python | Tkinter | Figma" , links: { github: "https://github.com/adityakhadeak/Planner-Project1", live: "https://github.com/adityakhadeak/Planner-Project1" },img:p4 },
+    // { title: "My Old Portfolio Site", desc: "This is my first personal website which is made by me with HTML,CSS and Javascript. This is a basic site which will be further upgraded to a advance one", tool: "HTML | CSS | Javascript" , links: { github: "https://github.com/adityakhadeak/adityakhadeak.github.io", live: "https://adityakhadeak.github.io/" }, img:p5},
+    // { title: "QuikNotes", desc: "This is a cloud based note taking web app. Ii is almost similar to NoteIT site only difference is that it uses a database to store notes. I have done this project to learn the backend (MERN) Stack", tool:  "React | Mongodb | Node JS", links: { github: "https://github.com/adityakhadeak/QuikNotes-Front-End", live: "https://quiknotes.netlify.app/" },img:p6 },
+    // { title: "Covid-Data-Tracker", desc: "This Page Shows the Covid cases details state wise using an API, It was build to learn how to work with api in react", tool: "React | API | Bootstrap" , links: { github: "https://github.com/adityakhadeak/Covid-Data-Tracker", live: "https://coviddataak.netlify.app/" },img:p7 }
+    // ]
+    useEffect(() => {
+        fetchAllProjects()
+        // eslint-disable-next-line
+    }, [])
         return (
         <section className='projects relative font-1'>
             <div className={`pt-[3rem] leftShadow rightShadow before:bottom-[0] after:top-[420px]  ${isFixed?"md:mt-[86px] mt-[86px]":""} md:mx-[205px] mx-8`}>
@@ -55,7 +55,7 @@ const Projects = () => {
 
                             <div className='left z-[1]    flex-1'>
                                 <div className='pro-img overflow-hidden    rounded-xl  relative' >
-                                    <img src={project.img} className='object-cover h-[13rem]' alt="project1" />
+                                    <img src={project.image} className='object-cover h-[13rem]' alt="project1" />
                                 </div>
                             </div>
 
@@ -63,7 +63,7 @@ const Projects = () => {
                                 <h1 className=' mb-3 text-xl text-[#94a9c9]  font-bold'>{project.title}</h1>
                                 <p className='text-[#a3afbf] mb-3 text-sm'>{project.desc}</p>
                                 <div className='font-mono mb-3 text-[#0dace4] '>
-                                    <p className='mr-3 text-sm text-center w-[179px]'>{project.tool}</p>
+                                    <p className='mr-3 text-sm text-center md:w-fit w-[179px]'>{project.tools}</p>
                                 </div>
                                 <div className=' flex relative right-[10px] ' >
                                 <a target='_blank' rel='noreferrer' className={`mr-2 text-xl  text-[25px] p-[10px] relative ${mode==='dark'?'text-white':'text-[#a3afbf]'}  hover:text-[#0dace4] transition-all duration-[0.25s] cursor-pointer `} href={project.links.github}><BsGithub /></a>

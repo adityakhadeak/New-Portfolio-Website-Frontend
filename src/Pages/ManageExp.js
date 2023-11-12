@@ -36,12 +36,11 @@ const handleAddexp=()=>{
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
-                "auth-token": 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjUyOTg5NjA1NjE1YjRkY2M3MTg4YWEwIn0sImlhdCI6MTY5NzI2OTgyN30.sxqnzWQB7hJNplDzraLglz88qjyR_x72mKo1OIF8wk4'
+                "auth-token": localStorage.getItem('token')
             },
             body: JSON.stringify(expData) // body data type must match "Content-Type" header
         });
         const res = await response.json()
-        console.log(res)
         if (res.success) {
             setExps([...exps,...res.data])
             setexpData([{ duration:'',title:'',company:'',techstack:'',link:'',doc:'' }])

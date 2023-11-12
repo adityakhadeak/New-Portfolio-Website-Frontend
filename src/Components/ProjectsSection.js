@@ -1,6 +1,5 @@
-import React, { useContext } from 'react'
-import p1 from '../images/Projects/p1.png'
-import p2 from '../images/Projects/p2.png'
+import React, { useContext, useEffect } from 'react'
+
 import { BsGithub } from "react-icons/bs";
 import { BiLinkExternal } from "react-icons/bi";
 import '../Styles/Projects.css'
@@ -10,12 +9,19 @@ import { Link } from 'react-router-dom';
 import '../Styles/Common.css'
 import ThemeContext from '../Context/ThemeContext';
 import GithubContributions from './GithubContributions';
+import FetchContext from '../Context/FetchContext';
 const Projects = () => {
     const {mode}=useContext(ThemeContext)
-
-    const Projects = [{ title: "Movies Explorer", desc: "This a website which allows user to browse movies and tv shows. It uses TMDB api and fetches info from there and shows here.", tool: { "1st": "API", "2nd": "HTML", "3rd": "CSS", "4th": "JS" }, links: { github: "https://github.com/adityakhadeak/AK-Movies-Explorer", live: "https://adityakhadeak.github.io/AK-Movies-Explorer/" },img:p1 },
-    { title: "NoteIT Web App", desc: "This a website which allows user to save the short notes. It also uses the local storage to store the notes. Its is build with React-Reducx", tool: { "1st": "React", "2nd": "Redux", "3rd": "Bootstrap" }, links: { github: "https://github.com/adityakhadeak/NoteIT_Web_App", live: "https://noteit-react-redux-byak.netlify.app/" },img:p2 },
-    ]
+    const {Projects,fetchAllProjects}=useContext(FetchContext)
+    // const Projects = [{ title: "Movies Explorer", desc: "This a website which allows user to browse movies and tv shows. It uses TMDB api and fetches info from there and shows here.", tool: { "1st": "API", "2nd": "HTML", "3rd": "CSS", "4th": "JS" }, links: { github: "https://github.com/adityakhadeak/AK-Movies-Explorer", live: "https://adityakhadeak.github.io/AK-Movies-Explorer/" },img:p1 },
+    // { title: "NoteIT Web App", desc: "This a website which allows user to save the short notes. It also uses the local storage to store the notes. Its is build with React-Reducx", tool: { "1st": "React", "2nd": "Redux", "3rd": "Bootstrap" }, links: { github: "https://github.com/adityakhadeak/NoteIT_Web_App", live: "https://noteit-react-redux-byak.netlify.app/" },img:p2 },
+    // ]
+const myProjects=Projects.slice(0,3)
+    useEffect(() => {
+        fetchAllProjects()
+        // eslint-disable-next-line
+    }, [])
+    
     return (
         <section className={`${mode==='dark'?'bg-[#0f172a]':'bg-[#f9fbff]'} projects relative font-1`}>
             <div className='pt-[7.5rem] leftShadow after:top-[420px] md:mx-[205px] mx-8'>
@@ -30,7 +36,7 @@ const Projects = () => {
                 </motion.div>
                 <div className=' items-con my-3 pt-7 flex justify-items-center items-center flex-col text-white' >
 
-                    {Projects.map((project,index) => (
+                    {myProjects.map((project,index) => (
                         <motion.div 
                         key={index}
                         variants={fadeIn('right', 0.4, 10)}
@@ -41,7 +47,7 @@ const Projects = () => {
 
                             <div className='left z-[1]    flex-1'>
                                 <div className='pro-img overflow-hidden    rounded-xl  relative' >
-                                    <img src={project.img} className='object-cover' alt="project1" />
+                                    <img src={project.image} className='object-cover' alt="project1" />
                                 </div>
                             </div>
 
@@ -49,10 +55,8 @@ const Projects = () => {
                                 <h1 className=' mb-3 text-xl text-[#94a9c9]  font-bold'>{project.title}</h1>
                                 <p className='text-[#a3afbf] mb-3 text-sm'>{project.desc}</p>
                                 <div className='font-mono mb-3 text-[#0dace4] flex'>
-                                    <p className='mr-3 text-sm'>{project.tool['1st']}</p>
-                                    <p className='mr-3 text-sm'>{project.tool['2nd']}</p>
-                                    <p className='mr-3 text-sm'>{project.tool['3rd']}</p>
-                                    <p className='text-sm'>{project.tool['4th']}</p>
+                                <p className='mr-3 text-sm text-center md:w-fit w-[179px]'>{project.tools}</p>
+
 
 
                                 </div>

@@ -4,7 +4,6 @@ const Modes = (props) => {
     const [mode, setMode] = useState('dark')
 
     const changeMode=()=>{
-      console.log('hi')
         if(mode==='dark')
         setMode('light')
       else

@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
+import PulseLoader from "react-spinners/PulseLoader";
 import ThemeContext from '../Context/ThemeContext'
 import '../Styles/Common.css'
 import { fadeIn } from '../Variants'
@@ -7,10 +8,10 @@ import { BASE_URL } from '../helper'
 import AlertContext from '../Context/AlertContext'
 import { useNavigate } from 'react-router-dom'
 const ManageSkill = () => {
-    const navigate=useNavigate()
+    const navigate = useNavigate()
     const { mode } = useContext(ThemeContext)
     const { showAlert } = useContext(AlertContext)
-
+    const [loading, setLoading] = useState(false)
     const [skill, setSkill] = useState('')
     const [image, setImage] = useState(null)
     const [skills, setSkills] = useState([])
@@ -23,12 +24,12 @@ const ManageSkill = () => {
         setImage(file)
     }
 
-    const token=localStorage.getItem('token')
+    const token = localStorage.getItem('token')
     useEffect(() => {
-        if ( token== null) {
+        if (token == null) {
             navigate("/login")
         }
-        else{
+        else {
             fetchAllSkills()
         }
         // eslint-disable-next-line
@@ -48,6 +49,7 @@ const ManageSkill = () => {
         }
     }
     const handleSubmit = async () => {
+        setLoading(true)
         const formData = new FormData()
         formData.append('name', skill)
         formData.append('image', image)
@@ -62,10 +64,11 @@ const ManageSkill = () => {
         const res = await response.json()
 
         if (res.success) {
-            showAlert('success', res.message)
             setSkill(' ')
             setImage(null)
             setSkills([...skills, ...res.data])
+            setLoading(false)
+            showAlert('success', res.message)
         }
 
     }
@@ -110,10 +113,23 @@ const ManageSkill = () => {
 
                     </div>
                 </form>
+                <div className='h-[40px]'>
+                    < PulseLoader
+                        color={"#0bccd3"}
+                        loading={loading}
+                        speedMultiplier={1}
+                        cssOverride={{ margin: "10px 0" }}
+                        size={10}
+                        aria-label="Loading Spinner"
+                        data-testid="loader"
+                    />
+                </div>
                 <div className='flex text-[#94a9c9]'>
+
                     <div className='m-5'>
                         <button onClick={handleSubmit} className={`p-2 w-[90px] text-base  ${mode === 'dark' ? 'hover:bg-[#222f43]' : 'hover:bg-[#e8edf5]'}  border border-cyan-400`}>Submit</button>
                     </div>
+
                 </div>
             </div>
             <section className='flex flex-col justify-center items-center'>

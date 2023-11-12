@@ -23,7 +23,7 @@ const EduDetails = (props) => {
             fetchEdus()
         }
         // eslint-disable-next-line
-    }, [])
+    }, [isOpen])
   
     const fetchEdus = async () => {
         const response = await fetch(`${BASE_URL}/api/edu/fetchedu`, {

@@ -24,7 +24,7 @@ const ExpDetails = (props) => {
             fetchExps()
         }
         // eslint-disable-next-line
-    }, [])
+    }, [isOpen])
   
 
 

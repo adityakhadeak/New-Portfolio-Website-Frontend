@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import '../Styles/AboutSection.css'
 import '../Styles/Common.css'
 import ThemeContext from '../Context/ThemeContext'
@@ -6,14 +6,21 @@ import abtImg from "../images/about.png"
 import { motion } from 'framer-motion'
 import { fadeIn } from '../Variants'
 import { Link } from 'react-router-dom'
+import FetchContext from '../Context/FetchContext'
 const AboutSection = () => {
     const {mode}=useContext(ThemeContext)
-    const abtMe = [{ "para": "👋 Hi there,🌐 I'm a third-year computer engineering student who's passionate about crafting websites. I'm familiar with HTML, CSS, and JavaScript. Additionally, I work with the MERN stack (MongoDB, Express.js, React, Node.js) and have some exposure to MySQL.", "animIn": 0.5 },
-    { "para": "🧠 When I'm not building websites, you can find me tackling coding challenges on platforms like LeetCode. I enjoy sharpening my problem-solving skills and thinking algorithmically.", "animIn": 0.6 },
-    { "para": "🛠️ While I'm still on my journey, I've worked on various projects that have helped me grasp the essentials of web development, especially in learning React. Each project has been a stepping stone in my growth as a developer.", "animIn": 0.7 },
-    { "para": "🚀 I'm committed to continuous learning, always seeking out new technologies and challenges. My path is all about progress and exploration.", "animIn": 0.7 },
-    { "para": "🛠️ Curious to see some of my work? Take a look at my portfolio!", "animIn": 0.8 }
-    ]
+    const {Paras,fetchAboutParas}=useContext(FetchContext)
+    // const abtMe = [{ "para": "👋 Hi there,🌐 I'm a third-year computer engineering student who's passionate about crafting websites. I'm familiar with HTML, CSS, and JavaScript. Additionally, I work with the MERN stack (MongoDB, Express.js, React, Node.js) and have some exposure to MySQL.", "animIn": 0.5 },
+    // { "para": "🧠 When I'm not building websites, you can find me tackling coding challenges on platforms like LeetCode. I enjoy sharpening my problem-solving skills and thinking algorithmically.", "animIn": 0.6 },
+    // { "para": "🛠️ While I'm still on my journey, I've worked on various projects that have helped me grasp the essentials of web development, especially in learning React. Each project has been a stepping stone in my growth as a developer.", "animIn": 0.7 },
+    // { "para": "🚀 I'm committed to continuous learning, always seeking out new technologies and challenges. My path is all about progress and exploration.", "animIn": 0.7 },
+    // { "para": "🛠️ Curious to see some of my work? Take a look at my portfolio!", "animIn": 0.8 }
+    // ]
+    useEffect(() => {
+        fetchAboutParas()
+         // eslint-disable-next-line
+    }, [])
+    
     return (
         <>
             <section className='aboutsection'>
@@ -30,7 +37,7 @@ const AboutSection = () => {
                         </motion.div>
                         <div className='  flex md:flex-wrap-reverse flex-col-reverse md:flex-row justify-between  items-center'>
                             <div className='text-[#94a9c9] my-5 w-[fit] leading-7  font-mono'>
-                                {abtMe.map((para,index) => {
+                                {Paras.map((para,index) => {
                                     return <motion.p key={index} variants={fadeIn('up', para.animIn)}
                                         initial='hidden'
                                         whileInView={'show'}

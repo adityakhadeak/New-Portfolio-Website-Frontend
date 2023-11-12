@@ -6,43 +6,46 @@ import { motion } from 'framer-motion'
 import { BASE_URL } from '../helper'
 import AlertContext from '../Context/AlertContext'
 import { useNavigate } from 'react-router-dom'
+import Loader from '../Components/Loader';
 const ManageMsgs = () => {
-    const navigate =useNavigate()
+    const navigate = useNavigate()
     const { mode } = useContext(ThemeContext)
-    const {showAlert}=useContext(AlertContext)
+    const [loading, setLoading] = useState(false)
+    const { showAlert } = useContext(AlertContext)
     const [messages, setMessages] = useState([])
 
-    const token=localStorage.getItem('token')
+    const token = localStorage.getItem('token')
 
     useEffect(() => {
-        if ( token== null) {
+        if (token == null) {
             navigate("/login")
         }
-        else{
+        else {
             fetchAllMessages()
         }
         // eslint-disable-next-line
     }, [])
-   
+
     const fetchAllMessages = async () => {
 
         const response = await fetch(`${BASE_URL}/api/contact/fetchallmsg`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
-                "auth-token": 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjUyOTg5NjA1NjE1YjRkY2M3MTg4YWEwIn0sImlhdCI6MTY5NzI2OTgyN30.sxqnzWQB7hJNplDzraLglz88qjyR_x72mKo1OIF8wk4'
+                "auth-token": localStorage.getItem('token')
             }
         })
         const res = await response.json()
         if (res.success) {
             setMessages(res.data)
         }
-        else if(res.message==="Token has expired"){
+        else if (res.message === "Token has expired") {
             localStorage.removeItem("token")
             navigate("/login")
         }
     }
     const handleMsgDelete = async (id) => {
+        setLoading(true)
         const response = await fetch(`${BASE_URL}/api/contact/deletemsg/${id}`, {
             method: "DELETE",
             headers: {
@@ -52,11 +55,15 @@ const ManageMsgs = () => {
         })
         const res = await response.json()
         if (res.success) {
-            showAlert("success",res.message)
+            showAlert("success", res.message)
             setMessages(messages.filter(message => message._id !== id))
+            setLoading(false)
+
         }
         else {
-            showAlert("error",res.message)
+            showAlert("error", res.message)
+            setLoading(false)
+
         }
     }
     return (
@@ -84,7 +91,7 @@ const ManageMsgs = () => {
                                 variants={fadeIn('left', `0.4${index}`, 10)}
                                 initial='hidden'
                                 whileInView={'show'}
-                                viewport={{ once: true, amount: 0.7 }}
+                                viewport={{ once: true, amount: 0.5 }}
                                 key={index} className=' w-[295px] md:w-[500px] bg-[#131c31] p-3 rounded-lg my-5 font-mono'>
                                 <h3>Message-{index + 1}</h3>
                                 <div className='flex justify-start flex-col my-3 '>
@@ -111,6 +118,8 @@ const ManageMsgs = () => {
                         ))
                         }
                     </div>)
+                }
+                {loading && <Loader loading={loading}/>
                 }
             </section>
         </>

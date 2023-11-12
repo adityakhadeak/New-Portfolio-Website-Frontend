@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
+import PulseLoader from "react-spinners/PulseLoader";
 import ThemeContext from '../Context/ThemeContext'
 import '../Styles/Common.css'
 import { fadeIn } from '../Variants'
@@ -8,8 +9,9 @@ import CerModal from '../Components/Admin/CerModal'
 import AlertContext from '../Context/AlertContext'
 import { useNavigate } from 'react-router-dom'
 const ManageCer = () => {
-    const navigate=useNavigate()
+    const navigate = useNavigate()
     const { mode } = useContext(ThemeContext)
+    const [loading, setLoading] = useState(false)
     const { showAlert } = useContext(AlertContext)
     const [cerData, setcerData] = useState([{ title: '', desc: '', date: '', platform: '', label: '', doc: '' }])
     const [cers, setCers] = useState([])
@@ -18,13 +20,13 @@ const ManageCer = () => {
     const [isOpen, setIsOpen] = useState(false)
 
 
-    const token=localStorage.getItem('token')
+    const token = localStorage.getItem('token')
 
     useEffect(() => {
-        if ( token== null) {
+        if (token == null) {
             navigate("/login")
         }
-        else{
+        else {
             fetchAboutCers()
         }
         // eslint-disable-next-line
@@ -45,8 +47,6 @@ const ManageCer = () => {
     }
 
     const handleCerDelete = async (id) => {
-        console.log("CAlled")
-        console.log(id)
         const response = await fetch(`${BASE_URL}/api/cer/deletecer/${id}`, {
             method: "DELETE",
             headers: {
@@ -82,7 +82,7 @@ const ManageCer = () => {
     }
 
     const handleSubmit = async () => {
-
+        setLoading(true)
         const response = await fetch(`http://localhost:5000/api/cer/addcertificate`, {
             method: "POST",
             headers: {
@@ -96,7 +96,8 @@ const ManageCer = () => {
         if (res.success) {
             setCers([...cers, ...res.data])
             setcerData([{ title: '', desc: '', date: '', platform: '', label: '', doc: '' }])
-            showAlert('success',"Certificate details Added")
+            setLoading(false)
+            showAlert('success', "Certificate details Added")
         }
     }
     return (
@@ -154,7 +155,16 @@ const ManageCer = () => {
                         <button onClick={handleAddexp} className={`p-2 w-[90px] text-base  ${mode === 'dark' ? 'hover:bg-[#222f43]' : 'hover:bg-[#e8edf5]'}  border border-cyan-400`}>Add More </button>
                     </div>
                     <div className='m-5'>
-                        <button onClick={handleSubmit} className={`p-2 w-[90px] text-base  ${mode === 'dark' ? 'hover:bg-[#222f43]' : 'hover:bg-[#e8edf5]'}  border border-cyan-400`}>Submit</button>
+                        {loading ? < PulseLoader
+                            color={"#0bccd3"}
+                            loading={loading}
+                            speedMultiplier={1}
+                            cssOverride={{ margin: "10px 0" }}
+                            size={10}
+                            aria-label="Loading Spinner"
+                            data-testid="loader"
+                        /> : <button onClick={handleSubmit} className={`p-2 w-[90px] text-base  ${mode === 'dark' ? 'hover:bg-[#222f43]' : 'hover:bg-[#e8edf5]'}  border border-cyan-400`}>Submit</button>
+                        }
                     </div>
                 </div>
             </div>

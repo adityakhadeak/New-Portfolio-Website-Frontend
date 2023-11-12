@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
 import ThemeContext from '../Context/ThemeContext'
+import PulseLoader from "react-spinners/PulseLoader";
 import '../Styles/Common.css'
 import { fadeIn } from '../Variants'
 import { motion } from 'framer-motion'
@@ -10,6 +11,7 @@ import { useNavigate } from 'react-router-dom'
 const ManageProject = () => {
     const navigate=useNavigate()
     const { mode } = useContext(ThemeContext)
+    const [loading, setLoading] = useState(false)
     const { showAlert } = useContext(AlertContext)
     const [projectData, setProjectData] = useState({ title: '', desc: '', tools: '', github: '', live: '' })
     const [image, setImage] = useState(null)
@@ -49,6 +51,7 @@ const ManageProject = () => {
         }
     }
     const handleSubmit = async () => {
+        setLoading(true)
         const formData = new FormData()
         formData.append('title', projectData.title)
         formData.append('desc', projectData.desc)
@@ -68,10 +71,11 @@ const ManageProject = () => {
         console.log(res)
         if(res.success)
         {
-            showAlert('success',res.message)
-         setProjectData({ title: '', desc: '', tools: '', github: '', live: '' })
+        showAlert('success',res.message)
+        setProjectData({ title: '', desc: '', tools: '', github: '', live: '' })
         setImage(null)
         setProjects([...projects,...res.data])
+        setLoading(false)
         }
         
     }
@@ -119,7 +123,19 @@ const ManageProject = () => {
                 </form>
                 <div className='flex text-[#94a9c9]'>
                     <div className='m-5'>
-                        <button onClick={handleSubmit} className={`p-2 w-[90px] text-base  ${mode === 'dark' ? 'hover:bg-[#222f43]' : 'hover:bg-[#e8edf5]'}  border border-cyan-400`}>Submit</button>
+
+                    {loading ? < PulseLoader
+                            color={"#0bccd3"}
+                            loading={loading}
+                            speedMultiplier={1}
+                            cssOverride={{ margin: "10px 0" }}
+                            size={10}
+                            aria-label="Loading Spinner"
+                            data-testid="loader"
+                        /> :<button onClick={handleSubmit} className={`p-2 w-[90px] text-base  ${mode === 'dark' ? 'hover:bg-[#222f43]' : 'hover:bg-[#e8edf5]'}  border border-cyan-400`}>Submit</button>
+
+                        }
+                    
                     </div>
                 </div>
             </div>

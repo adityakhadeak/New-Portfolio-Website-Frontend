@@ -1,14 +1,22 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { fadeIn } from '../Variants'
 import { motion } from 'framer-motion'
 import expImg from '../images/exp.png'
 import ThemeContext from '../Context/ThemeContext'
 
 import '../Styles/Common.css'
+import FetchContext from '../Context/FetchContext'
 const ExpSection = () => {
     const {mode}=useContext(ThemeContext)
-    const myExp = [{ "duration": "Feb 2023 to May 2023", "title": "Full Stack Web Development", "company": "Innomatics Research Labs", "techStack": "HTML5, CSS, Javascript, ReactJs, MongoDb, NodeJs, Express etc..", "link": "https://www.innomatics.in/", "doc": "https://drive.google.com/file/d/13iEc0lBA2MDqyjVxDK45X4NfO3gc6xdz/view?usp=drive_link" }
-    ]
+    const {Exps,fetchExps}=useContext(FetchContext)
+
+    // const myExp = [{ "duration": "Feb 2023 to May 2023", "title": "Full Stack Web Development", "company": "Innomatics Research Labs", "techStack": "HTML5, CSS, Javascript, ReactJs, MongoDb, NodeJs, Express etc..", "link": "https://www.innomatics.in/", "doc": "https://drive.google.com/file/d/13iEc0lBA2MDqyjVxDK45X4NfO3gc6xdz/view?usp=drive_link" }
+    // ]
+
+    useEffect(() => {
+        fetchExps()
+        // eslint-disable-next-line
+       }, [])
     return (
         <div>
             <div className={`${mode==='dark'?'bg-[#0f172a]':'bg-[#f9fbff]'} font-1 relative`}>
@@ -26,7 +34,7 @@ const ExpSection = () => {
                         
                         <div className='timeLine  relative w-fit  z-[2] items-center justify-center flex flex-col ml-4' >
                             {
-                                myExp.map((exp,index) => (
+                                Exps.map((exp,index) => (
                                     <motion.div
                                     key={index}
                                         variants={fadeIn('right', 0.4, 10)}
@@ -37,7 +45,7 @@ const ExpSection = () => {
                                         <h4 className='text-[#66768d] text-sm @apply gradient-text font-bold'>{exp.duration}</h4>
                                         <h2 className={` ${mode==='dark'?'text-[#b9e0f2]':'text-[#1cc2e7]'} text-xl font-bold`}>{exp.title}</h2>
                                         <a href={exp.link} rel="noreferrer" target='_blank' className={` font-mono  ${mode==='dark'?'text-[#b9e0f2]':'text-[#0dace4]'} text-[17px] hover:text-[#0ea0e4] transition-all duration-75`}>{exp.company}</a>
-                                        <h3 className='font-mono text-[15px]'>{exp.techStack}</h3>
+                                        <h3 className='font-mono text-[15px]'>{exp.techstack}</h3>
                                         <a href={exp.doc} target='_blank' rel="noreferrer" className='text-[#0ea0e4] font-mono'>Certificate</a>
                                     </motion.div>
 

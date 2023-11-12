@@ -1,14 +1,21 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { fadeIn } from '../Variants'
 import { motion } from 'framer-motion'
 import eduImg from '../images/edu.png'
 import '../Styles/Common.css'
 import ThemeContext from '../Context/ThemeContext'
+import FetchContext from '../Context/FetchContext'
 const ExSection = () => {
   const {mode}=useContext(ThemeContext)
-  const myEdu = [{ "year": "2021-2025", "clg": "Pillai College Of Engineering", "edu": "Btech in Computer Engineering", "sts": "Currently in Third Year. Building Projects", "link": "https://www.pce.ac.in/" },
-  { "year": "2019-2021", "clg": "Pace IIT & Medical Institute", "edu": "Senior Secondary Education", "sts": "Completed in 2021 with 92% in 12th", "link": "https://oldwebsite.iitianspace.com/" },
-  { "year": "2010-2019", "clg": "Holy Writ High School", "edu": "Seconday Education", "sts": "Completed in 2019 with 92% in 10th (CBSE)", "link": "https://holywritschool.in/" }]
+  const {Edus,fetchEdus}=useContext(FetchContext)
+  // const myEdu = [{ "year": "2021-2025", "clg": "Pillai College Of Engineering", "edu": "Btech in Computer Engineering", "sts": "Currently in Third Year. Building Projects", "link": "https://www.pce.ac.in/" },
+  // { "year": "2019-2021", "clg": "Pace IIT & Medical Institute", "edu": "Senior Secondary Education", "sts": "Completed in 2021 with 92% in 12th", "link": "https://oldwebsite.iitianspace.com/" },
+  // { "year": "2010-2019", "clg": "Holy Writ High School", "edu": "Seconday Education", "sts": "Completed in 2019 with 92% in 10th (CBSE)", "link": "https://holywritschool.in/" }]
+  useEffect(() => {
+   fetchEdus()
+   // eslint-disable-next-line
+  }, [])
+  
   return (
     <div className={`  ${mode==='dark'?'bg-[#0f172a]':'bg-[#f9fbff]'} edusection `}>
       <div className='pt-[7.5rem] md:mx-[205px] mx-8 font-1'>
@@ -32,7 +39,7 @@ const ExSection = () => {
           </motion.div>
           <div className='timeLine relative w-fit items-center z-[2] justify-center flex flex-col ml-4' >
             {
-              myEdu.map((edu,index) => (
+              Edus.map((edu,index) => (
                 <motion.div
                 key={index}
                   variants={fadeIn('left', 0.3, 10)}

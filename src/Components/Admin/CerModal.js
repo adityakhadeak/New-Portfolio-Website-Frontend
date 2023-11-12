@@ -1,4 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react'
+import PulseLoader from "react-spinners/PulseLoader";
 import { RxCross2 } from "react-icons/rx";
 import { AnimatePresence, motion } from 'framer-motion';
 import ThemeContext from '../../Context/ThemeContext.js'
@@ -8,6 +9,7 @@ import AlertContext from '../../Context/AlertContext.js';
 const CerModal = (props) => {
     const { cers, setCers, setIsOpen, selectedCer, isOpen } = props
     const { mode } = useContext(ThemeContext)
+    const [loading, setLoading] = useState(false)
     const { showAlert } = useContext(AlertContext)
     const [updateCer, setUpdateCer] = useState({ title: '', desc: '', date: '', platform: '', label: '', doc: ''})
 
@@ -20,8 +22,7 @@ const CerModal = (props) => {
         setUpdateCer({ ...updateCer, [e.target.name]: e.target.value })
     }
     const handleUpdatePara = async () => {
-        console.log("gii")
-        console.log(selectedCer.id)
+        setLoading(true)
         const response = await fetch(`${BASE_URL}/api/cer/updatecertificate/${selectedCer.id}`, {
             method: "PUT",
             headers: {
@@ -36,9 +37,9 @@ const CerModal = (props) => {
             setCers(cers.filter(para1 => para1._id !== selectedCer.id))
             setCers([...cers, json.updatedData])
             showAlert('success',"Certificate Updated Successfully")
-
+            setLoading(false)
+            setIsOpen(false)
         }
-        setIsOpen(false)
     }
     return (
         <AnimatePresence>
@@ -85,7 +86,17 @@ const CerModal = (props) => {
                         </div>
 
                         <div className='m-5 flex justify-center items-center'>
-                            <button onClick={() => handleUpdatePara()} className={`p-2 w-[90px] text-base  ${mode === 'dark' ? 'hover:bg-[#222f43]' : 'hover:bg-[#e8edf5]'}  border border-cyan-400`}>Update</button>
+                        {loading?< PulseLoader
+                        color={"#0bccd3"}
+                        loading={loading}
+                        speedMultiplier={1}
+                        cssOverride={{ margin: "10px 0" }}
+                        size={10}
+                        aria-label="Loading Spinner"
+                        data-testid="loader"
+                    />: <button onClick={() => handleUpdatePara()} className={`p-2 w-[90px] text-base  ${mode === 'dark' ? 'hover:bg-[#222f43]' : 'hover:bg-[#e8edf5]'}  border border-cyan-400`}>Update</button>
+
+                    }
                         </div>
                     </div>
 

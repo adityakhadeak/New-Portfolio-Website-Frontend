@@ -43,8 +43,6 @@ const ManageAbout = () => {
     }
 
     const handleParaDelete = async (id) => {
-        console.log("CAlled")
-        console.log(id)
         const response = await fetch(`${BASE_URL}/api/about/deleteabout/${id}`, {
             method: "DELETE",
             headers: {
