@@ -5,13 +5,13 @@ import { fadeIn } from '../Variants'
 import { motion } from 'framer-motion'
 import ExpDetails from '../Components/Admin/ExpDetails'
 import AlertContext from '../Context/AlertContext'
+import { BASE_URL } from '../helper'
 const ManageExp = () => {
     const { mode } = useContext(ThemeContext)
     const { showAlert } = useContext(AlertContext)
-
+    document.title="Aditya's Portfolio | Manage Experience"
     const [expData, setexpData] = useState([{ duration:'',title:'',company:'',techstack:'',link:'',doc:'' }])
     const [exps, setExps] = useState([])
-
     const [isOpen, setIsOpen] = useState(false)
 
     const handleRemoveexp = (index) => {
@@ -32,7 +32,7 @@ const handleAddexp=()=>{
 
     const handleSubmit = async () => {
 
-        const response = await fetch(`http://localhost:5000/api/exp/addexp`, {
+        const response = await fetch(`${BASE_URL}/api/exp/addexp`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

@@ -16,7 +16,7 @@ const ManageProject = () => {
     const [projectData, setProjectData] = useState({ title: '', desc: '', tools: '', github: '', live: '' })
     const [image, setImage] = useState(null)
     const [projects, setProjects] = useState([])
-
+    document.title="Aditya's Portfolio | Manage Projects"
     const handleOnChange = (name, value) => {
         const data = { ...projectData, [name]: value }
         setProjectData(data)
@@ -42,7 +42,6 @@ const ManageProject = () => {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
-                "auth-token": 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjUyOTg5NjA1NjE1YjRkY2M3MTg4YWEwIn0sImlhdCI6MTY5NzI2OTgyN30.sxqnzWQB7hJNplDzraLglz88qjyR_x72mKo1OIF8wk4'
             }
         })
         const res = await response.json()
@@ -63,8 +62,7 @@ const ManageProject = () => {
         const response = await fetch(`${BASE_URL}/api/project/addproject`, {
             method: "POST",
             headers: {
-                "auth-token": 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjUyOTg5NjA1NjE1YjRkY2M3MTg4YWEwIn0sImlhdCI6MTY5NzI2OTgyN30.sxqnzWQB7hJNplDzraLglz88qjyR_x72mKo1OIF8wk4'
-            },
+                "auth-token": localStorage.getItem('token')},
             body: formData
         });
         const res = await response.json()

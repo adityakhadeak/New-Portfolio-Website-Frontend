@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import '../Styles/AboutSection.css'
 import SideLinks from '../Components/SideLinks'
 import { motion } from 'framer-motion'
@@ -9,17 +9,22 @@ import ExSection from '../Components/EduSection'
 import ExpSection from '../Components/ExpSection'
 import ThemeContext from '../Context/ThemeContext'
 import NavFixContext from '../Context/NavFixContext'
+import FetchContext from '../Context/FetchContext'
 const About = () => {
     const {mode}=useContext(ThemeContext)
     const {isFixed}=useContext(NavFixContext)
+    const {Paras,fetchAboutParas}=useContext(FetchContext)
     ScrollToTopOnReload()  
-    const abtMe = [{ "para": "👋 Hi there,🌐 I'm a third-year computer engineering student who's passionate about crafting websites. I'm familiar with HTML, CSS, and JavaScript. Additionally, I work with the MERN stack (MongoDB, Express.js, React, Node.js) and have some exposure to MySQL.", "animIn": 0.5 },
-    { "para": "🧠 When I'm not building websites, you can find me tackling coding challenges on platforms like LeetCode. I enjoy sharpening my problem-solving skills and thinking algorithmically.", "animIn": 0.6 },
-    { "para": "🛠️ While I'm still on my journey, I've worked on various projects that have helped me grasp the essentials of web development, especially in learning React. Each project has been a stepping stone in my growth as a developer.", "animIn": 0.7 },
-    { "para": "🚀 I'm committed to continuous learning, always seeking out new technologies and challenges. My path is all about progress and exploration.", "animIn": 0.7 },
-
-    document.title="Aditya's Portfolio | About"
-]
+//     const abtMe = [{ "para": "👋 Hi there,🌐 I'm a third-year computer engineering student who's passionate about crafting websites. I'm familiar with HTML, CSS, and JavaScript. Additionally, I work with the MERN stack (MongoDB, Express.js, React, Node.js) and have some exposure to MySQL.", "animIn": 0.5 },
+//     { "para": "🧠 When I'm not building websites, you can find me tackling coding challenges on platforms like LeetCode. I enjoy sharpening my problem-solving skills and thinking algorithmically.", "animIn": 0.6 },
+//     { "para": "🛠️ While I'm still on my journey, I've worked on various projects that have helped me grasp the essentials of web development, especially in learning React. Each project has been a stepping stone in my growth as a developer.", "animIn": 0.7 },
+//     { "para": "🚀 I'm committed to continuous learning, always seeking out new technologies and challenges. My path is all about progress and exploration.", "animIn": 0.7 },
+// ]
+useEffect(() => {
+    fetchAboutParas()
+     // eslint-disable-next-line
+}, [])
+document.title="Aditya's Portfolio | About"
     return (
         <>
             <section className='aboutsection'>
@@ -36,7 +41,7 @@ const About = () => {
                         </motion.div>
                         <div className='  flex md:flex-wrap-reverse flex-col-reverse md:flex-row justify-between  md:items-end items-center'>
                             <div className='text-[#94a9c9] my-5 w-[fit] leading-7  font-mono'>
-                                {abtMe.map((para) => {
+                                {Paras.map((para) => {
                                     return <motion.p variants={fadeIn('up', para.animIn)}
                                         initial='hidden'
                                         whileInView={'show'}

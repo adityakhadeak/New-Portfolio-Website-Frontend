@@ -8,20 +8,21 @@ import AboutModal from '../Components/Admin/AboutModal'
 import AlertContext from '../Context/AlertContext'
 import { useNavigate } from 'react-router-dom'
 const ManageAbout = () => {
-    const navigate=useNavigate()
+    const navigate = useNavigate()
     const { mode } = useContext(ThemeContext)
     const { showAlert } = useContext(AlertContext)
+    document.title="Aditya's Portfolio | Manage About"
 
     const [aboutData, setaboutData] = useState([{ para: "" }])
     const [paras, setParas] = useState([])
     const [selectedPara, setSelectedPara] = useState({ para: "", id: "" })
     const [isOpen, setIsOpen] = useState(false)
-    const token=localStorage.getItem('token')
+    const token = localStorage.getItem('token')
     useEffect(() => {
-        if ( token== null) {
+        if (token == null) {
             navigate("/login")
         }
-        else{
+        else {
             fetchAboutParas()
         }
         // eslint-disable-next-line
@@ -32,14 +33,13 @@ const ManageAbout = () => {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
-                "auth-token": 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjUyOTg5NjA1NjE1YjRkY2M3MTg4YWEwIn0sImlhdCI6MTY5NzI2OTgyN30.sxqnzWQB7hJNplDzraLglz88qjyR_x72mKo1OIF8wk4'
             }
         })
         const res = await response.json()
         if (res.success) {
             setParas(res.data)
         }
-        
+
     }
 
     const handleParaDelete = async (id) => {
@@ -47,13 +47,13 @@ const ManageAbout = () => {
             method: "DELETE",
             headers: {
                 "Content-Type": "application/json",
-                "auth-token": 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjUyOTg5NjA1NjE1YjRkY2M3MTg4YWEwIn0sImlhdCI6MTY5NzI2OTgyN30.sxqnzWQB7hJNplDzraLglz88qjyR_x72mKo1OIF8wk4'
+                "auth-token": localStorage.getItem('token')
             }
         })
 
         const json = await response.json()
         if (json.success) {
-            showAlert('success',"Paragraph Delete Successfully")
+            showAlert('success', "Paragraph Delete Successfully")
             setParas(paras.filter(para => para._id !== id))
         }
     }
@@ -77,17 +77,17 @@ const ManageAbout = () => {
         setaboutData(data)
     }
     const handleSubmit = async () => {
-        const response = await fetch(`http://localhost:5000/api/about/addabout`, {
+        const response = await fetch(`${BASE_URL}/api/about/addabout`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
-                "auth-token": 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjUyOTg5NjA1NjE1YjRkY2M3MTg4YWEwIn0sImlhdCI6MTY5NzI2OTgyN30.sxqnzWQB7hJNplDzraLglz88qjyR_x72mKo1OIF8wk4'
+                "auth-token": localStorage.getItem('token')
             },
             body: JSON.stringify(aboutData) // body data type must match "Content-Type" header
         });
         const res = await response.json()
         if (res.success) {
-            showAlert('success',"Paragraphs Added Successfully")
+            showAlert('success', "Paragraphs Added Successfully")
             setParas([...paras, ...res.data])
         }
         setaboutData([{ para: "" }])

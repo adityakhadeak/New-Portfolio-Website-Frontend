@@ -14,6 +14,7 @@ const AdminProfile = () => {
     const [userInfo, setUserInfo] = useState({})
     const [isOpen, setIsOpen] = useState(false)
     const token=localStorage.getItem('token')
+    document.title="Aditya's Portfolio | Admin Profile"
     useEffect(() => {
         if ( token== null) {
             navigate("/login")

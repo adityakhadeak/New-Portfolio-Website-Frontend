@@ -13,6 +13,7 @@ const Login = () => {
   const { showAlert } = useContext(AlertContext)
   const [credentials, setCredentials] = useState({ username: "", password: "" })
   const [showPass, setShowPass] = useState(false)
+  document.title="Aditya's Portfolio | Admin Login"
 
   const handleShowPass = () => {
     setShowPass(!showPass)
@@ -30,7 +31,6 @@ const Login = () => {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "auth-token": 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjUyOTg5NjA1NjE1YjRkY2M3MTg4YWEwIn0sImlhdCI6MTY5NzI2OTgyN30.sxqnzWQB7hJNplDzraLglz88qjyR_x72mKo1OIF8wk4'
         },
         body: JSON.stringify(credentials)
       });

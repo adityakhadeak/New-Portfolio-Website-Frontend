@@ -16,7 +16,7 @@ const ManageCer = () => {
     const [cerData, setcerData] = useState([{ title: '', desc: '', date: '', platform: '', label: '', doc: '' }])
     const [cers, setCers] = useState([])
     const [selectedCer, setSelectedCer] = useState({ title: '', desc: '', date: '', platform: '', label: '', doc: '', id: "" })
-
+    document.title="Aditya's Portfolio | Manage Certificates"
     const [isOpen, setIsOpen] = useState(false)
 
 
@@ -37,7 +37,6 @@ const ManageCer = () => {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
-                "auth-token": 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjUyOTg5NjA1NjE1YjRkY2M3MTg4YWEwIn0sImlhdCI6MTY5NzI2OTgyN30.sxqnzWQB7hJNplDzraLglz88qjyR_x72mKo1OIF8wk4'
             }
         })
         const res = await response.json()
@@ -51,7 +50,7 @@ const ManageCer = () => {
             method: "DELETE",
             headers: {
                 "Content-Type": "application/json",
-                "auth-token": 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjUyOTg5NjA1NjE1YjRkY2M3MTg4YWEwIn0sImlhdCI6MTY5NzI2OTgyN30.sxqnzWQB7hJNplDzraLglz88qjyR_x72mKo1OIF8wk4'
+                "auth-token": localStorage.getItem('token')
             }
         })
 
@@ -83,11 +82,11 @@ const ManageCer = () => {
 
     const handleSubmit = async () => {
         setLoading(true)
-        const response = await fetch(`http://localhost:5000/api/cer/addcertificate`, {
+        const response = await fetch(`${BASE_URL}/api/cer/addcertificate`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
-                "auth-token": 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjUyOTg5NjA1NjE1YjRkY2M3MTg4YWEwIn0sImlhdCI6MTY5NzI2OTgyN30.sxqnzWQB7hJNplDzraLglz88qjyR_x72mKo1OIF8wk4'
+                "auth-token": localStorage.getItem('token')
             },
             body: JSON.stringify(cerData) // body data type must match "Content-Type" header
         });

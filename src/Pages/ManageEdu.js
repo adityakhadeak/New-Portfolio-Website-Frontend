@@ -5,13 +5,14 @@ import { fadeIn } from '../Variants'
 import { motion } from 'framer-motion'
 import EduDetails from '../Components/Admin/EduDetails'
 import AlertContext from '../Context/AlertContext'
+import { BASE_URL } from '../helper'
 const ManageEdu = () => {
     const { mode } = useContext(ThemeContext)
     const { showAlert } = useContext(AlertContext)
     const [eduData, seteduData] = useState([{ year:'',clg:'',edu:'',sts:'',link:'' }])
     const [edus, setEdus] = useState([])
     const [isOpen, setIsOpen] = useState(false)
-
+    document.title="Aditya's Portfolio | Manage Education"
     const handleRemoveEdu = (index) => {
         const value = [...eduData]
         value.splice(index, 1)
@@ -29,13 +30,12 @@ const handleAddEdu=()=>{
 }
 
     const handleSubmit = async () => {
-        const response = await fetch(`http://localhost:5000/api/edu/addedu`, {
+        const response = await fetch(`${BASE_URL}/api/edu/addedu`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
-
-                "auth-token": 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjUyOTg5NjA1NjE1YjRkY2M3MTg4YWEwIn0sImlhdCI6MTY5NzI2OTgyN30.sxqnzWQB7hJNplDzraLglz88qjyR_x72mKo1OIF8wk4'
-            },
+                "auth-token": localStorage.getItem('token')
+             },
              body: JSON.stringify(eduData) // body data type must match "Content-Type" header
         });
         const res = await response.json()

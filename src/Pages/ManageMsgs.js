@@ -13,7 +13,7 @@ const ManageMsgs = () => {
     const [loading, setLoading] = useState(false)
     const { showAlert } = useContext(AlertContext)
     const [messages, setMessages] = useState([])
-
+    document.title="Aditya's Portfolio | Manage Messages"
     const token = localStorage.getItem('token')
 
     useEffect(() => {
@@ -50,7 +50,7 @@ const ManageMsgs = () => {
             method: "DELETE",
             headers: {
                 "Content-Type": "application/json",
-                "auth-token": 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjUyOTg5NjA1NjE1YjRkY2M3MTg4YWEwIn0sImlhdCI6MTY5NzI2OTgyN30.sxqnzWQB7hJNplDzraLglz88qjyR_x72mKo1OIF8wk4'
+                "auth-token": localStorage.getItem('token')
             }
         })
         const res = await response.json()
