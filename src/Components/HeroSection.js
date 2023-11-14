@@ -9,21 +9,29 @@ import '../Styles/Home.css'
 import SideLinks from './SideLinks'
 import { MypicAnimation } from './MypicAnimation'
 import NavFixContext from '../Context/NavFixContext';
+import FetchContext from '../Context/FetchContext';
 
 const Home = () => {
   const { mode } = useContext(ThemeContext)
+  const {  UserDetails,fetchUserDetails } = useContext(FetchContext)
   const { isFixed } = useContext(NavFixContext)
   const [isLoggedIn, setIsLoggedIn] = useState(false)
-  
-    useEffect(() => {
-      if (localStorage.getItem('token') == null) {
-        setIsLoggedIn(false)      }
-      else {
-        setIsLoggedIn(true)      
-      }
-      // eslint-disable-next-line
+
+  useEffect(() => {
+    fetchUserDetails()
+    if (localStorage.getItem('token') == null) {
+      setIsLoggedIn(false)
+    }
+    else {
+      setIsLoggedIn(true)
+    }
+    // eslint-disable-next-line
   }, [])
- 
+  
+  const userName = UserDetails[0]?.name || 'Aditya Khade';
+  const userProf1 = UserDetails[0]?.prof['1st'] || 'Web Developer';
+  const userProf2 = UserDetails[0]?.prof['2nd'] || 'Code Enthusiast';
+  const userProf3 = UserDetails[0]?.prof['3nd'] || 'Learner';
 
   return (
     <>
@@ -40,16 +48,19 @@ const Home = () => {
                 variants={fadeIn('up', 0.9)}
                 initial='hidden'
                 whileInView={'show'}
-                viewport={{ once: true, amount: 0.5 }} className=' w-fit flex flex-col my-2 '>
+                viewport={{ once: true, amount: 0.5 }} className='z-[2] w-fit flex flex-col my-2 '>
                 <div>
                   <h1 className={`  ${mode === 'dark' ? 'text-white ' : 'text-[#344161]'}  text-4xl md:text-3xl`} >My name is</h1>
-                  <Link to={!isLoggedIn ? '/login' : '/dashboard/adminprofile'} className=' my-2 @apply gradient-text font-bold text-5xl md:text-[3.75rem] leading-[1.5]' >Aditya Khade</Link>
+                  <Link to={!isLoggedIn ? '/login' : '/dashboard/adminprofile'} className=' my-2 @apply gradient-text font-bold text-5xl md:text-[3.75rem] leading-[1.5]' >{userName}</Link>
+                  {/* <Link to={!isLoggedIn ? '/login' : '/dashboard/adminprofile'} className=' my-2 @apply gradient-text font-bold text-5xl md:text-[3.75rem] leading-[1.5]' >Aditya Khade</Link> */}
                 </div>
                 <div className='my-3'>
                   <h1 className={` ${mode === 'dark' ? 'text-white ' : 'text-[#344161]'}   text-4xl md:text-3xl`}>I’m a</h1>
                   <h1 className=' my-3 h-[130px] md:h-fit @apply gradient-text w-fit md:w-[550px] font-bold text-5xl md:text-6xl leading-[1.5] text-[#94a9c9] '><Typewriter
 
-                    words={["Web Developer", "Coder", "Learner"]}
+                    // words={[`${UserDetails[0].prof['1st']}`, `${UserDetails[0].prof['2nd']}`, `${UserDetails[0].prof['3rd']}`, `${UserDetails[0].prof['1st']}` ? `${UserDetails[0].prof['1st']}` : '']}
+                    // words={[`Web Developer`, `Coder`, `Learner`]}
+                    words={[userProf1, userProf2, userProf3]}
                     loop={''}
                     cursor
                     cursorStyle='|'

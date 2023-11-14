@@ -5,7 +5,9 @@ import { RxCross2 } from 'react-icons/rx'
 import { AnimatePresence, motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom'
 import { fadeIn } from '../Variants'
+import Loader from '../Components/Loader.js';
 import AlertContext from '../Context/AlertContext';
+import ManageUser from './ManageUser';
 const AdminProfile = () => {
     const navigate = useNavigate()
     const { mode } = useContext(ThemeContext)
@@ -13,6 +15,7 @@ const AdminProfile = () => {
     const [updatedPass, setUpdatePass] = useState({ oldpass: "", newpass: "" })
     const [userInfo, setUserInfo] = useState({})
     const [isOpen, setIsOpen] = useState(false)
+    const[loading,setLoading]=useState(false)
     const token=localStorage.getItem('token')
     document.title="Aditya's Portfolio | Admin Profile"
     useEffect(() => {
@@ -34,6 +37,7 @@ const AdminProfile = () => {
     }
 
     const handleUpdate = async () => {
+        setLoading(true)
         const response = await fetch(`${BASE_URL}/api/user/updatepass`, {
             method: "PUT",
             headers: {
@@ -45,16 +49,19 @@ const AdminProfile = () => {
         })
         const res = await response.json()
         if (res.success) {
+            setLoading(false)
             showAlert('success', "Password Updated Successfully")
             setIsOpen(false)
             setUpdatePass({ oldpass: "", newpass: "" })
         }
         else{
+            setLoading(false)
             showAlert('error', res.message)
         }
     }
 
     const getUser = async () => {
+        setLoading(true)
         const response = await fetch(`${BASE_URL}/api/user/getuser`, {
             method: "GET",
             headers: {
@@ -64,10 +71,13 @@ const AdminProfile = () => {
         const res = await response.json()
         if (res.success) {
             setUserInfo(res.data)
+            setLoading(false)
         }
         else if(res.message==="Token has expired"){
             localStorage.removeItem("token")
             navigate("/login")
+            setLoading(false)
+
         }
 
     }
@@ -108,6 +118,7 @@ const AdminProfile = () => {
                 </div>
 
             </div>
+            <ManageUser/>
             <AnimatePresence>
                 {isOpen && <motion.div
                     initial={{ opacity: 0 }}
@@ -143,6 +154,8 @@ const AdminProfile = () => {
                     </motion.div>
                 </motion.div>}
             </AnimatePresence>
+            {loading && <Loader loading={loading}/>
+                }
         </section>
     )
 }

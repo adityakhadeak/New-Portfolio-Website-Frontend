@@ -9,6 +9,7 @@ const FetchAll = (props) => {
     const [Skills, setSkills] = useState([])
     const [Cers, setCers] = useState([])
     const [Projects, setProjects] = useState([])
+    const [UserDetails, setUserDetails] = useState([])
 
     const fetchAboutParas = async () => {
         const response = await fetch(`${BASE_URL}/api/about/fetchabout`, {
@@ -91,8 +92,20 @@ const FetchAll = (props) => {
             setProjects(res.data)
         }
     }
+    const fetchUserDetails = async () => {
+        const response = await fetch(`${BASE_URL}/api/user/fetchuserdetails`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+            }
+        })
+        const res = await response.json()
+        if (res.success) {
+            setUserDetails(res.data)
+        }
+    }
     return (
-        <FetchContext.Provider value={{fetchAboutCers,fetchAboutParas,fetchAllProjects,fetchAllSkills,fetchEdus,fetchExps,Paras,Edus,Exps,Skills,Cers,Projects}}>
+        <FetchContext.Provider value={{fetchAboutCers,fetchAboutParas,fetchAllProjects,fetchAllSkills,fetchEdus,fetchExps,fetchUserDetails,Paras,Edus,Exps,Skills,Cers,Projects,UserDetails}}>
             {props.children}
         </FetchContext.Provider>
     )

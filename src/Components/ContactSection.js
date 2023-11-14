@@ -127,7 +127,7 @@ const ContactSection = () => {
                         <div className='flex mt-[33px] my-2 justify-center text-base md:text-xl text-[#94a9c9]'>
                             <h1 className='font-light '>Contact Form</h1>
                         </div>
-                        <form className='flex flex-col justify-center items-center w-[100%]'>
+                        <form onSubmit={e => SendMessage(e)}  className='flex flex-col justify-center items-center w-[100%]'>
                             <div className={` ${mode === 'dark' ? 'bg-[#222f43]' : 'bg-[#e8edf5]'} relative h-[60px] p-2 px-4 rounded my-2 md:w-[350px] w-[85%] flex justify-start items-center `}>
                                 <span className='text-xl w-[45px] '>< RiAccountCircleLine /></span>
                                 <input onChange={e => handleOnChange(e)} type="text" name='name' value={message.name} className={` ${mode === 'dark' ? 'active-input' : 'active-input-light'} bg-transparent  placeholder:text-[#94a9c9] p-3  md:w-[330px]`} required placeholder='Enter your name' />
@@ -151,7 +151,7 @@ const ContactSection = () => {
                             size={10}
                             aria-label="Loading Spinner"
                             data-testid="loader"
-                        /> :<button onClick={e => SendMessage(e)} className={`p-2 w-[90px] text-base  ${mode === 'dark' ? 'hover:bg-[#222f43]' : 'hover:bg-[#e8edf5]'}  border border-cyan-400`}>Send</button>
+                        /> :<button className={`p-2 w-[90px] text-base  ${mode === 'dark' ? 'hover:bg-[#222f43]' : 'hover:bg-[#e8edf5]'}  border border-cyan-400`}>Send</button>
 
                         }
                     

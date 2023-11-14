@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import ThemeContext from '../Context/ThemeContext'
 
 import { BiUserCircle, BiShow, BiHide } from "react-icons/bi";
@@ -14,7 +14,13 @@ const Login = () => {
   const [credentials, setCredentials] = useState({ username: "", password: "" })
   const [showPass, setShowPass] = useState(false)
   document.title="Aditya's Portfolio | Admin Login"
-
+  const token = localStorage.getItem('token')
+  useEffect(() => {
+      if (token) {
+          navigate("/dashboard/adminprofile")
+      }
+      // eslint-disable-next-line
+  }, [])
   const handleShowPass = () => {
     setShowPass(!showPass)
   }

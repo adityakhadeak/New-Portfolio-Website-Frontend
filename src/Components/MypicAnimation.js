@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { fadeIn } from '../Variants'
 import pattern1 from '../images/pattern-1.svg'
@@ -7,8 +7,15 @@ import pattern3 from '../images/pattern-3.svg'
 import pattern4 from '../images/pattern-4.svg'
 import '../Styles/Common.css'
 import mypic from '../images/myphoto1.png'
+import FetchContext from '../Context/FetchContext'
 export const MypicAnimation = () => {
-  return (
+  const { fetchUserDetails,UserDetails } = useContext(FetchContext)
+  useEffect(() => {
+    fetchUserDetails()
+    // eslint-disable-next-line
+}, [])
+
+return (
     
          <motion.div variants={fadeIn('down', 0.9)}
               initial='hidden'
@@ -16,7 +23,8 @@ export const MypicAnimation = () => {
               viewport={{ once: true, amount: 0.7 }} className=''>
               <div
                 className='myImg flex justify-center relative '>
-                <img className=' w-[256px] relative z-[1] md:w-[362px]' src={mypic} alt="" />
+                {/* <img className=' w-[256px] relative z-[1] md:w-[362px]' src={mypic} alt="" /> */}
+                <img className=' w-[256px] relative z-[1] md:w-[362px]' src={UserDetails[0]?.userimage || mypic} alt="" />
                 <motion.div
                   variants={fadeIn('inplace', 1.5)}
                   initial='hidden'

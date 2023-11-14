@@ -9,11 +9,11 @@ import insta from '../images/Social/insta.svg'
 import twitter from '../images/Social/twitter.svg'
 const SideLinks = () => {
   const socialAcc = [
-    { "acc": "Github", "link": "https://www.linkedin.com/in/aditya-khade-a14bb0219/", "icon": github },
+    { "acc": "Github", "link": "https://github.com/adityakhadeak", "icon": github },
     { "acc": "Linkedin", "link": "https://www.linkedin.com/in/aditya-khade-a14bb0219/", "icon": linkedin },
-    { "acc": "Leetcode", "link": "https://www.linkedin.com/in/aditya-khade-a14bb0219/", "icon": leetcode},
-    { "acc": "Insta", "link": "https://www.linkedin.com/in/aditya-khade-a14bb0219/", "icon": insta },
-    {"acc": "Twitter", "link": "https://www.linkedin.com/in/aditya-khade-a14bb0219/", "icon": twitter }
+    { "acc": "Leetcode", "link": "https://leetcode.com/adityakhadeak/", "icon": leetcode},
+    { "acc": "Insta", "link": "https://www.instagram.com/aditya_khade_ak/", "icon": insta },
+    {"acc": "Twitter", "link": "https://twitter.com/Aditya_khade_ak", "icon": twitter }
   ];
 
   return (

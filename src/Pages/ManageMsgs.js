@@ -6,7 +6,7 @@ import { motion } from 'framer-motion'
 import { BASE_URL } from '../helper'
 import AlertContext from '../Context/AlertContext'
 import { useNavigate } from 'react-router-dom'
-import Loader from '../Components/Loader';
+import Loader from '../Components/Loader.js';
 const ManageMsgs = () => {
     const navigate = useNavigate()
     const { mode } = useContext(ThemeContext)
@@ -85,7 +85,7 @@ const ManageMsgs = () => {
                         </p>
                     </div>
                 ) : (
-                    <div className='my-5 grid md:grid-cols-2 grid-cols-1 gap-3'>
+                    <div className='my-5 grid md:grid-cols-2 grid-cols-1  md:ml-0 ml-[75px] gap-3'>
                         {messages.map((msg, index) => (
                             <motion.div
                                 variants={fadeIn('left', `0.4${index}`, 10)}
