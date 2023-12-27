@@ -89,9 +89,9 @@ const ManageUser = () => {
                 <h2 className='text-[#94a9c9] w-[-webkit-fill-available] md:w-fit mx-2'>Add User Details </h2>
             </motion.div>
             <div className='my-6 py-4 px-2 flex justify-center flex-col items-center'>
-                <form className='flex flex-col justify-center items-center text-[#94a9c9] w-[100%] rounded-lg py-12 px-10 border border-[#222f43]' method='post' encType='multipart/form-data'>
+                <form className='flex flex-col justify-center items-center text-[#94a9c9] md:w-fit w-[-webkit-fill-available]  rounded-lg py-1 px-4 border border-[#222f43]' method='post' encType='multipart/form-data'>
 
-                    <div className='flex justify-start flex-col my-3'>
+                    <div className='flex justify-start flex-col my-3 w-[-webkit-fill-available]'>
                         <div className='flex justify-start flex-col my-3 '>
                             <label htmlFor={`skill`} className='my-1'>Name</label>
                             <input type="text" name='name' value={userData.name} onChange={(e) => handleOnChange(e.target.name, e.target.value)} className={` ${mode === 'dark' ? 'active-input' : 'active-input-light'} bg-transparent placeholder:text-[#94a9c9] p-3  border border-[#222f43] rounded-lg md:w-[330px]`} placeholder='Enter your name' />

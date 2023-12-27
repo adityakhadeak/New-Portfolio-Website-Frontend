@@ -117,7 +117,7 @@ const AdminSideBar = ({children}) => {
             </NavLink>}
         </section>
       </motion.div>
-            <main className='mx-auto my-0'>
+            <main className='mx-auto my-0  w-[-webkit-fill-available]'>
               {children}
             </main>
     </div>

@@ -15,14 +15,14 @@ const AdminProfile = () => {
     const [updatedPass, setUpdatePass] = useState({ oldpass: "", newpass: "" })
     const [userInfo, setUserInfo] = useState({})
     const [isOpen, setIsOpen] = useState(false)
-    const[loading,setLoading]=useState(false)
-    const token=localStorage.getItem('token')
-    document.title="Aditya's Portfolio | Admin Profile"
+    const [loading, setLoading] = useState(false)
+    const token = localStorage.getItem('token')
+    document.title = "Aditya's Portfolio | Admin Profile"
     useEffect(() => {
-        if ( token== null) {
+        if (token == null) {
             navigate("/login")
         }
-        else{
+        else {
             getUser()
         }
         // eslint-disable-next-line
@@ -54,7 +54,7 @@ const AdminProfile = () => {
             setIsOpen(false)
             setUpdatePass({ oldpass: "", newpass: "" })
         }
-        else{
+        else {
             setLoading(false)
             showAlert('error', res.message)
         }
@@ -73,7 +73,7 @@ const AdminProfile = () => {
             setUserInfo(res.data)
             setLoading(false)
         }
-        else if(res.message==="Token has expired"){
+        else if (res.message === "Token has expired") {
             localStorage.removeItem("token")
             navigate("/login")
             setLoading(false)
@@ -84,7 +84,7 @@ const AdminProfile = () => {
 
 
     return (
-        <section>
+        <section className='md:ml-0 ml-[4.25rem]'>
             <motion.div
                 variants={fadeIn('left', 0.2, 10)}
                 initial='hidden'
@@ -94,31 +94,31 @@ const AdminProfile = () => {
                 <span className='text-[#1cc2e7] text-[20px] md:text-[28px]' ></span>
                 <h2 className='text-[#94a9c9] w-[-webkit-fill-available] md:w-fit mx-2'>Admin Info</h2>
             </motion.div>
-            <div className='flex text-[20px] md:text-[25px] flex-col justify-start items-start'>
-                <div className='flex my-8 w-full justify-between flex-row'>
-                    <div className={` ${mode==='dark'?'bg-[#222f43]':'bg-[#e8edf5]'} relative cursor-pointer p-5 rounded my-2 mx-4 md:w-[330px] flex flex-col justify-start items-start `}>
+            <div className='flex text-[20px] mx-auto md:w-fit w-[-webkit-fill-available] md:text-[25px] flex-col justify-start items-start'>
+                <div className='flex md:flex-row  my-8 w-full justify-between flex-col'>
+                    <div className={` ${mode === 'dark' ? 'bg-[#222f43]' : 'bg-[#e8edf5]'} relative cursor-pointer p-5 rounded my-2 mx-4 md:w-[330px] flex flex-col justify-start items-start `}>
                         <h3 className='text-lg'>Name</h3>
                         <h2>{userInfo.name}</h2>
                     </div>
-                    <div className={` ${mode==='dark'?'bg-[#222f43]':'bg-[#e8edf5]'} relative cursor-pointer p-5 rounded my-2 mx-4 md:w-[330px] flex flex-col jutify-start items-start `}>
+                    <div className={` ${mode === 'dark' ? 'bg-[#222f43]' : 'bg-[#e8edf5]'} relative cursor-pointer p-5 rounded my-2 mx-4 md:w-[330px] flex flex-col jutify-start items-start `}>
                         <h3 className='text-lg'>Email</h3>
                         <h2>{userInfo.email}</h2>
                     </div>
                 </div>
-                <div className='flex my-8 w-full justify-between flex-row'>
-                <div className={` ${mode==='dark'?'bg-[#222f43]':'bg-[#e8edf5]'} relative cursor-pointer p-5 rounded my-2 mx-4 md:w-[330px]  flex flex-col justify-start items-start `}>
+                <div className='flex md:flex-row my-8 w-full justify-between flex-col'>
+                    <div className={` ${mode === 'dark' ? 'bg-[#222f43]' : 'bg-[#e8edf5]'} relative cursor-pointer p-5 rounded my-2 mx-4 md:w-[330px]  flex flex-col justify-start items-start `}>
                         <h3 className='text-lg'>Username</h3>
                         <h2>{userInfo.username}</h2>
                     </div>
 
-                    <div className={` ${mode==='dark'?'bg-[#222f43]':'bg-[#e8edf5]'} relative cursor-pointer p-5 rounded my-2 mx-4 md:w-[330px] flex flex-col jutify-start items-start `}>
+                    <div className={` ${mode === 'dark' ? 'bg-[#222f43]' : 'bg-[#e8edf5]'} relative cursor-pointer p-5 rounded my-2 mx-4 md:w-[330px] flex flex-col jutify-start items-start `}>
                         <h3 className='text-lg'>Password</h3>
                         <button onClick={(e) => updatePass()} className={`p-2  text-base  ${mode === 'dark' ? 'hover:bg-[#222f43]' : 'hover:bg-[#e8edf5]'}  border border-cyan-400`}>Update Password</button>
                     </div>
                 </div>
 
             </div>
-            <ManageUser/>
+            <ManageUser />
             <AnimatePresence>
                 {isOpen && <motion.div
                     initial={{ opacity: 0 }}
@@ -154,8 +154,8 @@ const AdminProfile = () => {
                     </motion.div>
                 </motion.div>}
             </AnimatePresence>
-            {loading && <Loader loading={loading}/>
-                }
+            {loading && <Loader loading={loading} />
+            }
         </section>
     )
 }

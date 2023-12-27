@@ -57,13 +57,13 @@ const UserDetails = (props) => {
                         initial='hidden'
                         whileInView={'show'}
                         viewport={{ once: true, amount: 0.7 }}
-                        className='flex justify-center items-center'>
+                        className='flex justify-center items-center '>
                         <p className='text-[#94a9c9] w-[-webkit-fill-available] text-center md:w-fit mx-auto'>
                             No Details to display
                         </p>
                     </motion.div>
                 ) : (
-                    <div className='flex flex-col justify-center items-center '>
+                    <div className='flex flex-col justify-center items-center w-fit md:w-[-webkit-fill-available] '>
                         <motion.div
                             variants={fadeIn('left', `0.4`, 10)}
                             initial='hidden'
@@ -71,7 +71,7 @@ const UserDetails = (props) => {
                             viewport={{ once: true, amount: 0.7 }}
                             className=' w-[295px] md:w-[500px] p-3 flex justify-center items-center rounded-lg my-5 font-mono'>
 
-                            <img src={userDetails[0].userimage} className='w-[235px] h-[300px]' alt="project-pic" />
+                            <img src={userDetails[0].userimage} className='md:w-[235px] w-[-webkit-fill-available] h-[300px]' alt="project-pic" />
 
                         </motion.div>
 
