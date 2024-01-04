@@ -8,6 +8,7 @@ import Skill from '../Components/Skill'
 import Projects from '../Components/ProjectsSection'
 import ThemeContext from '../Context/ThemeContext'
 import ContactSection from '../Components/ContactSection'
+import  AchievementSection  from '../Components/AchievementSection.js'
 
 const Home = () => {
   const {mode}=useContext(ThemeContext)
@@ -22,6 +23,7 @@ const Home = () => {
       <ExpSection/>
       <Skill/>
       <Projects/>
+      {/* <AchievementSection/> */}
       <ContactSection/>
     </div>
   )
