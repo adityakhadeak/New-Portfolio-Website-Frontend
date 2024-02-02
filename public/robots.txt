@@ -1,4 +1,4 @@
 # https://www.robotstxt.org/robotstxt.html
-Sitemap: https://www.example.com/sitemap.xml
+Sitemap: https://www.adityakhadeak.com/sitemap.xml
 User-agent: *
 Disallow:
