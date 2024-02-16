@@ -46,7 +46,8 @@ const ManageProject = () => {
         })
         const res = await response.json()
         if (res.success) {
-            setProjects(res.data)
+            let projs=res.data
+            setProjects(projs.reverse())
         }
     }
     const handleSubmit = async () => {

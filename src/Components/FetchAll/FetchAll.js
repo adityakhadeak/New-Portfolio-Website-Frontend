@@ -89,8 +89,8 @@ const FetchAll = (props) => {
         })
         const res = await response.json()
         if (res.success) {
-            setProjects(res.data)
-        }
+            let projs=res.data
+            setProjects(projs.reverse())        }
     }
     const fetchUserDetails = async () => {
         const response = await fetch(`${BASE_URL}/api/user/fetchuserdetails`, {
