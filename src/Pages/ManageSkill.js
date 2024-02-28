@@ -52,7 +52,6 @@ const ManageSkill = () => {
         const formData = new FormData()
         formData.append('name', skill)
         formData.append('image', image)
-        console.log(image)
         const response = await fetch(`${BASE_URL}/api/skill/addskills`, {
             method: "POST",
             headers: {

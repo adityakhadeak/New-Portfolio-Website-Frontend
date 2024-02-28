@@ -59,7 +59,6 @@ const ManageProject = () => {
         formData.append('github', projectData.github)
         formData.append('live', projectData.live)
         formData.append('image', image)
-        console.log(formData)
         const response = await fetch(`${BASE_URL}/api/project/addproject`, {
             method: "POST",
             headers: {

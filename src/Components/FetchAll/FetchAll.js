@@ -48,8 +48,9 @@ const FetchAll = (props) => {
              }
         })
         const res = await response.json()
+        
         if (res.success) {
-            setExps(res.data)
+            setExps(res.data.reverse())
         }
     }
 
