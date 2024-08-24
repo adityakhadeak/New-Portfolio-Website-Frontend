@@ -19,7 +19,6 @@ const AboutModal = (props) => {
     const handleOnChange = (e) => {
         setaboutPara({ ...aboutPara, [e.target.name]: e.target.value })
     }
-    console.log(para, paraid)
     const handleUpdatePara = async () => {
         const response = await fetch(`${BASE_URL}/api/about/updateabout/${paraid}`, {
             method: "PUT",
