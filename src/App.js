@@ -17,6 +17,7 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Login from './Pages/Login';
 import FetchAll from './Components/FetchAll/FetchAll';
+import ResetPassword from './Pages/ResetPassword';
 
 function App() {
   const { mode } = useContext(ThemeContext)
@@ -59,6 +60,7 @@ function App() {
                 <Route element={<Projects />} path='/projects' />
                 <Route element={<Dashboard />} path="/dashboard/*" />
                 <Route element={<Login />} path="login" />
+                <Route element={<ResetPassword />} path="/reset-password" />
 
 
               </Routes>
