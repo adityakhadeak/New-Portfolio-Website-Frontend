@@ -5,7 +5,7 @@ import { BiShow, BiHide } from "react-icons/bi";
 import { RiLockPasswordLine } from "react-icons/ri";
 import { BASE_URL } from '../helper';
 import { useNavigate, useSearchParams } from 'react-router-dom';
-import {jwtDecode} from 'jwt-decode'
+import { jwtDecode } from 'jwt-decode'
 const ResetPassword = () => {
     const { mode } = useContext(ThemeContext)
     const { showAlert } = useContext(AlertContext)
@@ -24,16 +24,16 @@ const ResetPassword = () => {
 
     useEffect(() => {
         try {
-          const decoded = jwtDecode(token);
-          setUserInfo({ name: decoded.user.name, email: decoded.user.email });
+            const decoded = jwtDecode(token);
+            setUserInfo({ name: decoded.user.name, email: decoded.user.email });
         } catch (error) {
-          showAlert("Invalid token");
-          console.error("Invalid token:", error);
+            showAlert("Invalid token");
+            console.error("Invalid token:", error);
         } finally {
-          setLoading(false);
+            setLoading(false);
         }
-      }, [token]);
-      
+    }, [token]);
+
     const handleOnChange = (e) => {
         setPassword({ ...password, [e.target.name]: e.target.value })
     }
@@ -45,12 +45,12 @@ const ResetPassword = () => {
         } else if (password.newPassword !== password.confirmPassword) {
             showAlert("error", "Passwords do not match")
         } else {
-            const response = await fetch(`${BASE_URL}/api/user/reset-password`, {
+            const response = await fetch(`${BASE_URL}/api/user/reset-password?token=${token}`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify(password)
+                body: JSON.stringify({ email: userInfo.email, password })
             });
             const res = await response.json()
             if (res.success) {
@@ -61,7 +61,7 @@ const ResetPassword = () => {
             }
         }
     }
-    
+
 
     return (
         <section className='h-[80vh] flex justify-center items-center'>
