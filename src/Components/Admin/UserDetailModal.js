@@ -54,7 +54,7 @@ console.log(formData)
             setUserDetails([...userDetails, json.updatedData])
             setLoading(false)
             setIsOpen(false)
-            showAlert('success',"Deatails Updated Successfully")
+            showAlert('success',"Details Updated Successfully")
         }
     }
     return (
