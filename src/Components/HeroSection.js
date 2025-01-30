@@ -76,7 +76,7 @@ const Home = () => {
                 initial='hidden'
                 whileInView={'show'}
                 viewport={{ once: true, amount: 0.5 }}
-                className="text-[#94a9c9]  font-mono w-fit  md:w-[22rem]">A Third Year Computer  Engineering Student at PCE, Navi-Mumbai. Primarily interested in Web Development and CP.</motion.p>
+                className="text-[#94a9c9]  font-mono w-fit  md:w-[22rem]">A Final Year Computer  Engineering Student at PCE, Navi-Mumbai. Primarily interested in Web/App Development and CP.</motion.p>
             </div>
             <MypicAnimation />
           </div>
