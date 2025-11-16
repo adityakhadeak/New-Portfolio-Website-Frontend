@@ -69,8 +69,7 @@ const ContactSection = () => {
                 <motion.div
                     variants={fadeIn('left', 0.2)}
                     initial='hidden'
-                    whileInView={'show'}
-                    viewport={{ once: true, amount: 0.7 }}
+                    animate='show'
                     className='lineImg mx-8 flex items-center justify-center text-[25px] md:text-[30px] font-[Montserrat] font-semibold'>
                     <span className='text-[#1cc2e7] text-[20px] md:text-[28px]' >V.</span>
                     <h2 className='text-[#94a9c9] w-fit md:w-fit mx-2'>Contact</h2>
@@ -78,8 +77,7 @@ const ContactSection = () => {
                 <motion.div
                     variants={fadeIn('left', 0.25)}
                     initial='hidden'
-                    whileInView={'show'}
-                    viewport={{ once: true, amount: 0.7 }}
+                    animate='show'
                     className='flex my-2 justify-center text-lg font-mono text-[#94a9c9]'>
                     <h1>Get in Touch</h1>
                 </motion.div>
@@ -87,8 +85,7 @@ const ContactSection = () => {
                     <motion.div
                         variants={fadeIn('right', 0.3)}
                         initial='hidden'
-                        whileInView={'show'}
-                        viewport={{ once: true, amount: 0.7 }}
+                        animate='show'
                         className='contacts-left  flex flex-col justify-center items-center w-[100%]'>
                         <div className='flex my-2 justify-center text-base md:text-xl text-[#94a9c9]'>
                             <h1 className='font-light'>Contact Details</h1>
@@ -112,8 +109,7 @@ const ContactSection = () => {
                     <motion.div
                         variants={fadeIn('left', 0.3)}
                         initial='hidden'
-                        whileInView={'show'}
-                        viewport={{ once: true, amount: 0.7 }}
+                        animate='show'
                         className='contact-middle md:inline-block hidden mx-5'>
                         <div className='w-[3px] h-[300px] bg-[#94a9c9]' ></div>
                     </motion.div>
@@ -121,8 +117,7 @@ const ContactSection = () => {
 
                         variants={fadeIn('left', 0.3)}
                         initial='hidden'
-                        whileInView={'show'}
-                        viewport={{ once: true, amount: 0.7 }}
+                        animate='show'
                         className='contacts-right z-[1] flex flex-col justify-center items-center w-[100%]'>
                         <div className='flex mt-[33px] my-2 justify-center text-base md:text-xl text-[#94a9c9]'>
                             <h1 className='font-light '>Contact Form</h1>

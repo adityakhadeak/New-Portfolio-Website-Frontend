@@ -78,70 +78,126 @@ const ManageUser = () => {
         
     }
     return (
-        <div>
+        <div className={`min-h-screen ${mode === 'dark' ? 'bg-[#0a0f1e]' : 'bg-[#e8edf5]'} md:ml-[75px] px-4 md:px-8 py-8`}>
             <motion.div
-                variants={fadeIn('left', 0.2, 10)}
+                variants={fadeIn('down', 0.2)}
                 initial='hidden'
-                whileInView={'show'}
-                viewport={{ once: true, amount: 0.7 }}
-                className=' mx-8 flex items-center justify-center text-[25px] md:text-[30px] font-[Montserrat] my-4 py-2 font-semibold'>
-                <span className='text-[#1cc2e7] text-[20px] md:text-[28px]' ></span>
-                <h2 className='text-[#94a9c9] w-[-webkit-fill-available] md:w-fit mx-2'>Add User Details </h2>
+                animate='show'
+                className='mb-8'>
+                <h1 className={`text-3xl md:text-4xl font-bold mb-2 ${mode === 'dark' ? 'text-white' : 'text-[#131c31]'}`}>
+                    Manage User Details
+                </h1>
+                <p className='text-[#94a9c9] text-sm md:text-base'>Update your profile information and professions</p>
             </motion.div>
-            <div className='my-6 py-4 px-2 flex justify-center flex-col items-center'>
-                <form className='flex flex-col justify-center items-center text-[#94a9c9] md:w-fit w-[-webkit-fill-available]  rounded-lg py-1 px-4 border border-[#222f43]' method='post' encType='multipart/form-data'>
+            <motion.div
+                variants={fadeIn('up', 0.3)}
+                initial='hidden'
+                animate='show'
+                className={`max-w-4xl mx-auto ${mode === 'dark' ? 'bg-gradient-to-br from-[#131c31] to-[#0f1824]' : 'bg-white'} rounded-2xl shadow-xl p-6 md:p-8 mb-8 border ${mode === 'dark' ? 'border-[#222f43]' : 'border-[#c2d4ee]'}`}>
+                <form method='post' encType='multipart/form-data' className='space-y-6'>
+                    <div className='grid md:grid-cols-2 gap-6'>
+                        <div className='space-y-2'>
+                            <label className={`text-sm font-semibold ${mode === 'dark' ? 'text-[#b9e0f2]' : 'text-[#131c31]'}`}>Full Name</label>
+                            <input 
+                                type="text" 
+                                name='name' 
+                                value={userData.name} 
+                                onChange={(e) => handleOnChange(e.target.name, e.target.value)} 
+                                className={`w-full ${mode === 'dark' ? 'bg-[#0a0f1e] text-white' : 'bg-[#f5f8fc] text-[#131c31]'} border ${mode === 'dark' ? 'border-[#222f43]' : 'border-[#c2d4ee]'} rounded-lg px-4 py-3 focus:outline-none focus:border-[#1cc2e7] transition-colors`} 
+                                placeholder='Enter your full name' 
+                            />
+                        </div>
 
-                    <div className='flex justify-start flex-col my-3 w-[-webkit-fill-available]'>
-                        <div className='flex justify-start flex-col my-3 '>
-                            <label htmlFor={`skill`} className='my-1'>Name</label>
-                            <input type="text" name='name' value={userData.name} onChange={(e) => handleOnChange(e.target.name, e.target.value)} className={` ${mode === 'dark' ? 'active-input' : 'active-input-light'} bg-transparent placeholder:text-[#94a9c9] p-3  border border-[#222f43] rounded-lg md:w-[330px]`} placeholder='Enter your name' />
+                        <div className='space-y-2'>
+                            <label className={`text-sm font-semibold ${mode === 'dark' ? 'text-[#b9e0f2]' : 'text-[#131c31]'}`}>Primary Profession</label>
+                            <input 
+                                type="text" 
+                                name='profone' 
+                                value={userData.profone} 
+                                onChange={(e) => handleOnChange(e.target.name, e.target.value)} 
+                                className={`w-full ${mode === 'dark' ? 'bg-[#0a0f1e] text-white' : 'bg-[#f5f8fc] text-[#131c31]'} border ${mode === 'dark' ? 'border-[#222f43]' : 'border-[#c2d4ee]'} rounded-lg px-4 py-3 focus:outline-none focus:border-[#1cc2e7] transition-colors`} 
+                                placeholder='e.g., Full Stack Developer' 
+                            />
                         </div>
-                        <div className='flex justify-start flex-col my-3 '>
-                            <label htmlFor={`skill`} className='my-1'>Prof 1</label>
-                            <input type="text" name='profone' value={userData.profone} onChange={(e) => handleOnChange(e.target.name, e.target.value)} className={` ${mode === 'dark' ? 'active-input' : 'active-input-light'} bg-transparent placeholder:text-[#94a9c9] p-3  border border-[#222f43] rounded-lg md:w-[330px]`} placeholder='Enter your name' />
+
+                        <div className='space-y-2'>
+                            <label className={`text-sm font-semibold ${mode === 'dark' ? 'text-[#b9e0f2]' : 'text-[#131c31]'}`}>Secondary Profession</label>
+                            <input 
+                                type="text" 
+                                name='proftwo' 
+                                value={userData.proftwo} 
+                                onChange={(e) => handleOnChange(e.target.name, e.target.value)} 
+                                className={`w-full ${mode === 'dark' ? 'bg-[#0a0f1e] text-white' : 'bg-[#f5f8fc] text-[#131c31]'} border ${mode === 'dark' ? 'border-[#222f43]' : 'border-[#c2d4ee]'} rounded-lg px-4 py-3 focus:outline-none focus:border-[#1cc2e7] transition-colors`} 
+                                placeholder='e.g., UI/UX Designer' 
+                            />
                         </div>
-                        <div className='flex justify-start flex-col my-3 '>
-                            <label htmlFor={`skill`} className='my-1'>Prof 2</label>
-                            <input type="text" name='proftwo' value={userData.proftwo} onChange={(e) => handleOnChange(e.target.name, e.target.value)} className={` ${mode === 'dark' ? 'active-input' : 'active-input-light'} bg-transparent placeholder:text-[#94a9c9] p-3  border border-[#222f43] rounded-lg md:w-[330px]`} placeholder='Enter your name' />
+
+                        <div className='space-y-2'>
+                            <label className={`text-sm font-semibold ${mode === 'dark' ? 'text-[#b9e0f2]' : 'text-[#131c31]'}`}>Tertiary Profession</label>
+                            <input 
+                                type="text" 
+                                name='profthree' 
+                                value={userData.profthree} 
+                                onChange={(e) => handleOnChange(e.target.name, e.target.value)} 
+                                className={`w-full ${mode === 'dark' ? 'bg-[#0a0f1e] text-white' : 'bg-[#f5f8fc] text-[#131c31]'} border ${mode === 'dark' ? 'border-[#222f43]' : 'border-[#c2d4ee]'} rounded-lg px-4 py-3 focus:outline-none focus:border-[#1cc2e7] transition-colors`} 
+                                placeholder='e.g., Content Creator' 
+                            />
                         </div>
-                        <div className='flex justify-start flex-col my-3 '>
-                            <label htmlFor={`skill`} className='my-1'>Prof 3</label>
-                            <input type="text" name='profthree' value={userData.profthree} onChange={(e) => handleOnChange(e.target.name, e.target.value)} className={` ${mode === 'dark' ? 'active-input' : 'active-input-light'} bg-transparent placeholder:text-[#94a9c9] p-3  border border-[#222f43] rounded-lg md:w-[330px]`} placeholder='Enter your name' />
+
+                        <div className='space-y-2'>
+                            <label className={`text-sm font-semibold ${mode === 'dark' ? 'text-[#b9e0f2]' : 'text-[#131c31]'}`}>Quaternary Profession</label>
+                            <input 
+                                type="text" 
+                                name='proffour' 
+                                value={userData.proffour} 
+                                onChange={(e) => handleOnChange(e.target.name, e.target.value)} 
+                                className={`w-full ${mode === 'dark' ? 'bg-[#0a0f1e] text-white' : 'bg-[#f5f8fc] text-[#131c31]'} border ${mode === 'dark' ? 'border-[#222f43]' : 'border-[#c2d4ee]'} rounded-lg px-4 py-3 focus:outline-none focus:border-[#1cc2e7] transition-colors`} 
+                                placeholder='e.g., Tech Blogger' 
+                            />
                         </div>
-                        <div className='flex justify-start flex-col my-3 '>
-                            <label htmlFor={`skill`} className='my-1'>Prof 4</label>
-                            <input type="text" name='proffour' value={userData.proffour} onChange={(e) => handleOnChange(e.target.name, e.target.value)} className={` ${mode === 'dark' ? 'active-input' : 'active-input-light'} bg-transparent placeholder:text-[#94a9c9] p-3  border border-[#222f43] rounded-lg md:w-[330px]`} placeholder='Enter your name' />
+
+                        <div className='space-y-2'>
+                            <label className={`text-sm font-semibold ${mode === 'dark' ? 'text-[#b9e0f2]' : 'text-[#131c31]'}`}>Current Status</label>
+                            <input 
+                                type="text" 
+                                name='currentsts' 
+                                value={userData.currentsts} 
+                                onChange={(e) => handleOnChange(e.target.name, e.target.value)} 
+                                className={`w-full ${mode === 'dark' ? 'bg-[#0a0f1e] text-white' : 'bg-[#f5f8fc] text-[#131c31]'} border ${mode === 'dark' ? 'border-[#222f43]' : 'border-[#c2d4ee]'} rounded-lg px-4 py-3 focus:outline-none focus:border-[#1cc2e7] transition-colors`} 
+                                placeholder='e.g., Available for work' 
+                            />
                         </div>
-                        <div className='flex justify-start flex-col my-3 '>
-                            <label htmlFor={`skill`} className='my-1'>Current Status</label>
-                            <input type="text" name='currentsts' value={userData.currentsts} onChange={(e) => handleOnChange(e.target.name, e.target.value)} className={` ${mode === 'dark' ? 'active-input' : 'active-input-light'} bg-transparent placeholder:text-[#94a9c9] p-3  border border-[#222f43] rounded-lg md:w-[330px]`} placeholder='Enter your name' />
-                        </div>
-                      
-                        <div className='flex justify-start flex-col'>
-                            <label htmlFor={`image`} className='my-1'>Image</label>
-                            <input type="file" accept='image/*' name='image' onChange={(e) => handleImgOnChange(e.target.files[0])} className={` ${mode === 'dark' ? 'active-input' : 'active-input-light'} bg-transparent placeholder:text-[#94a9c9] p-3   md:w-[330px]`} placeholder='Enter skill name' />
-                        </div>
-                       
+                    </div>
+
+                    <div className='space-y-2'>
+                        <label className={`text-sm font-semibold ${mode === 'dark' ? 'text-[#b9e0f2]' : 'text-[#131c31]'}`}>Profile Picture</label>
+                        <input 
+                            type="file" 
+                            accept='image/*' 
+                            name='image' 
+                            onChange={(e) => handleImgOnChange(e.target.files[0])} 
+                            className={`w-full ${mode === 'dark' ? 'bg-[#0a0f1e] text-white file:bg-[#1cc2e7] file:text-white' : 'bg-[#f5f8fc] text-[#131c31] file:bg-[#1cc2e7] file:text-white'} border ${mode === 'dark' ? 'border-[#222f43]' : 'border-[#c2d4ee]'} rounded-lg px-4 py-3 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:font-semibold hover:file:bg-[#0bccd3] transition-colors`} 
+                        />
+                        <p className='text-xs text-[#94a9c9] mt-1'>Recommended: Square image, min 400x400px</p>
+                    </div>
+
+                    <div className='flex justify-end pt-4'>
+                        {loading ? (
+                            <div className='flex items-center gap-2 bg-gradient-to-r from-[#1cc2e7] to-[#0bccd3] text-white px-6 py-3 rounded-xl'>
+                                <PulseLoader color="#ffffff" size={8} />
+                            </div>
+                        ) : (
+                            <button 
+                                type='button'
+                                onClick={handleSubmit} 
+                                disabled={userDetails.length >= 1}
+                                className={`px-8 py-3 rounded-xl font-semibold transition-all duration-300 ${userDetails.length >= 1 ? 'bg-[#94a9c9]/20 text-[#94a9c9] cursor-not-allowed' : 'bg-gradient-to-r from-[#1cc2e7] to-[#0bccd3] text-white hover:shadow-lg hover:scale-105'}`}>
+                                {userDetails.length >= 1 ? 'Details Already Added' : 'Save User Details'}
+                            </button>
+                        )}
                     </div>
                 </form>
-                <div className='flex text-[#94a9c9]'>
-                    <div className='m-5'>
-
-                    {loading ? < PulseLoader
-                            color={"#0bccd3"}
-                            loading={loading}
-                            speedMultiplier={1}
-                            cssOverride={{ margin: "10px 0" }}
-                            size={10}
-                            aria-label="Loading Spinner"
-                            data-testid="loader"
-                        /> :<button onClick={handleSubmit} disabled={userDetails.length>=1?true:false}  className={`p-2 w-[90px] text-base  ${mode === 'dark' ? 'hover:bg-[#222f43]' : 'hover:bg-[#e8edf5]'} border border-cyan-400`}  >Submit</button>
-
-                        }
-                    
-                    </div>
-                </div>
-            </div>
+            </motion.div>
             <UserDetails isOpen={isOpen}  setIsOpen={setIsOpen} userDetails={userDetails} setUserDetails={setUserDetails} />
         </div>
     )

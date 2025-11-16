@@ -22,8 +22,7 @@ const ExSection = () => {
         <motion.div
           variants={fadeIn('left', 0.2, 10)}
           initial='hidden'
-          whileInView={'show'}
-          viewport={{ once: true, amount: 0.7 }}
+          animate='show'
           className='lineImg   flex items-center md:justify-end justify-center text-[25px] md:text-[30px] '>
           <span className='text-[#1cc2e7] text-[20px] md:text-[28px]' >II.</span>
           <h2 className='text-[#94a9c9] w-fit md:w-fit mx-2'>Education</h2>
@@ -32,8 +31,7 @@ const ExSection = () => {
           <motion.div
             variants={fadeIn('down', 0.6)}
             initial='hidden'
-            whileInView={'show'}
-            viewport={{ once: true, amount: 0.7 }}
+            animate='show'
             className='eduImgCon flex justify-center  relative'>
             <img src={eduImg} className='edu-image max-w-[18rem] md:max-w-[28rem] w-[90%] my-12'  alt="" />
           </motion.div>
@@ -44,8 +42,7 @@ const ExSection = () => {
                 key={index}
                   variants={fadeIn('left', 0.3, 10)}
                   initial='hidden'
-                  whileInView={'show'}
-                  viewport={{ once: true, amount: 0.7 }}
+                  animate='show'
                   className={` text-[#94a9c9] timeLine-item  p-4 my-2 leading-8 rounded-3xl h-fit  w-[60vw] md:w-[500px] justify-center flex flex-col border-2 border-solid  ${mode==='dark'?'border-[#222f43]':'border-[#c2d4ee]'} ${mode==='dark'?'bg-[#131c31]':'bg-[#e8edf5]'}`}>
                   <h4 className='text-[#66768d] text-sm @apply gradient-text font-bold'>{edu.year}</h4>
                   <h2 className={`  ${mode==='dark'?'text-[#b9e0f2]':'text-[#1cc2e7]'} text-xl font-bold`}>{edu.edu}</h2>

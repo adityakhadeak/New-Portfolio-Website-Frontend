@@ -34,8 +34,7 @@ const About = () => {
                         <motion.div
                             variants={fadeIn('left', 0.5)}
                             initial='hidden'
-                            whileInView={'show'}
-                            viewport={{ once: true, amount: 0.7 }}
+                            animate='show'
                             className='lineImg flex items-center justify-center text-[25px] md:text-[30px]  '>
                             <span className='text-[#1cc2e7] text-[20px] md:text-[28px]' >I.</span>
                             <h2 className='text-[#94a9c9] w-[550px] md:w-fit mx-2'>About Me</h2>
@@ -45,7 +44,7 @@ const About = () => {
                                 {abtMe.map((para) => {
                                     return <motion.p variants={fadeIn('up', para.animIn)}
                                         initial='hidden'
-                                        whileInView={'show'}
+                                        animate='show'
                                         viewport={{ once: true, amount: 0.7 }} className='m-0 w-fit md:w-[500px] text-justify mb-3'>{para.para} </motion.p>
                                 })
                                 }

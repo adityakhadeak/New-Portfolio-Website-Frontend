@@ -2,16 +2,21 @@ import React, {  useContext, useEffect, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import ThemeContext from '../../Context/ThemeContext';
 import  '../../Styles/Admin.css'
-import { GrAchievement, GrProjects, GrWorkshop, } from "react-icons/gr";
-import { PiCertificateDuotone, } from "react-icons/pi";
-
 import { TbLogout2 } from "react-icons/tb";
-
 import { FaBars } from "react-icons/fa";
-import { BiBadgeCheck, BiMessageDetail, BiUser } from "react-icons/bi";
-import { GiGraduateCap } from "react-icons/gi";
+import { 
+  BiUser, 
+  BiMessageDetail, 
+  BiInfoCircle, 
+  BiBook, 
+  BiBriefcase, 
+  BiCodeAlt, 
+  BiFolderOpen, 
+  BiCertification 
+} from "react-icons/bi";
 import { NavLink } from 'react-router-dom';
 import AlertContext from '../../Context/AlertContext';
+
 const routes = [
   {
     path: 'adminprofile',
@@ -25,35 +30,34 @@ const routes = [
   },
   {
     path: 'manageabout',
-    icon: <BiBadgeCheck />,
+    icon: <BiInfoCircle />,
     name: 'About'
   },
   {
     path: 'manageedu',
-    icon: <GiGraduateCap />,
+    icon: <BiBook />,
     name: 'Education'
   },
   {
     path: 'manageexp',
-    icon: <GrWorkshop />,
+    icon: <BiBriefcase />,
     name: 'Experience'
   },
   {
     path: 'manageskills',
-    icon: <GrAchievement />,
+    icon: <BiCodeAlt />,
     name: 'Skills'
   },
   {
     path: 'manageprojects',
-    icon: <GrProjects />,
+    icon: <BiFolderOpen />,
     name: 'Project'
   },
   {
     path: 'managecer',
-    icon: <PiCertificateDuotone />,
+    icon: <BiCertification />,
     name: 'Certificates'
   },
- 
 ]
 
 const showAnimation={
@@ -95,30 +99,32 @@ const AdminSideBar = ({children}) => {
 }
   return (
     <div className={`flex  main-container relative text-[#94a9c9]`}>
-      <motion.div animate={{ width:showNav?"250px":'65px' }} className={`fixed left-0 z-[10000] top-[85px] ${mode === 'dark' ? 'bg-[#131c31]' : 'bg-[#f9fbff]'}  h-[100vh]`}>
-        <div className='flex justify-between items-center px-5 h-[50px] py-3'>
-          {showNav&&<motion.h1 variants={showAnimation} initial='hidden' animate='show' exit='hidden' className={`whitespace-nowrap font-bold text-2xl`}>Aditya Khade</motion.h1>}
-          <div className='text-xl cursor-pointer'><FaBars onClick={toggle} /></div>
+      <motion.div animate={{ width:showNav?"280px":'75px' }} className={`fixed left-0 z-[10000] top-[85px] ${mode === 'dark' ? 'bg-gradient-to-b from-[#0f1824] to-[#131c31]' : 'bg-gradient-to-b from-[#ffffff] to-[#f9fbff]'} border-r ${mode === 'dark' ? 'border-[#1cc2e7]/20' : 'border-[#1cc2e7]/10'} h-[100vh] shadow-2xl`}>
+        <div className='flex justify-between items-center px-5 h-[60px] py-4 border-b border-[#1cc2e7]/20'>
+          {showNav&&<motion.h1 variants={showAnimation} initial='hidden' animate='show' exit='hidden' className={`whitespace-nowrap font-bold text-xl bg-gradient-to-r from-[#1cc2e7] to-[#0bccd3] bg-clip-text text-transparent`}>Dashboard</motion.h1>}
+          <div className='text-2xl cursor-pointer hover:text-[#1cc2e7] transition-colors duration-300'><FaBars onClick={toggle} /></div>
         </div>
-        <section className=''>
+        <section className='mt-4 px-2'>
           {routes.map((route) => (
-            <NavLink to={route.path} className=' admin-nav-link hover:bg-[#222f43] flex flex-row items-center text-[18px]  my-3 p-[10px]' key={route.name} >
-              <div className='mx-2 my-1 text-xl text-[#94a9c9]'>{route.icon}</div>
+            <NavLink to={route.path} className={({isActive}) => `admin-nav-link ${isActive ? 'admin-nav-active' : ''} group relative ${mode === 'dark' ? 'hover:bg-[#1cc2e7]/10' : 'hover:bg-[#1cc2e7]/5'} flex flex-row items-center text-[16px] my-2 p-[12px] rounded-xl transition-all duration-300`} key={route.name} >
+              <div className='mx-2 my-1 text-2xl text-[#94a9c9] group-hover:text-[#1cc2e7] transition-colors duration-300'>{route.icon}</div>
               <AnimatePresence>
-              {showNav &&<motion.div variants={showAnimation} initial='hidden' animate='show' exit='hidden' className=' px-2 text-[#94a9c9]'>{route.name}</motion.div>}
+              {showNav &&<motion.div variants={showAnimation} initial='hidden' animate='show' exit='hidden' className='px-2 text-[#94a9c9] group-hover:text-[#1cc2e7] font-medium transition-colors duration-300'>{route.name}</motion.div>}
               </AnimatePresence>
             </NavLink>
           ))}
-{isLoggedIn && <NavLink onClick={logout} to='/login' className=' admin-nav-link hover:bg-[#222f43] flex flex-row items-center text-[18px]  my-3 p-[10px]' key='logOut' >
-              <div className='mx-2 my-1 text-xl text-[#94a9c9]'><TbLogout2/></div>
+{isLoggedIn && <NavLink onClick={logout} to='/login' className={`admin-nav-link group ${mode === 'dark' ? 'hover:bg-red-500/10' : 'hover:bg-red-500/5'} flex flex-row items-center text-[16px] mt-8 p-[12px] rounded-xl transition-all duration-300 border border-transparent hover:border-red-500/30`} key='logOut' >
+              <div className='mx-2 my-1 text-2xl text-[#94a9c9] group-hover:text-red-500 transition-colors duration-300'><TbLogout2/></div>
               <AnimatePresence>
-              {showNav &&<motion.div variants={showAnimation} initial='hidden' animate='show' exit='hidden' className=' px-2 text-[#94a9c9]'>Log Out</motion.div>}
+              {showNav &&<motion.div variants={showAnimation} initial='hidden' animate='show' exit='hidden' className='px-2 text-[#94a9c9] group-hover:text-red-500 font-medium transition-colors duration-300'>Log Out</motion.div>}
               </AnimatePresence>
             </NavLink>}
         </section>
       </motion.div>
-            <main className='mx-auto my-0  w-[-webkit-fill-available]'>
-              {children}
+            <main className={`mx-auto my-0 w-[-webkit-fill-available] min-h-screen ${mode === 'dark' ? 'bg-[#0a0e1a]' : 'bg-[#f5f7fb]'} transition-colors duration-300`}>
+              <div className='p-6 md:p-8'>
+                {children}
+              </div>
             </main>
     </div>
   )

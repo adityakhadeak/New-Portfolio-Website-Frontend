@@ -18,6 +18,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import Login from './Pages/Login';
 import FetchAll from './Components/FetchAll/FetchAll';
 import ResetPassword from './Pages/ResetPassword';
+import ScrollToTop from './Components/ScrollToTop';
 
 function App() {
   const { mode } = useContext(ThemeContext)
@@ -48,6 +49,7 @@ function App() {
       <NavFixed>
         <FetchAll>
         <Router>
+          <ScrollToTop />
           {loader ?
             <Preloader /> :
             <>

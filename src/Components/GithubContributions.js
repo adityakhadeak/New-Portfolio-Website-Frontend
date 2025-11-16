@@ -23,8 +23,7 @@ const GithubContributions = () => {
         <motion.div
         variants={fadeIn('up', 0.3)}
         initial='hidden'
-        whileInView={'show'}
-        viewport={{ once: true, amount: 0.7 }}
+        animate='show'
         className='md:block hidden'
         >
             <h2 className='text-[#94a9c9] text-center text-[15px] md:text-[20px] font-mono py-4  my-7 mx-2'>GitHub Contribution Graph</h2>

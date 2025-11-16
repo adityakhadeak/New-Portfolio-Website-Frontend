@@ -28,8 +28,7 @@ const myProjects=Projects.slice(0,3)
                 <motion.div
                     variants={fadeIn('right', 0.3, 10)}
                     initial='hidden'
-                    whileInView={'show'}
-                    viewport={{ once: true, amount: 0.7 }}
+                    animate='show'
                     className='lineImg flex items-center justify-center text-[25px] md:text-[30px] '>
                     <span className='text-[#1cc2e7] text-[20px] md:text-[28px]' >V.</span>
                     <h2 className='text-[#94a9c9] w-fit md:w-fit mx-2'>Projects</h2>
@@ -41,8 +40,7 @@ const myProjects=Projects.slice(0,3)
                         key={index}
                         variants={fadeIn('right', 0.4, 10)}
                         initial='hidden'
-                        whileInView={'show'}
-                        viewport={{ once: true, amount: 0.7 }}
+                        animate='show'
                         className=' item flex  flex-col justify-center items-center md:flex-row max-w-[800px] w-[115%] px-[20px] my-auto mb-[4rem] min-w-[100px]' >
 
                             <div className='left z-[1]    flex-1'>

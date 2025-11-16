@@ -68,57 +68,71 @@ const ManageMsgs = () => {
     }
     return (
         <>
-            <section className='flex flex-col justify-center items-center'>
+            <section className='md:ml-[75px]'>
                 <motion.div
                     variants={fadeIn('left', 0.2, 10)}
                     initial='hidden'
-                    whileInView={'show'}
-                    viewport={{ once: true, amount: 0.7 }}
-                    className=' mx-8 flex items-center justify-center text-[25px] md:text-[30px] font-[Montserrat] my-4 py-2 font-semibold'>
-                    <span className='text-[#1cc2e7] text-[20px] md:text-[28px]' ></span>
-                    <h2 className='text-[#94a9c9] w-[-webkit-fill-available] text-center md:w-fit mx-2'>Messages</h2>
+                    animate='show'
+                    className='flex items-center justify-between mb-8'>
+                    <div>
+                        <h1 className={`text-3xl md:text-4xl font-bold mb-2 ${mode === 'dark' ? 'text-white' : 'text-[#131c31]'}`}>Messages</h1>
+                        <p className='text-[#94a9c9] text-sm'>View and manage contact messages ({messages.length})</p>
+                    </div>
                 </motion.div>
                 {messages.length === 0 ? (
-                    <div className='flex justify-center items-center'>
-                        <p className='text-[#94a9c9] w-[-webkit-fill-available] text-center md:w-fit mx-auto'>
-                            No messages to display
-                        </p>
-                    </div>
+                    <motion.div
+                        variants={fadeIn('up', 0.4)}
+                        initial='hidden'
+                        animate='show'
+                        className={`${mode === 'dark' ? 'bg-[#131c31]' : 'bg-white'} rounded-2xl shadow-lg p-12 text-center border ${mode === 'dark' ? 'border-[#222f43]' : 'border-[#c2d4ee]'}`}>
+                        <div className='text-6xl mb-4'>📬</div>
+                        <p className='text-[#94a9c9] text-lg'>No messages yet</p>
+                    </motion.div>
                 ) : (
-                    <div className='my-5 grid md:grid-cols-2 grid-cols-1  md:ml-0 ml-[75px] gap-3'>
+                    <div className='grid md:grid-cols-2 gap-6'>
                         {messages.map((msg, index) => (
                             <motion.div
-                                variants={fadeIn('left', `0.4${index}`, 10)}
+                                variants={fadeIn('up', 0.1 * index, 10)}
                                 initial='hidden'
-                                whileInView={'show'}
-                                viewport={{ once: true, amount: 0.5 }}
-                                key={index} className=' w-[295px] md:w-[500px] bg-[#131c31] p-3 rounded-lg my-5 font-mono'>
-                                <h3>Message-{index + 1}</h3>
-                                <div className='flex justify-start flex-col my-3 '>
-                                    <div className='my-1'>Name</div>
-                                    <div>{msg.name}</div>
+                                animate='show'
+                                key={index} 
+                                className={`group ${mode === 'dark' ? 'bg-gradient-to-br from-[#131c31] to-[#0f1824]' : 'bg-white'} rounded-2xl shadow-lg hover:shadow-2xl p-6 border ${mode === 'dark' ? 'border-[#222f43]' : 'border-[#c2d4ee]'} hover:border-[#1cc2e7]/50 transition-all duration-300`}>
+                                <div className='flex justify-between items-start mb-4'>
+                                    <h3 className={`text-lg font-bold ${mode === 'dark' ? 'text-white' : 'text-[#131c31]'}`}>Message #{index + 1}</h3>
+                                    <span className='text-xs text-[#94a9c9] bg-[#1cc2e7]/10 px-3 py-1 rounded-full'>{msg.date}</span>
                                 </div>
-                                <div className='flex justify-start flex-col my-3 '>
-                                    <div className='my-1'>Email</div>
-                                    <div>{msg.email}</div>
-
+                                
+                                <div className='space-y-3 mb-4'>
+                                    <div>
+                                        <label className={`text-xs font-semibold ${mode === 'dark' ? 'text-[#b9e0f2]' : 'text-[#131c31]'} mb-1 block`}>Name</label>
+                                        <p className='text-[#94a9c9]'>{msg.name}</p>
+                                    </div>
+                                    <div>
+                                        <label className={`text-xs font-semibold ${mode === 'dark' ? 'text-[#b9e0f2]' : 'text-[#131c31]'} mb-1 block`}>Email</label>
+                                        <p className='text-[#94a9c9] break-all'>{msg.email}</p>
+                                    </div>
+                                    <div>
+                                        <label className={`text-xs font-semibold ${mode === 'dark' ? 'text-[#b9e0f2]' : 'text-[#131c31]'} mb-1 block`}>Message</label>
+                                        <p className='text-[#94a9c9] bg-[#0a0e1a] p-3 rounded-lg'>{msg.msg}</p>
+                                    </div>
                                 </div>
-                                <div className='flex justify-start flex-col my-3 '>
-                                    <div className='my-1'>Message</div>
-                                    <div>{msg.msg}</div>
+                                
+                                <div className='flex gap-2'>
+                                    <a 
+                                        href={`mailto:${msg.email}`}
+                                        className='flex-1 py-2 px-4 bg-[#1cc2e7]/10 hover:bg-[#1cc2e7] text-[#1cc2e7] hover:text-white border border-[#1cc2e7]/30 hover:border-[#1cc2e7] rounded-xl font-medium text-center transition-all duration-300'>
+                                        Reply
+                                    </a>
+                                    <button 
+                                        onClick={() => handleMsgDelete(msg._id)} 
+                                        className='flex-1 py-2 px-4 bg-red-500/10 hover:bg-red-500 text-red-500 hover:text-white border border-red-500/30 hover:border-red-500 rounded-xl font-medium transition-all duration-300'>
+                                        Delete
+                                    </button>
                                 </div>
-                                <div className='flex justify-start flex-col my-3 '>
-                                    <div className='my-1'>Date</div>
-                                    <div>{msg.date}</div>
-                                </div>
-
-                                <button onClick={() => handleMsgDelete(msg._id)} className={`p-2 w-[90px] text-base mx-2  ${mode === 'dark' ? 'hover:bg-[#222f43]' : 'hover:bg-[#e8edf5]'}  border border-cyan-400`}>Delete</button>
-                                <button className={`p-2 w-[90px] text-base mx-2 ${mode === 'dark' ? 'hover:bg-[#222f43]' : 'hover:bg-[#e8edf5]'}  border border-cyan-400`}><a href={`mailto:${msg.email}`} >Reply</a></button>
                             </motion.div>
-                        ))
-                        }
-                    </div>)
-                }
+                        ))}
+                    </div>
+                )}
                 {loading && <Loader loading={loading}/>
                 }
             </section>

@@ -43,8 +43,7 @@ const Skills = () => {
                 <motion.div
                     variants={fadeIn('right', 0.3, 10)}
                     initial='hidden'
-                    whileInView={'show'}
-                    viewport={{ once: true, amount: 0.7 }}
+                    animate='show'
                     className='lineImg flex items-center justify-center text-[25px] md:text-[30px] '>
                     <span className='text-[#1cc2e7] text-[20px] md:text-[28px]' >IV.</span>
                     <h2 className='text-[#94a9c9]  w-fit text-center md:w-fit mx-2'>Skills & Expertise</h2>
@@ -53,8 +52,7 @@ const Skills = () => {
                     <motion.h1
                         variants={fadeIn('right', 0.3, 10)}
                         initial='hidden'
-                        whileInView={'show'}
-                        viewport={{ once: true, amount: 0.7 }}
+                        animate='show'
                         className={`   ${mode==='dark'?'text-[#b9e0f2]':'text-[#94a9c9]'} my-8 text-2xl font-bold text-center md:text-justify`}>Skilled in the Use of These Technologies</motion.h1>
                     <div className=' relative w-fit grid  md:grid-cols-4 grid-cols-2 gap-3 ' >
                         {
@@ -63,8 +61,7 @@ const Skills = () => {
                                     key={index}
                                     variants={fadeIn('right', initialDelay + index * delayIncrement, 10)}
                                     initial='hidden'
-                                    whileInView={'show'}
-                                    viewport={{ once: true, amount: 0.7 }}
+                                    animate='show'
                                     className={` ${mode==='dark'?'hover-neon':'hover-neon-light'} flex px-4 ${mode==='dark'?'bg-[#131c31]':'bg-[#e8edf5]'} border md:text-lg text-sm rounded-lg  min-w-min border-solid  ${mode==='dark'?'border-[#222f43]':'border-[#c2d4ee]'} items-center md:gap-3 gap-2`}>
                                     <img src={skill.image} alt="logo" className='w-[50px] md:w-[90px]' />
                                     <h1 className={` ${mode==='dark'?'text-[#b9e0f2]':'text-[#94a9c9]'} w-1/2 font-bold font-mono`}>{skill.name}</h1>
@@ -76,8 +73,7 @@ const Skills = () => {
                     <motion.div
                         variants={fadeIn('right', 0.8, 10)}
                         initial='hidden'
-                        whileInView={'show'}
-                        viewport={{ once: true, amount: 0.7 }}
+                        animate='show'
                         className='p-5 m-3'>
 
                         <Link to={'/skills'} className='btn btn-hover w-[200px] block' >See More</Link>

@@ -47,60 +47,117 @@ const handleAddEdu=()=>{
         }
     }
     return (
-        <div>
+        <div className='md:ml-[75px]'>
             <motion.div
                 variants={fadeIn('left', 0.2, 10)}
                 initial='hidden'
-                whileInView={'show'}
-                viewport={{ once: true, amount: 0.7 }}
-                className=' mx-8 flex items-center justify-center text-[25px] md:text-[30px] font-[Montserrat] my-4 py-2 font-semibold'>
-                <span className='text-[#1cc2e7] text-[20px] md:text-[28px]' ></span>
-                <h2 className='text-[#94a9c9] w-[-webkit-fill-available] md:w-fit mx-2'>Add Details About Education</h2>
+                animate='show'
+                className='flex items-center justify-between mb-8'>
+                <div>
+                    <h1 className={`text-3xl md:text-4xl font-bold mb-2 ${mode === 'dark' ? 'text-white' : 'text-[#131c31]'}`}>Education Management</h1>
+                    <p className='text-[#94a9c9] text-sm'>Add and manage your educational qualifications</p>
+                </div>
             </motion.div>
-            <div className='my-6 py-4 px-2 flex justify-center flex-col items-center'>
-                <form className='flex flex-col justify-center items-center text-[#94a9c9] w-[100%] rounded-lg py-12 px-10 border border-[#222f43]' method='post' encType='multipart/form-data'>
+            
+            <motion.div
+                variants={fadeIn('up', 0.3, 10)}
+                initial='hidden'
+                animate='show'
+                className={`max-w-4xl mx-auto ${mode === 'dark' ? 'bg-gradient-to-br from-[#131c31] to-[#0f1824]' : 'bg-white'} rounded-2xl shadow-xl p-6 md:p-8 mb-8 border ${mode === 'dark' ? 'border-[#222f43]' : 'border-[#c2d4ee]'}`}>
+                <h2 className={`text-xl md:text-2xl font-bold mb-6 flex items-center ${mode === 'dark' ? 'text-white' : 'text-[#131c31]'}`}>
+                    <span className='w-1 h-8 bg-gradient-to-b from-[#1cc2e7] to-[#0bccd3] rounded-full mr-3'></span>
+                    Add Education Details
+                </h2>
+                <form className='space-y-6' method='post' encType='multipart/form-data'>
                     {eduData.map((data, index) => (
-                       <>    <h1 className='font-bold text-2xl text-center'>Form-{index+1}</h1>
-
-                        <div key={index} className='flex justify-start flex-col my-3'>
-                            <div className='flex justify-start flex-col my-3 '>
-                                <label htmlFor={`year-${index}`} className='my-1'>Year <span>format-(2021-2025)</span></label>
-                                <input type="text" name='year' value={data.year} onChange={(e) => handleOnChange(index, e)} className={` ${mode === 'dark' ? 'active-input' : 'active-input-light'} bg-transparent placeholder:text-[#94a9c9] p-3  border border-[#222f43] rounded-lg md:w-[330px]`} placeholder='Enter year' />
+                        <div key={index} className={`${mode === 'dark' ? 'bg-[#0a0e1a]' : 'bg-[#f5f7fb]'} p-6 rounded-xl border ${mode === 'dark' ? 'border-[#222f43]' : 'border-[#c2d4ee]'} space-y-4`}>
+                            <div className='flex justify-between items-center mb-4'>
+                                <h3 className={`text-lg font-bold ${mode === 'dark' ? 'text-white' : 'text-[#131c31]'}`}>Education #{index + 1}</h3>
+                                {eduData.length > 1 && (
+                                    <button 
+                                        type='button'
+                                        onClick={(e) => {e.preventDefault(); handleRemoveEdu(index)}}
+                                        className='px-4 py-2 bg-red-500/10 hover:bg-red-500 text-red-500 hover:text-white border border-red-500/30 hover:border-red-500 rounded-lg font-medium transition-all duration-300 text-sm'>
+                                        Remove
+                                    </button>
+                                )}
                             </div>
-                            <div className='flex justify-start flex-col my-3 '>
-                                <label htmlFor={`clg-${index}`} className='my-1'>College/School</label>
-                                <input type="text" name='clg' value={data.clg} onChange={(e) => handleOnChange(index, e)} className={` ${mode === 'dark' ? 'active-input' : 'active-input-light'} bg-transparent placeholder:text-[#94a9c9] p-3  border border-[#222f43] rounded-lg md:w-[330px]`} placeholder='Enter college' />
-                            </div>
-                            <div className='flex justify-start flex-col my-3 '>
-                                <label htmlFor={`edu-${index}`} className='my-1'>Education</label>
-                                <input type="text" name='edu' value={data.edu} onChange={(e) => handleOnChange(index, e)} className={` ${mode === 'dark' ? 'active-input' : 'active-input-light'} bg-transparent placeholder:text-[#94a9c9] p-3  border border-[#222f43] rounded-lg md:w-[330px]`} placeholder='Enter education' />
-                            </div>
-                            <div className='flex justify-start flex-col my-3 '>
-                                <label htmlFor={`sts-${index}`} className='my-1'>Status</label>
-                                <input type="text" name='sts' value={data.sts} onChange={(e) => handleOnChange(index, e)} className={` ${mode === 'dark' ? 'active-input' : 'active-input-light'} bg-transparent placeholder:text-[#94a9c9] p-3  border border-[#222f43] rounded-lg md:w-[330px]`} placeholder='Enter current status' />
-                            </div>
-                            <div className='flex justify-start flex-col my-3 '>
-                                <label htmlFor={`para-${index}`} className='my-1'>Link</label>
-                                <input type="text" name='link' value={data.link} onChange={(e) => handleOnChange(index, e)} className={` ${mode === 'dark' ? 'active-input' : 'active-input-light'} bg-transparent placeholder:text-[#94a9c9] p-3  border border-[#222f43] rounded-lg md:w-[330px]`} placeholder='Enter link of clg/school' />
-                            </div>
-
-                            <div className='m-5 flex justify-center items-center'>
-                                <button onClick={(e)=>handleRemoveEdu(index)} className={`p-2 w-[90px] text-base  ${mode === 'dark' ? 'hover:bg-[#222f43]' : 'hover:bg-[#e8edf5]'}  border border-cyan-400`}>Remove</button>
+                            <div className='grid md:grid-cols-2 gap-4'>
+                                <div>
+                                    <label htmlFor={`year-${index}`} className={`mb-2 font-medium block ${mode === 'dark' ? 'text-[#b9e0f2]' : 'text-[#131c31]'} text-sm`}>Year <span className='text-xs text-[#94a9c9]'>(2021-2025)</span></label>
+                                    <input 
+                                        type="text" 
+                                        name='year' 
+                                        value={data.year} 
+                                        onChange={(e) => handleOnChange(index, e)} 
+                                        className={`w-full ${mode === 'dark' ? 'bg-[#131c31] border-[#222f43] focus:border-[#1cc2e7]' : 'bg-white border-[#c2d4ee] focus:border-[#1cc2e7]'} text-[#94a9c9] placeholder:text-[#94a9c9]/50 p-3 border-2 rounded-xl transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#1cc2e7]/20`} 
+                                        placeholder='2021-2025' 
+                                    />
+                                </div>
+                                <div>
+                                    <label htmlFor={`sts-${index}`} className={`mb-2 font-medium block ${mode === 'dark' ? 'text-[#b9e0f2]' : 'text-[#131c31]'} text-sm`}>Status</label>
+                                    <input 
+                                        type="text" 
+                                        name='sts' 
+                                        value={data.sts} 
+                                        onChange={(e) => handleOnChange(index, e)} 
+                                        className={`w-full ${mode === 'dark' ? 'bg-[#131c31] border-[#222f43] focus:border-[#1cc2e7]' : 'bg-white border-[#c2d4ee] focus:border-[#1cc2e7]'} text-[#94a9c9] placeholder:text-[#94a9c9]/50 p-3 border-2 rounded-xl transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#1cc2e7]/20`} 
+                                        placeholder='Completed / Pursuing' 
+                                    />
+                                </div>
+                                <div className='md:col-span-2'>
+                                    <label htmlFor={`clg-${index}`} className={`mb-2 font-medium block ${mode === 'dark' ? 'text-[#b9e0f2]' : 'text-[#131c31]'} text-sm`}>College/School Name</label>
+                                    <input 
+                                        type="text" 
+                                        name='clg' 
+                                        value={data.clg} 
+                                        onChange={(e) => handleOnChange(index, e)} 
+                                        className={`w-full ${mode === 'dark' ? 'bg-[#131c31] border-[#222f43] focus:border-[#1cc2e7]' : 'bg-white border-[#c2d4ee] focus:border-[#1cc2e7]'} text-[#94a9c9] placeholder:text-[#94a9c9]/50 p-3 border-2 rounded-xl transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#1cc2e7]/20`} 
+                                        placeholder='Enter institution name' 
+                                    />
+                                </div>
+                                <div className='md:col-span-2'>
+                                    <label htmlFor={`edu-${index}`} className={`mb-2 font-medium block ${mode === 'dark' ? 'text-[#b9e0f2]' : 'text-[#131c31]'} text-sm`}>Degree/Qualification</label>
+                                    <input 
+                                        type="text" 
+                                        name='edu' 
+                                        value={data.edu} 
+                                        onChange={(e) => handleOnChange(index, e)} 
+                                        className={`w-full ${mode === 'dark' ? 'bg-[#131c31] border-[#222f43] focus:border-[#1cc2e7]' : 'bg-white border-[#c2d4ee] focus:border-[#1cc2e7]'} text-[#94a9c9] placeholder:text-[#94a9c9]/50 p-3 border-2 rounded-xl transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#1cc2e7]/20`} 
+                                        placeholder='B.Tech in Computer Science' 
+                                    />
+                                </div>
+                                <div className='md:col-span-2'>
+                                    <label htmlFor={`link-${index}`} className={`mb-2 font-medium block ${mode === 'dark' ? 'text-[#b9e0f2]' : 'text-[#131c31]'} text-sm`}>Institution Website (Optional)</label>
+                                    <input 
+                                        type="text" 
+                                        name='link' 
+                                        value={data.link} 
+                                        onChange={(e) => handleOnChange(index, e)} 
+                                        className={`w-full ${mode === 'dark' ? 'bg-[#131c31] border-[#222f43] focus:border-[#1cc2e7]' : 'bg-white border-[#c2d4ee] focus:border-[#1cc2e7]'} text-[#94a9c9] placeholder:text-[#94a9c9]/50 p-3 border-2 rounded-xl transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#1cc2e7]/20`} 
+                                        placeholder='https://...' 
+                                    />
+                                </div>
                             </div>
                         </div>
-                        </> 
                     ))}
 
                 </form>
-                <div className='flex text-[#94a9c9]'>
-                    <div className='m-5'>
-                        <button onClick={handleAddEdu} className={`p-2 w-[90px] text-base  ${mode === 'dark' ? 'hover:bg-[#222f43]' : 'hover:bg-[#e8edf5]'}  border border-cyan-400`}>Add More </button>
-                    </div>
-                    <div className='m-5'>
-                        <button onClick={handleSubmit} className={`p-2 w-[90px] text-base  ${mode === 'dark' ? 'hover:bg-[#222f43]' : 'hover:bg-[#e8edf5]'}  border border-cyan-400`}>Submit</button>
-                    </div>
+                <div className='flex gap-4 mt-6'>
+                    <button 
+                        type='button'
+                        onClick={(e) => {e.preventDefault(); handleAddEdu()}} 
+                        className='px-6 py-3 bg-[#1cc2e7]/10 hover:bg-[#1cc2e7]/20 text-[#1cc2e7] border border-[#1cc2e7]/30 font-semibold rounded-xl transition-all duration-300'>
+                        + Add Another
+                    </button>
+                    <button 
+                        type='button'
+                        onClick={(e) => {e.preventDefault(); handleSubmit()}} 
+                        className='px-8 py-3 bg-gradient-to-r from-[#1cc2e7] to-[#0bccd3] text-white font-semibold rounded-xl hover:shadow-lg hover:shadow-[#1cc2e7]/50 transform hover:scale-105 transition-all duration-300'>
+                        Save Education Details
+                    </button>
                 </div>
-            </div>
+            </motion.div>
         <EduDetails isOpen={isOpen} setIsOpen={setIsOpen} edus={edus} setEdus={setEdus}/>
         </div>
     )

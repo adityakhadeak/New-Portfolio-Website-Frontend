@@ -93,72 +93,94 @@ const ManageAbout = () => {
         setaboutData([{ para: "" }])
     }
     return (
-        <div className='ml-[75px] flex flex-col justify-start items-center'>
+        <div className='md:ml-[75px]'>
             <motion.div
                 variants={fadeIn('left', 0.2, 10)}
                 initial='hidden'
-                whileInView={'show'}
-                viewport={{ once: true, amount: 0.7 }}
-                className=' mx-8 flex items-center justify-center text-[25px] md:text-[30px] font-[Montserrat] my-4 py-2 font-semibold'>
-                <span className='text-[#1cc2e7] text-[20px] md:text-[28px]' ></span>
-                <h2 className='text-[#94a9c9] w-[-webkit-fill-available] md:w-fit mx-2'>Add About Para's</h2>
+                animate='show'
+                className='flex items-center justify-between mb-8'>
+                <div>
+                    <h1 className={`text-3xl md:text-4xl font-bold mb-2 ${mode === 'dark' ? 'text-white' : 'text-[#131c31]'}`}>About Management</h1>
+                    <p className='text-[#94a9c9] text-sm'>Add and manage paragraphs for your about section</p>
+                </div>
             </motion.div>
-            <div className='my-6 py-4 px-2 flex justify-center flex-col border w-[230px] md:w-[500px] border-[#222f43] items-center'>
-                <form className='flex flex-col justify-center items-center text-[#94a9c9] min-w-[fit] rounded-lg py-12 px-10 ' method='post' encType='multipart/form-data'>
+            <motion.div
+                variants={fadeIn('up', 0.3, 10)}
+                initial='hidden'
+                animate='show'
+                className={`max-w-4xl mx-auto ${mode === 'dark' ? 'bg-gradient-to-br from-[#131c31] to-[#0f1824]' : 'bg-white'} rounded-2xl shadow-xl p-6 md:p-8 mb-8 border ${mode === 'dark' ? 'border-[#222f43]' : 'border-[#c2d4ee]'}`}>
+                <h2 className={`text-xl md:text-2xl font-bold mb-6 flex items-center ${mode === 'dark' ? 'text-white' : 'text-[#131c31]'}`}>
+                    <span className='w-1 h-8 bg-gradient-to-b from-[#1cc2e7] to-[#0bccd3] rounded-full mr-3'></span>
+                    Add About Paragraphs
+                </h2>
+                <form className='space-y-6' method='post' encType='multipart/form-data'>
                     {aboutData.map((data, index) => (
-
-                        <div key={index} className='flex justify-start flex-col my-3'>
-                            <div className='flex justify-start flex-col my-3 '>
-                                <label htmlFor={`para-${index}`} className='my-1'>Para</label>
-                                <textarea type="text" name='para' value={data.para} onChange={(e) => handleOnChange(index, e)} className={` ${mode === 'dark' ? 'active-input' : 'active-input-light'} bg-transparent placeholder:text-[#94a9c9] p-3  border border-[#222f43] rounded-lg md:w-[330px]`} placeholder='Enter your name' />
-                            </div>
-
-                            <div className='m-5 flex justify-center items-center'>
-                                <button onClick={(e) => handleRemovePara(index)} className={`p-2 w-[90px] text-base  ${mode === 'dark' ? 'hover:bg-[#222f43]' : 'hover:bg-[#e8edf5]'}  border border-cyan-400`}>Remove</button>
-                            </div>
+                        <div key={index} className={`${mode === 'dark' ? 'bg-[#0a0e1a]' : 'bg-[#f5f7fb]'} p-4 rounded-xl border ${mode === 'dark' ? 'border-[#222f43]' : 'border-[#c2d4ee]'}`}>
+                            <label htmlFor={`para-${index}`} className={`mb-2 font-medium block ${mode === 'dark' ? 'text-[#b9e0f2]' : 'text-[#131c31]'}`}>Paragraph {index + 1}</label>
+                            <textarea 
+                                type="text" 
+                                name='para' 
+                                value={data.para} 
+                                onChange={(e) => handleOnChange(index, e)} 
+                                rows="4"
+                                className={`w-full ${mode === 'dark' ? 'bg-[#131c31] border-[#222f43] focus:border-[#1cc2e7]' : 'bg-white border-[#c2d4ee] focus:border-[#1cc2e7]'} text-[#94a9c9] placeholder:text-[#94a9c9]/50 p-4 border-2 rounded-xl transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#1cc2e7]/20 resize-none`} 
+                                placeholder='Enter paragraph content' 
+                            />
+                            <button 
+                                onClick={(e) => handleRemovePara(index)} 
+                                className='mt-3 px-4 py-2 bg-red-500/10 hover:bg-red-500 text-red-500 hover:text-white border border-red-500/30 hover:border-red-500 rounded-lg font-medium transition-all duration-300'>
+                                Remove
+                            </button>
                         </div>
                     ))}
 
                 </form>
-                <div className='flex  text-[#94a9c9]'>
-                    <div className='mr-5'>
-                        <button onClick={handleAddPara} className={`p-2 w-[90px] text-base  ${mode === 'dark' ? 'hover:bg-[#222f43]' : 'hover:bg-[#e8edf5]'}  border border-cyan-400`}>Add More </button>
-                    </div>
-                    <div className=''>
-                        <button onClick={handleSubmit} className={`p-2 w-[90px] text-base  ${mode === 'dark' ? 'hover:bg-[#222f43]' : 'hover:bg-[#e8edf5]'}  border border-cyan-400`}>Submit</button>
-                    </div>
+                <div className='flex gap-4 mt-6'>
+                    <button 
+                        onClick={handleAddPara} 
+                        className='px-6 py-3 bg-[#1cc2e7]/10 hover:bg-[#1cc2e7]/20 text-[#1cc2e7] border border-[#1cc2e7]/30 font-semibold rounded-xl transition-all duration-300'>
+                        Add More
+                    </button>
+                    <button 
+                        onClick={handleSubmit} 
+                        className='px-8 py-3 bg-gradient-to-r from-[#1cc2e7] to-[#0bccd3] text-white font-semibold rounded-xl hover:shadow-lg hover:shadow-[#1cc2e7]/50 transform hover:scale-105 transition-all duration-300'>
+                        Submit
+                    </button>
                 </div>
-            </div>
+            </motion.div>
             <AboutModal paras={paras} setParas={setParas} para={selectedPara.para} paraid={selectedPara.id} isOpen={isOpen} setIsOpen={setIsOpen} />
-            <section className='flex flex-col justify-center items-center'>
+            <section>
                 <motion.div
                     variants={fadeIn('left', 0.2, 10)}
                     initial='hidden'
-                    whileInView={'show'}
-                    viewport={{ once: true, amount: 0.7 }}
-                    className=' mx-8 flex items-center justify-center text-[25px] md:text-[30px] font-[Montserrat] my-4 py-2 font-semibold'>
-                    <span className='text-[#1cc2e7] text-[20px] md:text-[28px]' ></span>
-                    <h2 className='text-[#94a9c9] w-[-webkit-fill-available] text-center md:w-fit mx-2'>Current Paragraphs</h2>
+                    animate='show'
+                    className='mb-6'>
+                    <h2 className={`text-2xl md:text-3xl font-bold ${mode === 'dark' ? 'text-white' : 'text-[#131c31]'}`}>Current Paragraphs ({paras.length})</h2>
                 </motion.div>
-                <div className='my-5 grid md:grid-cols-2 grid-cols-1 gap-3'>
-                    {
-                        paras.map((para, index) => (
-                            <motion.div
-                                variants={fadeIn('left', `0.4${index}`, 10)}
-                                initial='hidden'
-                                whileInView={'show'}
-                                viewport={{ once: true, amount: 0.7 }}
-                                key={index} className=' w-[295px] md:w-[500px] bg-[#131c31] p-3 rounded-lg my-5 font-mono'>
-                                <h3>Paragraph-{index + 1}</h3>
-                                <p className='text-justify text-[#94a9c9] my-3 w-[fit]  leading-7  '>
-                                    {para.para}
-
-                                </p>
-                                <button onClick={() => handleParaDelete(para._id)} className={`p-2 w-[90px] text-base mx-2  ${mode === 'dark' ? 'hover:bg-[#222f43]' : 'hover:bg-[#e8edf5]'}  border border-cyan-400`}>Delete</button>
-                                <button onClick={() => UpdatePara(para._id, para.para)} className={`p-2 w-[90px] text-base mx-2 ${mode === 'dark' ? 'hover:bg-[#222f43]' : 'hover:bg-[#e8edf5]'}  border border-cyan-400`}>Update</button>
-                            </motion.div>
-                        ))
-                    }
+                <div className='grid md:grid-cols-2 gap-6'>
+                    {paras.map((para, index) => (
+                        <motion.div
+                            variants={fadeIn('up', 0.1 * index, 10)}
+                            initial='hidden'
+                            animate='show'
+                            key={index} 
+                            className={`group ${mode === 'dark' ? 'bg-gradient-to-br from-[#131c31] to-[#0f1824]' : 'bg-white'} rounded-2xl shadow-lg hover:shadow-2xl p-6 border ${mode === 'dark' ? 'border-[#222f43]' : 'border-[#c2d4ee]'} hover:border-[#1cc2e7]/50 transition-all duration-300`}>
+                            <h3 className={`text-lg font-bold mb-3 ${mode === 'dark' ? 'text-white' : 'text-[#131c31]'}`}>Paragraph {index + 1}</h3>
+                            <p className='text-justify text-[#94a9c9] mb-4 leading-7'>{para.para}</p>
+                            <div className='flex gap-2'>
+                                <button 
+                                    onClick={() => UpdatePara(para._id, para.para)} 
+                                    className='flex-1 py-2 px-4 bg-[#1cc2e7]/10 hover:bg-[#1cc2e7] text-[#1cc2e7] hover:text-white border border-[#1cc2e7]/30 hover:border-[#1cc2e7] rounded-xl font-medium transition-all duration-300'>
+                                    Update
+                                </button>
+                                <button 
+                                    onClick={() => handleParaDelete(para._id)} 
+                                    className='flex-1 py-2 px-4 bg-red-500/10 hover:bg-red-500 text-red-500 hover:text-white border border-red-500/30 hover:border-red-500 rounded-xl font-medium transition-all duration-300'>
+                                    Delete
+                                </button>
+                            </div>
+                        </motion.div>
+                    ))}
                 </div>
             </section>
         </div>

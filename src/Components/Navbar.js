@@ -77,8 +77,7 @@ const Navbar = () => {
                 <motion.div
                     variants={fadeIn('right', 0.2, 40)}
                     initial='hidden'
-                    whileInView={'show'}
-                    viewport={{ once: true, amount: 0.1 }}
+                    animate='show'
                     className=' m-3'>
                     <Link to={'/'}>
                         <img className="w-14" src={logo} alt="logo" /></Link>
@@ -90,8 +89,7 @@ const Navbar = () => {
                                 key={link.key}
                                 variants={fadeIn('up', link.animIn)}
                                 initial='hidden'
-                                whileInView={'show'}
-                                viewport={{ once: true, amount: 0.1 }}>
+                                animate='show'>
                                 <NavLink className={`hover:text-[#1cc2e7] text-base transition-colors duration-300 `} to={link.link}><span className='text-[#1cc2e7] mx-1 '>{link.key}</span>{link.name}</NavLink>
                             </motion.div>
                         ))}
@@ -99,8 +97,7 @@ const Navbar = () => {
                     <motion.div
                         variants={fadeIn('left', 0.2, 20)}
                         initial='hidden'
-                        whileInView={'show'}
-                        viewport={{ once: true, amount: 0.1 }}
+                        animate='show'
                         className='leftside flex '>
                         <div onClick={changeMode}
                             className={`text-[#0bcad4] text-3xl m-3 transition-all cursor-pointer duration-300 ${menu === "on" ? "translate-x-12" : "-translate-x-0"}`}>

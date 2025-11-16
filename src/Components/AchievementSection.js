@@ -20,8 +20,7 @@ const AchievementSection = () => {
                 <motion.div
                     variants={fadeIn('right', 0.3, 10)}
                     initial='hidden'
-                    whileInView={'show'}
-                    viewport={{ once: true, amount: 0.7 }}
+                    animate='show'
                     className='lineImg flex items-center justify-center text-[25px] md:text-[30px] '>
                     <span className='text-[#1cc2e7] text-[20px] md:text-[28px]' >VI.</span>
                     <h2 className='text-[#94a9c9] w-fit md:w-fit mx-2'>Achievements & Badges</h2>

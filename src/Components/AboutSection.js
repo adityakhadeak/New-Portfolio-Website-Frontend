@@ -29,8 +29,7 @@ const AboutSection = () => {
                         <motion.div
                             variants={fadeIn('left', 0.5)}
                             initial='hidden'
-                            whileInView={'show'}
-                            viewport={{ once: true, amount: 0.7 }}
+                            animate='show'
                             className='lineImg flex items-center justify-center md:justify-start text-[25px] md:mb-0 mb-9 md:text-[30px]  '>
                             <span className='text-[#1cc2e7] text-[20px] md:text-[28px]' >I.</span>
                             <h2 className='text-[#94a9c9] w-fit md:w-fit mx-2'>About Me</h2>
@@ -40,8 +39,8 @@ const AboutSection = () => {
                                 {Paras.map((para,index) => {
                                     return <motion.p key={index} variants={fadeIn('up', para.animIn)}
                                         initial='hidden'
-                                        whileInView={'show'}
-                                        viewport={{ once: true, amount: 0.7 }} className='m-0 w-fit md:w-[500px] text-justify mb-3'>{para.para} </motion.p>
+                                        animate='show'
+                                        className='m-0 w-fit md:w-[500px] text-justify mb-3'>{para.para} </motion.p>
                                 })
                                 }
 
@@ -49,8 +48,7 @@ const AboutSection = () => {
                             <motion.div
                                 variants={fadeIn('down', 0.6)}
                                 initial='hidden'
-                                whileInView={'show'}
-                                viewport={{ once: true, amount: 0.7 }}
+                                animate='show'
                                 className='abtImgCon flex justify-center  relative'>
                                 <img src={abtImg} className='abt-image max-w-[18rem] md:max-w-[28rem] w-[100%]' alt="" />
                             </motion.div>
@@ -58,8 +56,7 @@ const AboutSection = () => {
                         <motion.div
                             variants={fadeIn('up', 0.7)}
                             initial='hidden'
-                            whileInView={'show'}
-                            viewport={{ once: true, amount: 0.7 }}
+                            animate='show'
                             className='my-1'>
                             <Link to={'/about'} className='btn btn-hover' >Know More</Link>
                         </motion.div>

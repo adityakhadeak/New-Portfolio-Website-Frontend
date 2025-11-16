@@ -100,140 +100,199 @@ const ManageCer = () => {
         }
     }
     return (
-        <div className='ml-[75px] flex flex-col justify-start items-center'>
+        <div className='md:ml-[75px]'>
             <motion.div
                 variants={fadeIn('left', 0.2, 10)}
                 initial='hidden'
-                whileInView={'show'}
-                viewport={{ once: true, amount: 0.7 }}
-                className=' mx-8 flex items-center justify-center text-[25px] md:text-[30px] font-[Montserrat] my-4 py-2 font-semibold'>
-                <span className='text-[#1cc2e7] text-[20px] md:text-[28px]' ></span>
-                <h2 className='text-[#94a9c9] w-[-webkit-fill-available] md:w-fit mx-2'>Add Details Of Certificates</h2>
+                animate='show'
+                className='flex items-center justify-between mb-8'>
+                <div>
+                    <h1 className={`text-3xl md:text-4xl font-bold mb-2 ${mode === 'dark' ? 'text-white' : 'text-[#131c31]'}`}>Certificates Management</h1>
+                    <p className='text-[#94a9c9] text-sm'>Add and manage your certifications and achievements</p>
+                </div>
             </motion.div>
-            <div className='my-6 py-4 px-2 flex justify-center flex-col border w-[230px] md:w-[500px] border-[#222f43] items-center'>
-                <form className='flex flex-col justify-center items-center text-[#94a9c9] w-[100%] rounded-lg py-12 px-10' method='post' encType='multipart/form-data'>
+            
+            <motion.div
+                variants={fadeIn('up', 0.3, 10)}
+                initial='hidden'
+                animate='show'
+                className={`max-w-4xl mx-auto ${mode === 'dark' ? 'bg-gradient-to-br from-[#131c31] to-[#0f1824]' : 'bg-white'} rounded-2xl shadow-xl p-6 md:p-8 mb-8 border ${mode === 'dark' ? 'border-[#222f43]' : 'border-[#c2d4ee]'}`}>
+                <h2 className={`text-xl md:text-2xl font-bold mb-6 flex items-center ${mode === 'dark' ? 'text-white' : 'text-[#131c31]'}`}>
+                    <span className='w-1 h-8 bg-gradient-to-b from-[#1cc2e7] to-[#0bccd3] rounded-full mr-3'></span>
+                    Add Certificate Details
+                </h2>
+                <form className='space-y-6' method='post' encType='multipart/form-data'>
                     {cerData.map((data, index) => (
-                        <div key={index}>    <h1 className='font-bold text-2xl text-center'>Form-{index + 1}</h1>
-
-                            <div className='flex justify-start flex-col my-3'>
-                                <div className='flex justify-start flex-col my-3 '>
-                                    <label htmlFor={`title `} className='my-1'>Title</label>
-                                    <input type="text" name='title' value={data.title} onChange={(e) => handleOnChange(index, e)} className={` ${mode === 'dark' ? 'active-input' : 'active-input-light'} bg-transparent placeholder:text-[#94a9c9] p-3  border border-[#222f43] rounded-lg md:w-[330px]`} placeholder='Enter title' />
+                        <div key={index} className={`${mode === 'dark' ? 'bg-[#0a0e1a]' : 'bg-[#f5f7fb]'} p-6 rounded-xl border ${mode === 'dark' ? 'border-[#222f43]' : 'border-[#c2d4ee]'} space-y-4`}>
+                            <div className='flex justify-between items-center mb-4'>
+                                <h3 className={`text-lg font-bold ${mode === 'dark' ? 'text-white' : 'text-[#131c31]'}`}>Certificate #{index + 1}</h3>
+                                {cerData.length > 1 && (
+                                    <button 
+                                        type='button'
+                                        onClick={(e) => {e.preventDefault(); handleRemoveexp(index)}}
+                                        className='px-4 py-2 bg-red-500/10 hover:bg-red-500 text-red-500 hover:text-white border border-red-500/30 hover:border-red-500 rounded-lg font-medium transition-all duration-300 text-sm'>
+                                        Remove
+                                    </button>
+                                )}
+                            </div>
+                            <div className='grid md:grid-cols-2 gap-4'>
+                                <div className='md:col-span-2'>
+                                    <label htmlFor={`title-${index}`} className={`mb-2 font-medium block ${mode === 'dark' ? 'text-[#b9e0f2]' : 'text-[#131c31]'} text-sm`}>Certificate Title</label>
+                                    <input 
+                                        type="text" 
+                                        name='title' 
+                                        value={data.title} 
+                                        onChange={(e) => handleOnChange(index, e)} 
+                                        className={`w-full ${mode === 'dark' ? 'bg-[#131c31] border-[#222f43] focus:border-[#1cc2e7]' : 'bg-white border-[#c2d4ee] focus:border-[#1cc2e7]'} text-[#94a9c9] placeholder:text-[#94a9c9]/50 p-3 border-2 rounded-xl transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#1cc2e7]/20`} 
+                                        placeholder='Full Stack Development' 
+                                    />
                                 </div>
-                                <div className='flex justify-start flex-col my-3 '>
-                                    <label htmlFor={`desc `} className='my-1'>Description</label>
-                                    <input type="text" name='desc' value={data.desc} onChange={(e) => handleOnChange(index, e)} className={` ${mode === 'dark' ? 'active-input' : 'active-input-light'} bg-transparent placeholder:text-[#94a9c9] p-3  border border-[#222f43] rounded-lg md:w-[330px]`} placeholder='Enter Description' />
+                                <div className='md:col-span-2'>
+                                    <label htmlFor={`desc-${index}`} className={`mb-2 font-medium block ${mode === 'dark' ? 'text-[#b9e0f2]' : 'text-[#131c31]'} text-sm`}>Description</label>
+                                    <textarea 
+                                        name='desc' 
+                                        value={data.desc} 
+                                        onChange={(e) => handleOnChange(index, e)} 
+                                        rows="3"
+                                        className={`w-full ${mode === 'dark' ? 'bg-[#131c31] border-[#222f43] focus:border-[#1cc2e7]' : 'bg-white border-[#c2d4ee] focus:border-[#1cc2e7]'} text-[#94a9c9] placeholder:text-[#94a9c9]/50 p-3 border-2 rounded-xl transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#1cc2e7]/20 resize-none`} 
+                                        placeholder='Brief description of the certificate' 
+                                    />
                                 </div>
-                                <div className='flex justify-start flex-col my-3 '>
-                                    <label htmlFor={`data `} className='my-1'>Date <span>format-(10-08-2023)</span></label>
-                                    <input type="text" name='date' value={data.date} onChange={(e) => handleOnChange(index, e)} className={` ${mode === 'dark' ? 'active-input' : 'active-input-light'} bg-transparent placeholder:text-[#94a9c9] p-3  border border-[#222f43] rounded-lg md:w-[330px]`} placeholder='Enter Date' />
+                                <div>
+                                    <label htmlFor={`date-${index}`} className={`mb-2 font-medium block ${mode === 'dark' ? 'text-[#b9e0f2]' : 'text-[#131c31]'} text-sm`}>Date <span className='text-xs text-[#94a9c9]'>(DD-MM-YYYY)</span></label>
+                                    <input 
+                                        type="text" 
+                                        name='date' 
+                                        value={data.date} 
+                                        onChange={(e) => handleOnChange(index, e)} 
+                                        className={`w-full ${mode === 'dark' ? 'bg-[#131c31] border-[#222f43] focus:border-[#1cc2e7]' : 'bg-white border-[#c2d4ee] focus:border-[#1cc2e7]'} text-[#94a9c9] placeholder:text-[#94a9c9]/50 p-3 border-2 rounded-xl transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#1cc2e7]/20`} 
+                                        placeholder='10-08-2023' 
+                                    />
                                 </div>
-                                <div className='flex justify-start flex-col my-3 '>
-                                    <label htmlFor={`platform `} className='my-1'>Platform</label>
-                                    <input type="text" name='platform' value={data.platform} onChange={(e) => handleOnChange(index, e)} className={` ${mode === 'dark' ? 'active-input' : 'active-input-light'} bg-transparent placeholder:text-[#94a9c9] p-3  border border-[#222f43] rounded-lg md:w-[330px]`} placeholder='Enter Platform like cousera,kaggle etc' />
+                                <div>
+                                    <label htmlFor={`platform-${index}`} className={`mb-2 font-medium block ${mode === 'dark' ? 'text-[#b9e0f2]' : 'text-[#131c31]'} text-sm`}>Platform</label>
+                                    <input 
+                                        type="text" 
+                                        name='platform' 
+                                        value={data.platform} 
+                                        onChange={(e) => handleOnChange(index, e)} 
+                                        className={`w-full ${mode === 'dark' ? 'bg-[#131c31] border-[#222f43] focus:border-[#1cc2e7]' : 'bg-white border-[#c2d4ee] focus:border-[#1cc2e7]'} text-[#94a9c9] placeholder:text-[#94a9c9]/50 p-3 border-2 rounded-xl transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#1cc2e7]/20`} 
+                                        placeholder='Coursera, Udemy, etc.' 
+                                    />
                                 </div>
-                                <div className='flex justify-start flex-col my-3 '>
-                                    <label htmlFor={`label `} className='my-1'>Label</label>
-                                    <input type="text" name='label' value={data.label} onChange={(e) => handleOnChange(index, e)} className={` ${mode === 'dark' ? 'active-input' : 'active-input-light'} bg-transparent placeholder:text-[#94a9c9] p-3  border border-[#222f43] rounded-lg md:w-[330px]`} placeholder='Enter label course/bootcamp' />
+                                <div>
+                                    <label htmlFor={`label-${index}`} className={`mb-2 font-medium block ${mode === 'dark' ? 'text-[#b9e0f2]' : 'text-[#131c31]'} text-sm`}>Label/Type</label>
+                                    <input 
+                                        type="text" 
+                                        name='label' 
+                                        value={data.label} 
+                                        onChange={(e) => handleOnChange(index, e)} 
+                                        className={`w-full ${mode === 'dark' ? 'bg-[#131c31] border-[#222f43] focus:border-[#1cc2e7]' : 'bg-white border-[#c2d4ee] focus:border-[#1cc2e7]'} text-[#94a9c9] placeholder:text-[#94a9c9]/50 p-3 border-2 rounded-xl transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#1cc2e7]/20`} 
+                                        placeholder='Course / Bootcamp' 
+                                    />
                                 </div>
-                                <div className='flex justify-start flex-col my-3 '>
-                                    <label htmlFor={`doclabel `} className='my-1'>Doc</label>
-                                    <input type="text" name='doc' value={data.doc} onChange={(e) => handleOnChange(index, e)} className={` ${mode === 'dark' ? 'active-input' : 'active-input-light'} bg-transparent placeholder:text-[#94a9c9] p-3  border border-[#222f43] rounded-lg md:w-[330px]`} placeholder='Enter link of doc' />
-                                </div>
-
-                                <div className='m-5 flex justify-center items-center'>
-                                    <button onClick={(e) => handleRemoveexp(index)} className={`p-2 w-[90px] text-base  ${mode === 'dark' ? 'hover:bg-[#222f43]' : 'hover:bg-[#e8edf5]'}  border border-cyan-400`}>Remove</button>
+                                <div>
+                                    <label htmlFor={`doc-${index}`} className={`mb-2 font-medium block ${mode === 'dark' ? 'text-[#b9e0f2]' : 'text-[#131c31]'} text-sm`}>Certificate Link</label>
+                                    <input 
+                                        type="text" 
+                                        name='doc' 
+                                        value={data.doc} 
+                                        onChange={(e) => handleOnChange(index, e)} 
+                                        className={`w-full ${mode === 'dark' ? 'bg-[#131c31] border-[#222f43] focus:border-[#1cc2e7]' : 'bg-white border-[#c2d4ee] focus:border-[#1cc2e7]'} text-[#94a9c9] placeholder:text-[#94a9c9]/50 p-3 border-2 rounded-xl transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#1cc2e7]/20`} 
+                                        placeholder='https://...' 
+                                    />
                                 </div>
                             </div>
                         </div>
                     ))}
 
                 </form>
-                <div className='flex text-[#94a9c9]'>
-                    <div className='m-5'>
-                        <button onClick={handleAddexp} className={`p-2 w-[90px] text-base  ${mode === 'dark' ? 'hover:bg-[#222f43]' : 'hover:bg-[#e8edf5]'}  border border-cyan-400`}>Add More </button>
-                    </div>
-                    <div className='m-5'>
-                        {loading ? < PulseLoader
-                            color={"#0bccd3"}
-                            loading={loading}
-                            speedMultiplier={1}
-                            cssOverride={{ margin: "10px 0" }}
-                            size={10}
-                            aria-label="Loading Spinner"
-                            data-testid="loader"
-                        /> : <button onClick={handleSubmit} className={`p-2 w-[90px] text-base  ${mode === 'dark' ? 'hover:bg-[#222f43]' : 'hover:bg-[#e8edf5]'}  border border-cyan-400`}>Submit</button>
-                        }
-                    </div>
+                <div className='flex gap-4 mt-6'>
+                    <button 
+                        type='button'
+                        onClick={(e) => {e.preventDefault(); handleAddexp()}} 
+                        className='px-6 py-3 bg-[#1cc2e7]/10 hover:bg-[#1cc2e7]/20 text-[#1cc2e7] border border-[#1cc2e7]/30 font-semibold rounded-xl transition-all duration-300'>
+                        + Add Another
+                    </button>
+                    {loading ? (
+                        <div className='flex items-center px-8 py-3'>
+                            <PulseLoader color={"#0bccd3"} loading={loading} speedMultiplier={1} size={10} />
+                        </div>
+                    ) : (
+                        <button 
+                            type='button'
+                            onClick={(e) => {e.preventDefault(); handleSubmit()}} 
+                            className='px-8 py-3 bg-gradient-to-r from-[#1cc2e7] to-[#0bccd3] text-white font-semibold rounded-xl hover:shadow-lg hover:shadow-[#1cc2e7]/50 transform hover:scale-105 transition-all duration-300'>
+                            Save Certificates
+                        </button>
+                    )}
                 </div>
-            </div>
+            </motion.div>
             <CerModal cers={cers} setCers={setCers} selectedCer={selectedCer} setSelectedCer={setSelectedCer} isOpen={isOpen} setIsOpen={setIsOpen} />
 
-            <section className='flex flex-col justify-center items-center'>
+            <section>
                 <motion.div
                     variants={fadeIn('left', 0.2, 10)}
                     initial='hidden'
-                    whileInView={'show'}
-                    viewport={{ once: true, amount: 0.7 }}
-                    className=' mx-8 flex items-center justify-center text-[25px] md:text-[30px] font-[Montserrat] my-4 py-2 font-semibold'>
-                    <span className='text-[#1cc2e7] text-[20px] md:text-[28px]' ></span>
-                    <h2 className='text-[#94a9c9] w-[-webkit-fill-available] text-center md:w-fit mx-2'>Current Certificates</h2>
+                    animate='show'
+                    className='mb-6'>
+                    <h2 className={`text-2xl md:text-3xl font-bold ${mode === 'dark' ? 'text-white' : 'text-[#131c31]'}`}>Your Certificates ({cers.length})</h2>
                 </motion.div>
                 {cers.length === 0 ? (
                     <motion.div
-                        variants={fadeIn('left', `0.4`)}
+                        variants={fadeIn('up', 0.4)}
                         initial='hidden'
-                        whileInView={'show'}
-                        viewport={{ once: true, amount: 0.7 }}
-                        className='flex justify-center items-center'>
-                        <p className='text-[#94a9c9] w-[-webkit-fill-available] text-center md:w-fit mx-auto'>
-                            No Certificates to display
-                        </p>
+                        animate='show'
+                        className={`${mode === 'dark' ? 'bg-[#131c31]' : 'bg-white'} rounded-2xl shadow-lg p-12 text-center border ${mode === 'dark' ? 'border-[#222f43]' : 'border-[#c2d4ee]'}`}>
+                        <div className='text-6xl mb-4'>🏆</div>
+                        <p className='text-[#94a9c9] text-lg'>No certificates added yet</p>
                     </motion.div>
                 ) : (
-                    <div className='my-5 grid md:grid-cols-2 grid-cols-1 gap-3'>
-                        {
-                            cers.map((cer, index) => (
-                                <motion.div
-                                    variants={fadeIn('left', `0.4${index}`, 10)}
-                                    initial='hidden'
-                                    whileInView={'show'}
-                                    viewport={{ once: true, amount: 0.7 }}
-                                    key={index} className=' w-[295px] md:w-[500px] bg-[#131c31] p-3 rounded-lg my-5 font-mono'>
-                                    <h3>Certificate-{index + 1}</h3>
-                                    <div className='flex justify-start flex-col my-3 '>
-                                        <div className='my-1'>Title</div>
-                                        <div>{cer.title}</div>
+                    <div className='grid md:grid-cols-2 gap-6'>
+                        {cers.map((cer, index) => (
+                            <motion.div
+                                variants={fadeIn('up', 0.1 * index, 10)}
+                                initial='hidden'
+                                animate='show'
+                                key={index} 
+                                className={`group ${mode === 'dark' ? 'bg-gradient-to-br from-[#131c31] to-[#0f1824]' : 'bg-white'} rounded-2xl shadow-lg hover:shadow-2xl p-6 border ${mode === 'dark' ? 'border-[#222f43]' : 'border-[#c2d4ee]'} hover:border-[#1cc2e7]/50 transition-all duration-300`}>
+                                <div className='flex justify-between items-start mb-4'>
+                                    <h3 className={`text-lg font-bold ${mode === 'dark' ? 'text-white' : 'text-[#131c31]'}`}>{cer.title}</h3>
+                                    <span className='text-xs text-[#94a9c9] bg-[#1cc2e7]/10 px-3 py-1 rounded-full'>{cer.date}</span>
+                                </div>
+                                
+                                <p className='text-[#94a9c9] text-sm mb-4'>{cer.desc}</p>
+                                
+                                <div className='space-y-2 mb-4'>
+                                    <div className='flex items-center gap-2'>
+                                        <span className={`text-xs font-semibold ${mode === 'dark' ? 'text-[#b9e0f2]' : 'text-[#131c31]'}`}>Platform:</span>
+                                        <span className='text-sm text-[#94a9c9]'>{cer.platform}</span>
                                     </div>
-                                    <div className='flex justify-start flex-col my-3 '>
-                                        <div className='my-1'>Description</div>
-                                        <div>{cer.desc}</div>
-
+                                    <div className='flex items-center gap-2'>
+                                        <span className={`text-xs font-semibold ${mode === 'dark' ? 'text-[#b9e0f2]' : 'text-[#131c31]'}`}>Type:</span>
+                                        <span className='text-sm text-[#94a9c9]'>{cer.label}</span>
                                     </div>
-                                    <div className='flex justify-start flex-col my-3 '>
-                                        <div className='my-1'>Date <span>format-(10-08-2023)</span></div>
-                                        <div>{cer.date}</div>
-                                    </div>
-                                    <div className='flex justify-start flex-col my-3 '>
-                                        <div className='my-1'>Platform</div>
-                                        <div>{cer.platform}</div>
-                                    </div>
-                                    <div className='flex justify-start flex-col my-3 '>
-                                        <div htmlFor={`label `} className='my-1'>Label</div>
-                                        <div>{cer.label}</div>
-                                    </div>
-                                    <div className='flex justify-start flex-col my-3 '>
-                                        <div htmlFor={`doclabel `} className='my-1'>Doc</div>
-                                        <div>{cer.doc}</div>
-
-                                    </div>
-                                    <button onClick={() => handleCerDelete(cer._id)} className={`p-2 w-[90px] text-base mx-2  ${mode === 'dark' ? 'hover:bg-[#222f43]' : 'hover:bg-[#e8edf5]'}  border border-cyan-400`}>Delete</button>
-                                    <button onClick={() => UpdateCer(cer.title, cer.desc, cer.date, cer.platform, cer.label, cer.doc, cer._id)} className={`p-2 w-[90px] text-base mx-2 ${mode === 'dark' ? 'hover:bg-[#222f43]' : 'hover:bg-[#e8edf5]'}  border border-cyan-400`}>Update</button>
-                                </motion.div>
-                            ))
-                        }
-                    </div>)
-                }
+                                    {cer.doc && (
+                                        <a href={cer.doc} target='_blank' rel='noopener noreferrer' className='text-xs text-[#1cc2e7] hover:underline block'>View Certificate →</a>
+                                    )}
+                                </div>
+                                
+                                <div className='flex gap-2'>
+                                    <button 
+                                        onClick={() => UpdateCer(cer.title, cer.desc, cer.date, cer.platform, cer.label, cer.doc, cer._id)} 
+                                        className='flex-1 py-2 px-4 bg-[#1cc2e7]/10 hover:bg-[#1cc2e7] text-[#1cc2e7] hover:text-white border border-[#1cc2e7]/30 hover:border-[#1cc2e7] rounded-xl font-medium transition-all duration-300'>
+                                        Update
+                                    </button>
+                                    <button 
+                                        onClick={() => handleCerDelete(cer._id)} 
+                                        className='flex-1 py-2 px-4 bg-red-500/10 hover:bg-red-500 text-red-500 hover:text-white border border-red-500/30 hover:border-red-500 rounded-xl font-medium transition-all duration-300'>
+                                        Delete
+                                    </button>
+                                </div>
+                            </motion.div>
+                        ))}
+                    </div>
+                )}
             </section>
         </div>
     )

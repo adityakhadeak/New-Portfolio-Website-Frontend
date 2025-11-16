@@ -41,14 +41,14 @@ const Home = () => {
             <div className='homeback w-fit md:w-[459px] flex flex-col'>
               <motion.h4 variants={fadeIn('up', 0.8)}
                 initial='hidden'
-                whileInView={'show'}
-                viewport={{ once: true, amount: 0.5 }} className='text-[#94a9c9] text-base md:text-lg w-fit font-mono my-2 font-bold'>{"<> Hello World !</>"}
+                animate='show'
+                className='text-[#94a9c9] text-base md:text-lg w-fit font-mono my-2 font-bold'>{"<> Hello World !</>"}
               </motion.h4>
               <motion.div
                 variants={fadeIn('up', 0.9)}
                 initial='hidden'
-                whileInView={'show'}
-                viewport={{ once: true, amount: 0.5 }} className='z-[2] w-fit flex flex-col my-2 '>
+                animate='show'
+                className='z-[2] w-fit flex flex-col my-2 '>
                 <div>
                   <h1 className={`  ${mode === 'dark' ? 'text-white ' : 'text-[#344161]'}  text-4xl md:text-3xl`} >My name is</h1>
                   <Link to={!isLoggedIn ? '/login' : '/dashboard/adminprofile'} className=' my-2 @apply gradient-text font-bold text-5xl md:text-[3.75rem] leading-[1.5]' >{userName}</Link>
@@ -74,9 +74,8 @@ const Home = () => {
               <motion.p
                 variants={fadeIn('up', 1)}
                 initial='hidden'
-                whileInView={'show'}
-                viewport={{ once: true, amount: 0.5 }}
-                className="text-[#94a9c9]  font-mono w-fit  md:w-[22rem]">A Final Year Computer  Engineering Student at PCE, Navi-Mumbai. Primarily interested in Web/App Development and CP.</motion.p>
+                animate='show'
+                className="text-[#94a9c9]  font-mono w-fit  md:w-[22rem]">Software Developer specializing in Web, Mobile, and Data Engineering — creating reliable, scalable, and user-centric solutions.</motion.p>
             </div>
             <MypicAnimation />
           </div>
