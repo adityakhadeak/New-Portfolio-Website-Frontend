@@ -6,10 +6,12 @@ import pattern2 from '../images/pattern-2.svg'
 import pattern3 from '../images/pattern-3.svg'
 import pattern4 from '../images/pattern-4.svg'
 import '../Styles/Common.css'
-import mypic from '../images/myphoto1.png'
 import FetchContext from '../Context/FetchContext'
+import { PulseLoader } from 'react-spinners'
+import ThemeContext from '../Context/ThemeContext'
 export const MypicAnimation = () => {
   const { fetchUserDetails,UserDetails } = useContext(FetchContext)
+  const { theme } = useContext(ThemeContext)
   useEffect(() => {
     fetchUserDetails()
     // eslint-disable-next-line
@@ -22,9 +24,14 @@ return (
               animate='show'
               className=''>
               <div
-                className='myImg flex justify-center relative '>
-                {/* <img className=' w-[256px] relative z-[1] md:w-[362px]' src={mypic} alt="" /> */}
-                <img className=' w-[256px] relative z-[1] md:w-[362px]' src={UserDetails[0]?.userimage || mypic} alt="" />
+                className='myImg flex justify-center items-center relative min-h-[256px] md:min-h-[362px]'>
+                {UserDetails[0]?.userimage ? (
+                  <img className=' w-[256px] relative z-[1] md:w-[362px]' src={UserDetails[0]?.userimage} alt="" />
+                ) : (
+                  <div className='flex items-center justify-center w-[256px] h-[256px] md:w-[362px] md:h-[362px] relative z-[1]'>
+                    <PulseLoader color={theme === 'dark' ? '#1cc2e7' : '#0bccd3'} size={15} />
+                  </div>
+                )}
                 <motion.div
                   variants={fadeIn('inplace', 1.5)}
                   initial='hidden'
